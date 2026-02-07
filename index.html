@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Workshop - CoLab Lisbon | Feb 19th</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Sceageus';
+            src: url('Sceageus.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Gagalin';
+            src: url('Gagalin-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --coral-light: #FFB4A2;
+            --coral-dark: #e7583b;
+            --yellow: #e9f174;
+            --yellow-bright: #f0f594;
+            --gray-dark: #545454;
+            --gray-mid: #666;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #FFB4A2;
+            color: var(--gray-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50vh;
+            background: var(--coral-dark);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            z-index: -1;
+        }
+
+        /* Animated Background Elements */
+        .bg-shape {
+            position: fixed;
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-shape-1 {
+            top: 10%;
+            right: -5%;
+            width: 300px;
+            height: 300px;
+            background: var(--yellow);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-shape-2 {
+            bottom: 20%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: var(--white);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: float 25s infinite ease-in-out reverse;
+        }
+
+        .bg-shape-3 {
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background: var(--yellow);
+            transform: rotate(45deg);
+            animation: rotate 30s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .logo {
+            height: 72px;
+            width: auto;
+            margin-top: 30px;
+        }
+
+        .logo-accent {
+            color: var(--yellow);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 80px;
+            text-align: center;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--yellow);
+            color: var(--gray-dark);
+            padding: 8px 24px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            transform: rotate(-2deg);
+            margin-bottom: 30px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+        }
+
+        .hero-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 0.9;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: var(--yellow);
+            text-shadow:
+                -3px -3px 0 var(--white),
+                3px -3px 0 var(--white),
+                -3px 3px 0 var(--white),
+                3px 3px 0 var(--white),
+                -6px 6px 0 var(--gray-dark);
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .hero-subtitle {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px var(--gray-dark);
+            letter-spacing: 1px;
+        }
+
+        .hero-tagline {
+            font-family: 'Gagalin', 'Permanent Marker', cursive;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--gray-dark);
+            margin-bottom: 30px;
+        }
+
+        .hero-quick-info {
+            display: flex;
+            gap: 30px;
+            background: var(--white);
+            padding: 15px 30px;
+            border: 3px solid var(--gray-dark);
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gray-dark);
+            flex-wrap: wrap;
+            justify-content: center;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quick-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+
+        /* Computer Decorations */
+        .computer-head {
+            position: absolute;
+            left: 0;
+            top: 200px;
+            width: 140px;
+            height: auto;
+            z-index: 3;
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.2));
+        }
+
+        .computer-full {
+            position: absolute;
+            left: 0;
+            top: 10%;
+            width: 160px;
+            height: auto;
+            z-index: 2;
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.2));
+        }
+
+        @media (max-width: 968px) {
+            .computer-head {
+                width: 150px;
+            }
+
+            .computer-full {
+                display: none;
+            }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--gray-dark);
+            color: var(--yellow);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            padding: 20px 50px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 6px 6px 0px var(--yellow);
+            border: 3px solid var(--gray-dark);
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0px var(--yellow);
+        }
+
+        .cta-button:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0px 0px 0px var(--yellow);
+        }
+
+        .cta-button::before {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            transition: right 0.3s ease;
+        }
+
+        .cta-button:hover::before {
+            right: 20px;
+        }
+
+        /* Workshop Details */
+        .details-bar {
+            background: var(--white);
+            padding: 30px;
+            margin: 60px 0;
+            border: 4px solid var(--gray-dark);
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+            animation: slideUp 0.8s ease-out 0.4s both;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .detail-item {
+            position: relative;
+        }
+
+        .detail-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .detail-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gray-mid);
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+        }
+
+        .limited-badge {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: var(--coral-dark);
+            color: var(--white);
+            padding: 5px 15px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            transform: rotate(15deg);
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 50px;
+            margin-bottom: 40px;
+            border: 4px solid var(--gray-dark);
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .feature-card:nth-child(even) {
+            animation: slideInReverse 0.8s ease-out;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--yellow);
+        }
+
+        .feature-accent {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--yellow);
+            opacity: 0.3;
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+            z-index: 0;
+        }
+
+        .feature-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: var(--coral-dark);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .feature-description {
+            font-size: 1.2rem;
+            color: var(--gray-mid);
+            line-height: 1.6;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInReverse {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* What You'll Get */
+        .benefits {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.15);
+            margin: 60px -20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            text-align: center;
+            color: var(--white);
+            text-shadow: 4px 4px 0px var(--gray-dark);
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .benefit-item {
+            background: var(--yellow);
+            padding: 30px;
+            border: 3px solid var(--gray-dark);
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px) rotate(-1deg);
+        }
+
+        .benefit-item::before {
+            content: '✓';
+            font-size: 2rem;
+            color: var(--coral-dark);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .benefit-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: var(--gray-dark);
+            letter-spacing: 1px;
+        }
+
+        /* Venue Section */
+        .venue {
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .venue-image-large {
+            width: 100%;
+            max-width: 900px;
+            height: 400px;
+            object-fit: cover;
+            border: 5px solid var(--gray-dark);
+            box-shadow: 12px 12px 0px var(--yellow);
+            margin: 0 auto;
+            display: block;
+            filter: grayscale(100%);
+        }
+
+        /* Schedule Section */
+        .schedule {
+            padding: 80px 0;
+        }
+
+        .schedule-grid {
+            display: grid;
+            gap: 20px;
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+
+        .schedule-item {
+            background: var(--white);
+            padding: 25px;
+            border: 3px solid var(--gray-dark);
+            border-left: 8px solid var(--yellow);
+        }
+
+        .schedule-time {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: var(--coral-dark);
+            margin-bottom: 8px;
+        }
+
+        .schedule-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--gray-dark);
+            margin-bottom: 5px;
+        }
+
+        .schedule-desc {
+            color: var(--gray-mid);
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 80px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .team-card {
+            background: var(--white);
+            padding: 40px;
+            text-align: center;
+            border: 4px solid var(--gray-dark);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .team-card::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 100%;
+            height: 100%;
+            background: var(--yellow);
+            border: 4px solid var(--gray-dark);
+            z-index: -1;
+        }
+
+        .team-photo {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--yellow);
+            margin: 0 auto 20px;
+            filter: grayscale(100%);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .team-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.8rem;
+            color: var(--gray-dark);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .team-linkedin {
+            display: inline-block;
+            margin-top: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .team-linkedin:hover {
+            transform: scale(1.1);
+        }
+
+        .team-linkedin svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--gray-dark);
+        }
+
+        .team-linkedin:hover svg {
+            fill: var(--coral-dark);
+        }
+
+        /* Who Should Attend */
+        .audience {
+            background: var(--white);
+            padding: 50px;
+            margin: 60px 0;
+            border: 4px solid var(--gray-dark);
+            text-align: center;
+        }
+
+        .audience h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2rem;
+            color: var(--gray-dark);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .audience p {
+            font-size: 1.2rem;
+            color: var(--gray-mid);
+            line-height: 1.8;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .footer-cta::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: url('zebra.png') no-repeat center;
+            background-size: contain;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-20px); }
+        }
+
+        .footer-title {
+            font-family: 'Gagalin', 'Permanent Marker', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--white);
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 0px var(--gray-dark);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card {
+                padding: 30px 20px;
+            }
+
+            .benefits {
+                margin: 60px 0;
+            }
+
+            .benefits-list {
+                padding: 0 20px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animal Decorations */
+        .animal-decoration {
+            position: absolute;
+            filter: grayscale(100%);
+            mix-blend-mode: multiply;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .animal-decoration::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            background: var(--yellow);
+            z-index: -1;
+            border-radius: 50% 40% 60% 50%;
+            opacity: 0.8;
+        }
+
+        .animal-1 {
+            top: 150px;
+            right: 5%;
+            width: 120px;
+            height: 120px;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .animal-2 {
+            bottom: 200px;
+            left: 3%;
+            width: 100px;
+            height: 100px;
+            animation: float 18s infinite ease-in-out reverse;
+        }
+
+        .animal-3 {
+            top: 50%;
+            right: 8%;
+            width: 90px;
+            height: 90px;
+            animation: wiggle 4s ease-in-out infinite;
+        }
+
+        .animal-emoji {
+            font-size: 80px;
+            position: relative;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .animal-decoration {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Shapes -->
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+    <div class="bg-shape bg-shape-3"></div>
+
+    <!-- Animal Decorations -->
+    <div class="animal-decoration animal-1">
+        <img src="whitestar.png" alt="Star" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <img src="colab-logo.png" alt="COLAB LISBON" class="logo">
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="lady.png" alt="Retro Computer" class="computer-head">
+        <div class="container">
+            <div class="hero-badge">HANDS-ON WORKSHOP</div>
+            <h1 class="hero-title">Claude Code Workshop</h1>
+            <p class="hero-subtitle">AI for Business Innovation</p>
+
+            <div class="hero-quick-info">
+                <div class="quick-info-item">📅 Feb 19, 2026</div>
+                <div class="quick-info-item">⏰ 1-5 PM</div>
+                <div class="quick-info-item">📍 Tribe, Lisbon</div>
+                <div class="quick-info-item">💰 €55</div>
+            </div>
+
+            <a href="https://luma.com/event/manage/evt-dOSEN85fDb0rEY3" class="cta-button">RESERVE YOUR SPOT</a>
+
+            <p class="hero-tagline">Come with Ideas, Leave with Products</p>
+        </div>
+    </section>
+
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <div class="feature-card reveal">
+                <div class="feature-accent"></div>
+                <div class="feature-content">
+                    <h2 class="feature-title">Let Claude Do the Heavy Lifting</h2>
+                    <p class="feature-description">Lean back & watch your ideas come to life</p>
+                </div>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-accent"></div>
+                <div class="feature-content">
+                    <h2 class="feature-title">When AI Clicks with Your Workflow</h2>
+                    <p class="feature-description">Real AI. Real people. Real output. No fluff.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshop Schedule -->
+    <section class="schedule" style="position: relative;">
+        <img src="computer.png" alt="Retro Computer" class="computer-full">
+        <div class="container">
+            <h2 class="section-title">Workshop Outline</h2>
+            <div class="schedule-grid">
+                <div class="schedule-item reveal">
+                    <div class="schedule-time">13:00-13:15</div>
+                    <div class="schedule-title">Welcome & Introductions</div>
+                    <div class="schedule-desc">Quick intros, your biggest business challenges</div>
+                </div>
+                <div class="schedule-item reveal">
+                    <div class="schedule-time">13:15-14:00</div>
+                    <div class="schedule-title">Claude Fundamentals</div>
+                    <div class="schedule-desc">What Claude can do for your business • Terminal basics vs web interface • Setting up Claude Code</div>
+                </div>
+                <div class="schedule-item reveal">
+                    <div class="schedule-time">14:00-14:45</div>
+                    <div class="schedule-title">Hands-On Practice</div>
+                    <div class="schedule-desc">First commands and prompts • Business automation examples</div>
+                </div>
+                <div class="schedule-item reveal">
+                    <div class="schedule-time">14:45-15:00</div>
+                    <div class="schedule-title">Coffee Break</div>
+                </div>
+                <div class="schedule-item reveal">
+                    <div class="schedule-time">15:00-16:00</div>
+                    <div class="schedule-title">Advanced Applications</div>
+                    <div class="schedule-desc">Workflow automation • Content creation at scale • Data analysis basics • Real participant use cases</div>
+                </div>
+                <div class="schedule-item reveal">
+                    <div class="schedule-time">16:00-16:45</div>
+                    <div class="schedule-title">Innovation Workshop</div>
+                    <div class="schedule-desc">Small groups: Apply Claude to your business • Share & feedback</div>
+                </div>
+                <div class="schedule-item reveal">
+                    <div class="schedule-time">16:45-17:00</div>
+                    <div class="schedule-title">Q&A & Wrap-up</div>
+                </div>
+                <div class="schedule-item reveal">
+                    <div class="schedule-time">17:15+</div>
+                    <div class="schedule-title">Happy Hour & Networking</div>
+                    <div class="schedule-desc">Nova Wine Bar • Pay as you go</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">What You'll Learn</h2>
+            <div class="benefits-list">
+                <div class="benefit-item reveal">
+                    <div class="benefit-text">Master Claude Code for Business Automation</div>
+                </div>
+                <div class="benefit-item reveal">
+                    <div class="benefit-text">Build Custom AI Workflows for Your Work</div>
+                </div>
+                <div class="benefit-item reveal">
+                    <div class="benefit-text">Scale Content & Analysis with Terminal Commands</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue -->
+    <section class="venue">
+        <div class="container">
+            <h2 class="section-title">The Venue</h2>
+            <p style="text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--gray-dark); margin-bottom: 20px;">Tribe Social, Lisbon</p>
+            <img src="venue.jpg" alt="Tribe Lisbon - Private Meeting Room" class="venue-image-large reveal">
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="features">
+        <div class="container">
+            <div class="audience">
+                <h3>What's Included</h3>
+                <p>4-hour intensive hands-on workshop • Coffee, tea & refreshments • Collaborators</p>
+                <p style="margin-top: 20px;"><strong style="color: var(--coral-dark);">BONUS:</strong> Post-event support • Lifetime access to prompt library</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team -->
+    <section class="team">
+        <div class="container">
+            <h2 class="section-title">Meet the Team</h2>
+            <div class="team-grid">
+                <div class="team-card reveal">
+                    <img src="chelsea.png" alt="Chelsea Rustrum" class="team-photo">
+                    <h3 class="team-name">Chelsea Rustrum</h3>
+                    <a href="https://www.linkedin.com/in/chelsearustrum/" target="_blank" class="team-linkedin" aria-label="Chelsea Rustrum LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="team-card reveal">
+                    <img src="verena.png" alt="Verena Husemann" class="team-photo">
+                    <h3 class="team-name">Verena Husemann</h3>
+                    <a href="https://www.linkedin.com/in/verenahusemann/" target="_blank" class="team-linkedin" aria-label="Verena Husemann LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="audience">
+                <h3>Who Should Attend</h3>
+                <p>Entrepreneurs • Founders • Freelancers • Women in Business • Marketing Professionals • Executives</p>
+                <p style="margin-top: 15px; font-size: 1rem;"><strong>What to Bring:</strong> Your Mac laptop • Business challenges to solve or ideas • Be ready to have a good time!</p>
+                <p style="margin-top: 10px; font-size: 1rem;">Limited to 12 participants for personalized attention</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <h2 class="footer-title">Ready to Build Your Future?</h2>
+            <a href="https://luma.com/event/manage/evt-dOSEN85fDb0rEY3" class="cta-button">RESERVE YOUR SPOT</a>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+
+        function revealOnScroll() {
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+    </script>
+</body>
+</html>
