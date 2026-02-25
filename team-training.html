@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Training for Teams - CoLab Lisbon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Gagalin';
+            src: url('Gagalin-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --coral-light: #FFB4A2;
+            --coral-dark: #e7583b;
+            --yellow: #e9f174;
+            --gray-dark: #545454;
+            --gray-mid: #666;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--coral-dark) 0%, var(--coral-light) 100%);
+            color: var(--gray-dark);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+        }
+
+        .intro {
+            background: var(--white);
+            padding: 40px;
+            border: 5px solid var(--gray-dark);
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--gray-dark);
+            margin-bottom: 20px;
+        }
+
+        .intro strong {
+            color: var(--coral-dark);
+            font-size: 1.3rem;
+        }
+
+        .form-container {
+            background: var(--yellow);
+            padding: 50px;
+            border: 5px solid var(--gray-dark);
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 2rem;
+            color: var(--gray-dark);
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: grid;
+            gap: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--gray-dark);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid var(--gray-dark);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            background: var(--white);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button {
+            background: var(--gray-dark);
+            color: var(--yellow);
+            padding: 18px 40px;
+            border: 3px solid var(--gray-dark);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 6px 6px 0px var(--coral-dark);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0px var(--coral-dark);
+        }
+
+        button:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0px 0px 0px var(--coral-dark);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .intro {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Back to Home</a>
+
+        <div class="logo">
+            <img src="colab-logo.png" alt="CoLab Lisbon">
+        </div>
+
+        <h1>AI Training for Teams</h1>
+
+        <div class="intro">
+            <p>
+                <strong>Turn your team into AI‑native thinkers.</strong><br><br>
+                At CoLab Lisbon, we run hands‑on workshops that teach your company how to apply AI tools, automate workflows, and spark innovation.<br><br>
+                <span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px; color: var(--gray-mid);">Tailored for your goals. Practical. Collaborative. Transformative.</span>
+            </p>
+        </div>
+
+        <div class="form-container">
+            <h2>Get Started</h2>
+
+            <form name="team-training" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="team-training">
+                <p style="display: none;">
+                    <label>Don't fill this out: <input name="bot-field"></label>
+                </p>
+
+                <div class="form-row">
+                    <div>
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div>
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="company">Company Name *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+
+                <div>
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div>
+                    <label for="needs">Tell us about your team's needs *</label>
+                    <textarea id="needs" name="needs" required placeholder="What are your goals? How many team members? What challenges are you facing?"></textarea>
+                </div>
+
+                <button type="submit">Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
