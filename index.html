@@ -909,6 +909,7 @@
         <a href="#learn">What You'll Learn</a>
         <a href="#venue">Venue</a>
         <a href="#team">Team</a>
+        <a href="#teams">Company Training</a>
         <a href="#social">Social Events</a>
     </nav>
 
@@ -1100,6 +1101,63 @@
                 <p>Entrepreneurs • Founders • Freelancers • Women in Business • Marketing Professionals • Executives</p>
                 <p style="margin-top: 15px; font-size: 1rem;"><strong>What to Bring:</strong> Your Mac laptop • Business challenges to solve or ideas • Be ready to have a good time!</p>
                 <p style="margin-top: 10px; font-size: 1rem;">Limited to 12 participants for personalized attention</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Training for Teams -->
+    <section class="team" id="teams" style="background: linear-gradient(135deg, var(--coral-dark) 0%, var(--coral-light) 100%); padding: 80px 0;">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--white); text-shadow: 4px 4px 0px rgba(0,0,0,0.3);">AI Training for Teams</h2>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: var(--white); padding: 50px; border: 5px solid var(--gray-dark); box-shadow: 10px 10px 0px rgba(0,0,0,0.3); margin-bottom: 40px;">
+                    <p style="font-size: 1.3rem; line-height: 1.8; color: var(--gray-dark); text-align: center; margin-bottom: 30px;">
+                        <strong style="color: var(--coral-dark); font-size: 1.4rem;">Turn your team into AI‑native thinkers.</strong><br><br>
+                        At CoLab Lisbon, we run hands‑on workshops that teach your company how to apply AI tools, automate workflows, and spark innovation.<br><br>
+                        <span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px; color: var(--gray-mid);">Tailored for your goals. Practical. Collaborative. Transformative.</span>
+                    </p>
+                </div>
+
+                <!-- Contact Form -->
+                <div style="background: var(--yellow); padding: 50px; border: 5px solid var(--gray-dark); box-shadow: 10px 10px 0px rgba(0,0,0,0.3);">
+                    <h3 style="font-family: 'Archivo Black', sans-serif; font-size: 2rem; color: var(--gray-dark); text-align: center; margin-bottom: 30px; text-transform: uppercase;">Empower Your Team</h3>
+
+                    <form name="team-training" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display: grid; gap: 20px;">
+                        <input type="hidden" name="form-name" value="team-training">
+                        <p style="display: none;">
+                            <label>Don't fill this out: <input name="bot-field"></label>
+                        </p>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <label style="display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gray-dark); margin-bottom: 8px; letter-spacing: 1px;">First Name *</label>
+                                <input type="text" name="firstName" required style="width: 100%; padding: 15px; border: 3px solid var(--gray-dark); font-family: 'DM Sans', sans-serif; font-size: 1rem; background: var(--white);">
+                            </div>
+                            <div>
+                                <label style="display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gray-dark); margin-bottom: 8px; letter-spacing: 1px;">Last Name *</label>
+                                <input type="text" name="lastName" required style="width: 100%; padding: 15px; border: 3px solid var(--gray-dark); font-family: 'DM Sans', sans-serif; font-size: 1rem; background: var(--white);">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gray-dark); margin-bottom: 8px; letter-spacing: 1px;">Company Name *</label>
+                            <input type="text" name="company" required style="width: 100%; padding: 15px; border: 3px solid var(--gray-dark); font-family: 'DM Sans', sans-serif; font-size: 1rem; background: var(--white);">
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gray-dark); margin-bottom: 8px; letter-spacing: 1px;">Email *</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 15px; border: 3px solid var(--gray-dark); font-family: 'DM Sans', sans-serif; font-size: 1rem; background: var(--white);">
+                        </div>
+
+                        <div>
+                            <label style="display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gray-dark); margin-bottom: 8px; letter-spacing: 1px;">Tell us about your team's needs *</label>
+                            <textarea name="needs" required rows="6" style="width: 100%; padding: 15px; border: 3px solid var(--gray-dark); font-family: 'DM Sans', sans-serif; font-size: 1rem; background: var(--white); resize: vertical;" placeholder="What are your goals? How many team members? What challenges are you facing?"></textarea>
+                        </div>
+
+                        <button type="submit" style="background: var(--gray-dark); color: var(--yellow); padding: 18px 40px; border: 3px solid var(--gray-dark); font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; cursor: pointer; box-shadow: 6px 6px 0px var(--coral-dark); transition: all 0.3s ease; text-transform: uppercase;" onmouseover="this.style.transform='translate(3px, 3px)'; this.style.boxShadow='3px 3px 0px var(--coral-dark)';" onmouseout="this.style.transform='translate(0, 0)'; this.style.boxShadow='6px 6px 0px var(--coral-dark)';">Send Inquiry</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
