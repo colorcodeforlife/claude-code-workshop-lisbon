@@ -142,6 +142,20 @@
             transition: transform 0.3s ease;
         }
 
+        @media (max-width: 768px) {
+            .hamburger {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1001;
+                padding: 10px;
+            }
+
+            .hamburger span {
+                width: 25px;
+            }
+        }
+
         .hamburger:hover {
             transform: scale(1.05);
         }
