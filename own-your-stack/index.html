@@ -66,37 +66,9 @@
             z-index: 1;
         }
 
-        /* Header */
-        header {
-            padding: 30px 0;
-            animation: slideDown 0.8s ease-out;
-        }
-
-        .logo {
-            height: 72px;
-            width: auto;
-            margin-top: 30px;
-        }
-
-        /* Back Button */
-        .back-button {
-            display: inline-block;
-            margin-top: 20px;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.1rem;
-            color: var(--yellow);
-            text-decoration: none;
-            letter-spacing: 1px;
-            transition: transform 0.3s ease;
-        }
-
-        .back-button:hover {
-            transform: translateX(-5px);
-        }
-
         /* Hero Section */
         .hero {
-            padding: 40px 0 60px;
+            padding: 60px 0 60px;
             text-align: center;
             animation: fadeIn 1s ease-out 0.2s both;
         }
@@ -227,12 +199,14 @@
             text-align: center;
             font-size: 1.3rem;
             line-height: 1.8;
-            color: var(--gray-dark);
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .intro-text strong {
-            color: var(--coral-dark);
+            color: var(--yellow);
             font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
         }
 
         /* Feature Cards */
@@ -474,14 +448,6 @@
     <!-- Floating Crab Decoration -->
     <img src="../crab-clean.png" alt="" class="crab-decoration">
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <a href="../index.html" class="back-button">← Back to All Events</a>
-            <img src="../colab-logo.png" alt="COLAB LISBON" class="logo">
-        </div>
-    </header>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -507,7 +473,7 @@
     <!-- Introduction -->
     <section class="section">
         <div class="container">
-            <div class="intro-text">
+            <div class="intro-text" style="color: var(--white); text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
                 <p><strong>You've been using AI in a browser tab. This weekend, we build you a private infrastructure.</strong></p>
                 <p style="margin-top: 20px;">Own Your Stack is an exclusive two-day intensive for ambitious entrepreneurs and operators who are ready to move beyond rented AI tools. In an intimate oceanfront setting in Ericeira, you'll deploy Claude to your terminal, set up OpenClaw on your own VPS, and launch a live messaging bot connected to your business.</p>
                 <p style="margin-top: 20px;"><strong>No theory. No crowded workshops. Just hands-on implementation in a premium environment with a maximum of 12 participants.</strong></p>
@@ -522,23 +488,33 @@
 
             <div class="feature-grid">
                 <div class="feature-card">
-                    <h3>Claude CLI Running</h3>
-                    <p>Claude desktop and CLI installed and configured on your own machine, with custom prompting frameworks designed for operators.</p>
+                    <h3>Claude CLI</h3>
+                    <p>Claude desktop and CLI installed and configured on your own machine, ready for terminal-based AI workflows.</p>
                 </div>
 
                 <div class="feature-card">
-                    <h3>Personal VPS Deployed</h3>
-                    <p>Your own Virtual Private Server with OpenClaw deployed and running—infrastructure you control, not rented access.</p>
+                    <h3>Prompt Expertise</h3>
+                    <p>Master proprietary prompting frameworks designed for operators—learn to get precise results from AI tools.</p>
                 </div>
 
                 <div class="feature-card">
-                    <h3>Live Messaging Bot</h3>
-                    <p>A working Telegram or WhatsApp bot connected to your business context, ready to automate customer interactions and workflows.</p>
+                    <h3>Project Deployed</h3>
+                    <p>Your own live project deployed and running—real infrastructure you control, not rented access.</p>
                 </div>
 
                 <div class="feature-card">
-                    <h3>Your Exclusive Cohort</h3>
-                    <p>An intimate group of maximum 12 ambitious operators who built it alongside you—your high-caliber network for ongoing collaboration and growth.</p>
+                    <h3>Open Claw VPS</h3>
+                    <p>Your own Virtual Private Server with OpenClaw deployed—autonomous AI agents working on your infrastructure.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Personal Messaging Bot</h3>
+                    <p>A working Telegram or WhatsApp bot connected to your business context and ready to automate workflows.</p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>Agentic Team Formation</h3>
+                    <p>An intimate cohort of 12 ambitious operators building alongside you—your network for ongoing collaboration.</p>
                 </div>
             </div>
         </div>
@@ -698,18 +674,6 @@
         </div>
     </section>
 
-    <!-- Footer CTA -->
-    <section class="footer-cta">
-        <div class="container">
-            <h2 style="font-family: 'Gagalin', 'Permanent Marker', cursive; font-size: clamp(2rem, 5vw, 3rem); color: var(--white); margin-bottom: 20px; text-shadow: 3px 3px 0px var(--gray-dark);">Ready to Own Your Stack?</h2>
-            <p style="font-size: 1.2rem; color: var(--white); margin-bottom: 30px; text-shadow: 1px 1px 0px rgba(0,0,0,0.3);">Join us April 11-12 in Ericeira</p>
-            <a href="https://luma.com/calendar/cal-HLSHIiwiF05MvRk" class="cta-button">REGISTER NOW</a>
-
-            <div style="margin-top: 40px;">
-                <a href="../index.html" style="font-family: 'DM Sans', sans-serif; font-size: 1rem; color: var(--gray-mid); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='var(--white)';" onmouseout="this.style.color='var(--gray-mid)';">← Back to All Events</a>
-            </div>
-        </div>
-    </section>
 
     <script>
         // Smooth scroll
