@@ -597,6 +597,162 @@
         @keyframes spin { to { transform: rotate(360deg); } }
 
         .loading-text { font-size: 1.1rem; color: var(--charcoal); }
+
+        /* Browse All Systems */
+        .browse-all-link {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .browse-all-link a {
+            color: var(--coral);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .browse-all-link a:hover {
+            text-decoration: underline;
+        }
+
+        .all-systems-section {
+            margin-top: 40px;
+        }
+
+        .all-systems-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .all-systems-header h2 {
+            font-size: 1.8rem;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+        }
+
+        .all-systems-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .category-section {
+            margin-bottom: 20px;
+        }
+
+        .category-header {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 18px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .category-header:hover {
+            background: #eee;
+        }
+
+        .category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .category-count {
+            font-size: 0.85rem;
+            color: #888;
+            margin-left: 10px;
+        }
+
+        .category-arrow {
+            font-size: 1.2rem;
+            color: #888;
+            transition: transform 0.3s;
+        }
+
+        .category-section.open .category-arrow {
+            transform: rotate(180deg);
+        }
+
+        .category-systems {
+            display: none;
+            padding: 15px 0;
+        }
+
+        .category-section.open .category-systems {
+            display: block;
+        }
+
+        .system-preview {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .system-preview:hover {
+            border-color: var(--coral);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .system-preview-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 6px;
+        }
+
+        .system-preview-tagline {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .system-preview-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .system-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .system-full-card {
+            display: none;
+        }
+
+        .system-preview.expanded .system-full-card {
+            display: block;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .collapse-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--coral);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
         .hidden { display: none !important; }
 
         @media (max-width: 600px) {
@@ -645,6 +801,18 @@
             <div class="btn-group">
                 <button class="download-btn" onclick="downloadResults()">DOWNLOAD BUILD SPECS</button>
                 <button class="restart-btn" onclick="restartQuiz()">RETAKE</button>
+            </div>
+
+            <div class="browse-all-link">
+                <a onclick="toggleAllSystems()">Browse all <span id="systemCount">29</span> systems →</a>
+            </div>
+
+            <div id="allSystemsSection" class="all-systems-section hidden">
+                <div class="all-systems-header">
+                    <h2>All AI Systems</h2>
+                    <p>Click a category to explore, then click any system to see full details</p>
+                </div>
+                <div id="categoriesContainer"></div>
             </div>
         </div>
     </div>
@@ -4419,6 +4587,185 @@ Help me build:
             currentQuestion = 0;
             document.getElementById('resultsScreen').classList.add('hidden');
             document.getElementById('startScreen').classList.remove('hidden');
+        }
+
+        // Browse All Systems functionality
+        const categories = {
+            'Intelligence & Analytics': ['intelligence', 'analytics', 'data', 'forecast', 'dashboard'],
+            'Sales & Pipeline': ['sales', 'pipeline', 'outbound', 'crm', 'lead'],
+            'Content & Marketing': ['content', 'marketing', 'social', 'video', 'linkedin'],
+            'Operations & Automation': ['automation', 'operations', 'workflow', 'process'],
+            'Customer Success': ['churn', 'retention', 'client', 'relationship'],
+            'Strategy & Finance': ['strategy', 'financial', 'investment', 'project']
+        };
+
+        function categorizeSystem(sys) {
+            const tagStr = sys.tags.join(' ').toLowerCase() + ' ' + sys.title.toLowerCase() + ' ' + sys.tagline.toLowerCase();
+
+            for (const [category, keywords] of Object.entries(categories)) {
+                for (const keyword of keywords) {
+                    if (tagStr.includes(keyword)) {
+                        return category;
+                    }
+                }
+            }
+            return 'Other Systems';
+        }
+
+        function toggleAllSystems() {
+            const section = document.getElementById('allSystemsSection');
+            const isHidden = section.classList.contains('hidden');
+
+            if (isHidden) {
+                section.classList.remove('hidden');
+                renderAllSystems();
+                document.querySelector('.browse-all-link a').textContent = '← Hide all systems';
+            } else {
+                section.classList.add('hidden');
+                document.querySelector('.browse-all-link a').innerHTML = `Browse all <span id="systemCount">${systems.length}</span> systems →`;
+            }
+        }
+
+        function renderAllSystems() {
+            const grouped = {};
+
+            systems.forEach(sys => {
+                const category = categorizeSystem(sys);
+                if (!grouped[category]) grouped[category] = [];
+                grouped[category].push(sys);
+            });
+
+            const container = document.getElementById('categoriesContainer');
+            document.getElementById('systemCount').textContent = systems.length;
+
+            let html = '';
+            for (const [category, sysList] of Object.entries(grouped)) {
+                html += `
+                    <div class="category-section" id="cat-${category.replace(/\s+/g, '-')}">
+                        <div class="category-header" onclick="toggleCategory('${category.replace(/\s+/g, '-')}')">
+                            <div>
+                                <span class="category-title">${category}</span>
+                                <span class="category-count">(${sysList.length} systems)</span>
+                            </div>
+                            <span class="category-arrow">▼</span>
+                        </div>
+                        <div class="category-systems">
+                            ${sysList.map(sys => renderSystemPreview(sys)).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function renderSystemPreview(sys) {
+            const complexityLabels = {
+                'starter': 'Starter',
+                'intermediate': 'Intermediate',
+                'advanced': 'Advanced'
+            };
+            const complexityTags = sys.complexity.map(c => complexityLabels[c] || c);
+
+            return `
+                <div class="system-preview" id="preview-${sys.id}" onclick="toggleSystemDetails('${sys.id}')">
+                    <div class="system-preview-title">${sys.title}</div>
+                    <div class="system-preview-tagline">${sys.tagline}</div>
+                    <div class="system-preview-tags">
+                        ${complexityTags.map(t => `<span class="system-tag">${t}</span>`).join('')}
+                    </div>
+                    <div class="system-full-card" id="full-${sys.id}">
+                        ${renderSystemDetails(sys)}
+                        <span class="collapse-link" onclick="event.stopPropagation(); collapseSystem('${sys.id}')">← Collapse</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderSystemDetails(sys) {
+            return `
+                <div class="section-label">WHAT THIS SYSTEM DOES</div>
+                <p class="section-content">${sys.description}</p>
+
+                <div class="system-architecture">
+                    <div class="section-label">SYSTEM ARCHITECTURE</div>
+                    <div class="arch-diagram">
+                        ${sys.architecture.mcps.map(m => `<div class="arch-component mcp"><span class="arch-label">MCP</span>${m}</div>`).join('')}
+                        ${sys.architecture.skills.map(s => `<div class="arch-component skill"><span class="arch-label">Skill</span>${s}</div>`).join('')}
+                        ${sys.architecture.data.map(d => `<div class="arch-component data"><span class="arch-label">Data</span>${d}</div>`).join('')}
+                        ${sys.architecture.outputs.map(o => `<div class="arch-component output"><span class="arch-label">Output</span>${o}</div>`).join('')}
+                    </div>
+                </div>
+
+                <div class="connections-box">
+                    <div class="section-label">INTEGRATIONS / CONNECTIONS</div>
+                    <div class="connection-list">
+                        ${sys.connections.map(c => `<span class="connection-tag">${c}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="skills-box">
+                    <div class="section-label">CUSTOM SKILLS YOU'LL BUILD</div>
+                    ${sys.skills.map(s => `
+                        <div class="skill-item">
+                            <div class="skill-name">${s.name}</div>
+                            <div class="skill-desc">${s.desc}</div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="outcome-box">
+                    <div class="section-label">EXPECTED OUTCOME</div>
+                    <p class="section-content">${sys.outcome}</p>
+                </div>
+
+                <div class="implementation-box">
+                    <div class="section-label">IMPLEMENTATION ROADMAP</div>
+                    ${sys.implementation.map(p => `
+                        <div class="impl-phase">
+                            <div class="phase-header"><span class="phase-tag">${p.phase}</span></div>
+                            <div class="phase-content">${p.content}</div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="prompt-section">
+                    <div class="section-label">STARTER PROMPT</div>
+                    <div class="prompt-text" id="prompt-all-${sys.id}"><button class="copy-btn" onclick="event.stopPropagation(); copyPromptById('${sys.id}')">Copy</button>${sys.prompt.trim()}</div>
+                </div>
+            `;
+        }
+
+        function toggleCategory(categoryId) {
+            const section = document.getElementById(`cat-${categoryId}`);
+            section.classList.toggle('open');
+        }
+
+        function toggleSystemDetails(sysId) {
+            const preview = document.getElementById(`preview-${sysId}`);
+            if (!preview.classList.contains('expanded')) {
+                // Close any other expanded previews
+                document.querySelectorAll('.system-preview.expanded').forEach(el => {
+                    el.classList.remove('expanded');
+                });
+                preview.classList.add('expanded');
+            }
+        }
+
+        function collapseSystem(sysId) {
+            const preview = document.getElementById(`preview-${sysId}`);
+            preview.classList.remove('expanded');
+        }
+
+        function copyPromptById(sysId) {
+            const sys = systems.find(s => s.id === sysId);
+            if (sys) {
+                navigator.clipboard.writeText(sys.prompt.trim()).then(() => {
+                    const btn = document.querySelector(`#prompt-all-${sysId} .copy-btn`);
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => btn.textContent = 'Copy', 2000);
+                });
+            }
         }
     </script>
 </body>
