@@ -16,11 +16,7 @@
             --light-bg: #FFF9F7;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'DM Sans', sans-serif;
@@ -32,10 +28,8 @@
 
         .bg-shapes {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
@@ -48,29 +42,23 @@
         }
 
         .shape-1 {
-            width: 400px;
-            height: 400px;
+            width: 400px; height: 400px;
             background: var(--coral);
-            top: -100px;
-            right: -100px;
+            top: -100px; right: -100px;
             animation: float1 20s ease-in-out infinite;
         }
 
         .shape-2 {
-            width: 300px;
-            height: 300px;
+            width: 300px; height: 300px;
             background: var(--lime);
-            bottom: -50px;
-            left: -50px;
+            bottom: -50px; left: -50px;
             animation: float2 25s ease-in-out infinite;
         }
 
         .shape-3 {
-            width: 200px;
-            height: 200px;
+            width: 200px; height: 200px;
             background: var(--salmon);
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             animation: float3 15s ease-in-out infinite;
         }
 
@@ -98,7 +86,6 @@
             min-height: 100vh;
         }
 
-        /* Start Screen */
         .start-screen {
             text-align: center;
             padding: 60px 20px;
@@ -128,19 +115,9 @@
             flex-wrap: wrap;
         }
 
-        .feature {
-            text-align: center;
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .feature-text {
-            font-size: 0.95rem;
-            color: #666;
-        }
+        .feature { text-align: center; }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .feature-text { font-size: 0.95rem; color: #666; }
 
         .start-btn {
             background: var(--coral);
@@ -161,10 +138,7 @@
             box-shadow: 0 15px 40px rgba(232, 80, 58, 0.4);
         }
 
-        /* Progress Bar */
-        .progress-container {
-            margin-bottom: 40px;
-        }
+        .progress-container { margin-bottom: 40px; }
 
         .progress-bar {
             height: 8px;
@@ -187,7 +161,6 @@
             color: #888;
         }
 
-        /* Question Card */
         .question-card {
             background: white;
             border-radius: 25px;
@@ -197,14 +170,8 @@
         }
 
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .question-number {
@@ -250,26 +217,10 @@
             background: linear-gradient(135deg, rgba(232, 80, 58, 0.1), rgba(201, 229, 72, 0.1));
         }
 
-        .option-icon {
-            font-size: 1.5rem;
-            width: 40px;
-            text-align: center;
-        }
-
-        .option-content {
-            flex: 1;
-        }
-
-        .option-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 3px;
-        }
-
-        .option-desc {
-            font-size: 0.9rem;
-            color: #888;
-        }
+        .option-icon { font-size: 1.5rem; width: 40px; text-align: center; }
+        .option-content { flex: 1; }
+        .option-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 3px; }
+        .option-desc { font-size: 0.9rem; color: #888; }
 
         .nav-buttons {
             display: flex;
@@ -304,19 +255,10 @@
             color: white;
         }
 
-        .nav-btn.next:hover {
-            background: #d44532;
-        }
+        .nav-btn.next:hover { background: #d44532; }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* Results Screen */
-        .results-screen {
-            animation: fadeIn 0.8s ease;
-        }
+        .results-screen { animation: fadeIn 0.8s ease; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -335,10 +277,7 @@
             margin-bottom: 10px;
         }
 
-        .results-header p {
-            font-size: 1.1rem;
-            color: #666;
-        }
+        .results-header p { font-size: 1.1rem; color: #666; }
 
         .result-card {
             background: white;
@@ -349,20 +288,14 @@
             border-left: 5px solid var(--coral);
         }
 
-        .result-card:nth-child(2) {
-            border-left-color: var(--lime);
-        }
-
-        .result-card:nth-child(3) {
-            border-left-color: var(--salmon);
-        }
+        .result-card:nth-child(2) { border-left-color: var(--lime); }
+        .result-card:nth-child(3) { border-left-color: var(--salmon); }
 
         .result-rank {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             background: var(--coral);
             color: white;
             font-family: 'Bebas Neue', sans-serif;
@@ -413,10 +346,7 @@
             margin-bottom: 10px;
         }
 
-        .why-section p {
-            color: #555;
-            line-height: 1.7;
-        }
+        .why-section p { color: #555; line-height: 1.7; }
 
         .impact-grid {
             display: grid;
@@ -432,18 +362,9 @@
             text-align: center;
         }
 
-        .impact-box.time {
-            border: 2px solid var(--lime);
-        }
-
-        .impact-box.money {
-            border: 2px solid var(--coral);
-        }
-
-        .impact-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
+        .impact-box.time { border: 2px solid var(--lime); }
+        .impact-box.money { border: 2px solid var(--coral); }
+        .impact-icon { font-size: 2rem; margin-bottom: 10px; }
 
         .impact-label {
             font-size: 0.8rem;
@@ -486,8 +407,7 @@
         .step-number {
             background: var(--lime);
             color: var(--charcoal);
-            width: 25px;
-            height: 25px;
+            width: 25px; height: 25px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -497,10 +417,7 @@
             flex-shrink: 0;
         }
 
-        .step-text {
-            color: #555;
-            line-height: 1.5;
-        }
+        .step-text { color: #555; line-height: 1.5; }
 
         .restart-btn {
             display: block;
@@ -519,9 +436,7 @@
             transition: all 0.3s ease;
         }
 
-        .restart-btn:hover {
-            background: var(--coral);
-        }
+        .restart-btn:hover { background: var(--coral); }
 
         .download-btn {
             display: block;
@@ -540,19 +455,15 @@
             transition: all 0.3s ease;
         }
 
-        .download-btn:hover {
-            transform: scale(1.02);
-        }
+        .download-btn:hover { transform: scale(1.02); }
 
-        /* Loading Animation */
         .loading-screen {
             text-align: center;
             padding: 80px 20px;
         }
 
         .loading-spinner {
-            width: 80px;
-            height: 80px;
+            width: 80px; height: 80px;
             border: 4px solid #eee;
             border-top-color: var(--coral);
             border-radius: 50%;
@@ -560,46 +471,18 @@
             margin: 0 auto 30px;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        .loading-text {
-            font-size: 1.3rem;
-            color: var(--charcoal);
-        }
+        .loading-text { font-size: 1.3rem; color: var(--charcoal); }
+        .loading-subtext { color: #888; margin-top: 10px; }
+        .hidden { display: none !important; }
 
-        .loading-subtext {
-            color: #888;
-            margin-top: 10px;
-        }
-
-        /* Hide sections */
-        .hidden {
-            display: none !important;
-        }
-
-        /* Responsive */
         @media (max-width: 600px) {
-            .start-screen h1 {
-                font-size: 2.5rem;
-            }
-
-            .question-card {
-                padding: 30px 25px;
-            }
-
-            .question-text {
-                font-size: 1.3rem;
-            }
-
-            .impact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .result-card {
-                padding: 30px 25px;
-            }
+            .start-screen h1 { font-size: 2.5rem; }
+            .question-card { padding: 30px 25px; }
+            .question-text { font-size: 1.3rem; }
+            .impact-grid { grid-template-columns: 1fr; }
+            .result-card { padding: 30px 25px; }
         }
     </style>
 </head>
@@ -611,10 +494,9 @@
     </div>
 
     <div class="container">
-        <!-- Start Screen -->
         <div id="startScreen" class="start-screen">
             <h1>Find Your Perfect AI Project</h1>
-            <p class="subtitle">Answer 8 quick questions about your business and we'll recommend the top 3 AI use cases that will save you the most time and money.</p>
+            <p class="subtitle">Answer 8 quick questions about your business and we'll recommend the top 3 AI use cases (from 455 options) that will save you the most time and money.</p>
 
             <div class="features">
                 <div class="feature">
@@ -627,14 +509,13 @@
                 </div>
                 <div class="feature">
                     <div class="feature-icon">💡</div>
-                    <div class="feature-text">Actionable<br>recommendations</div>
+                    <div class="feature-text">455 use cases<br>analyzed</div>
                 </div>
             </div>
 
             <button class="start-btn" onclick="startQuiz()">START THE QUIZ</button>
         </div>
 
-        <!-- Quiz Screen -->
         <div id="quizScreen" class="hidden">
             <div class="progress-container">
                 <div class="progress-bar">
@@ -642,28 +523,21 @@
                 </div>
                 <div class="progress-text">Question <span id="currentQ">1</span> of <span id="totalQ">8</span></div>
             </div>
-
-            <div class="question-card" id="questionCard">
-                <!-- Question content loaded dynamically -->
-            </div>
+            <div class="question-card" id="questionCard"></div>
         </div>
 
-        <!-- Loading Screen -->
         <div id="loadingScreen" class="loading-screen hidden">
             <div class="loading-spinner"></div>
-            <div class="loading-text">Analyzing your responses...</div>
+            <div class="loading-text">Analyzing 455 use cases...</div>
             <div class="loading-subtext">Finding the best AI opportunities for your business</div>
         </div>
 
-        <!-- Results Screen -->
         <div id="resultsScreen" class="results-screen hidden">
             <div class="results-header">
                 <h1>Your Top 3 AI Opportunities</h1>
                 <p>Based on your answers, here are the AI projects that will have the biggest impact on your business:</p>
             </div>
-            <div id="resultsContainer">
-                <!-- Results loaded dynamically -->
-            </div>
+            <div id="resultsContainer"></div>
             <button class="download-btn" onclick="downloadResults()">DOWNLOAD MY RESULTS</button>
             <button class="restart-btn" onclick="restartQuiz()">TAKE QUIZ AGAIN</button>
         </div>
@@ -738,7 +612,7 @@
                 options: [
                     { value: 'immediate', icon: '⚡', title: 'Quick win', desc: 'Something I can implement this week' },
                     { value: 'short', icon: '📅', title: 'This month', desc: 'Willing to spend a few weeks setting up' },
-                    { value: 'medium', icon: '📆', title: 'This quarter', desc: 'Okay with bigger projects that pay off' },
+                    { value: 'medium_time', icon: '📆', title: 'This quarter', desc: 'Okay with bigger projects that pay off' },
                     { value: 'strategic', icon: '🎯', title: 'Strategic', desc: 'Building for long-term competitive advantage' }
                 ]
             },
@@ -749,340 +623,539 @@
                     { value: 'minimal', icon: '📝', title: 'Just the basics', desc: 'Email, spreadsheets, maybe social media' },
                     { value: 'some', icon: '🔧', title: 'Some business tools', desc: 'CRM, project management, or marketing tools' },
                     { value: 'integrated', icon: '🔗', title: 'Connected stack', desc: 'Multiple tools that work together' },
-                    { value: 'advanced', icon: '⚙️', title: 'Advanced setup', desc: 'Automation, APIs, custom workflows' }
+                    { value: 'advanced_tools', icon: '⚙️', title: 'Advanced setup', desc: 'Automation, APIs, custom workflows' }
                 ]
             }
         ];
 
-        // Use Case Database with detailed info
+        // ALL 455 USE CASES
         const useCases = [
-            {
-                id: 1,
-                title: "AI-Powered Email Response Templates",
-                category: "Customer & Sales",
-                description: "Create a library of customizable email templates that AI can personalize for each situation.",
-                whyText: "You mentioned spending significant time on admin tasks and emails. With AI templates, you can respond to common inquiries in seconds instead of minutes, while still sounding personal and professional.",
-                timeSaved: "5-10 hrs/week",
-                moneySaved: "$500-1,500/month",
-                howSteps: [
-                    "Identify your 10 most common email types (inquiries, follow-ups, thank yous, etc.)",
-                    "Create base templates for each with Claude, including personalization variables",
-                    "Set up a simple system (even just a doc) to copy, customize, and send",
-                    "Refine templates based on response rates over 2 weeks"
-                ],
-                scores: { admin: 10, support: 8, beginner: 10, free: 10, immediate: 10, minimal: 10, solo: 9, service: 9 }
-            },
-            {
-                id: 2,
-                title: "Social Media Content Batch Creator",
-                category: "Content & Marketing",
-                description: "Generate a month's worth of social media posts in one sitting using AI to maintain consistency.",
-                whyText: "Content creation is eating up your time. By batching your social media with AI, you can create 30 days of posts in 2-3 hours instead of scrambling daily. This keeps you consistent while freeing up creative energy for strategy.",
-                timeSaved: "8-12 hrs/month",
-                moneySaved: "$400-800/month",
-                howSteps: [
-                    "Define your content pillars (3-5 themes you always talk about)",
-                    "Use Claude to generate 30 post ideas based on your pillars",
-                    "Refine and add your personal voice to the best ones",
-                    "Schedule them all using a free tool like Buffer or Later"
-                ],
-                scores: { content: 10, grow_revenue: 8, beginner: 10, free: 9, immediate: 9, minimal: 9, content_biz: 10, solo: 10 }
-            },
-            {
-                id: 3,
-                title: "Sales Proposal Generator",
-                category: "Customer & Sales",
-                description: "Create professional, customized proposals in minutes by feeding AI your services and client details.",
-                whyText: "Every hour spent writing proposals is an hour not spent serving clients or finding new ones. An AI proposal system can cut your proposal time by 80% while actually improving quality and consistency.",
-                timeSaved: "3-5 hrs/week",
-                moneySaved: "$1,000-3,000/month",
-                howSteps: [
-                    "Document your services, pricing, and past proposal examples",
-                    "Create a proposal template structure with Claude",
-                    "Build a simple intake form for client details",
-                    "Use Claude to generate customized proposals from the template + details"
-                ],
-                scores: { sales: 10, grow_revenue: 10, service: 10, intermediate: 8, low: 8, short: 8, some: 8, small: 9 }
-            },
-            {
-                id: 4,
-                title: "Customer FAQ Chatbot",
-                category: "Customer Support",
-                description: "Build a simple AI assistant that can answer common customer questions 24/7.",
-                whyText: "You're spending too much time answering the same questions over and over. A FAQ bot handles 70% of inquiries automatically, letting you focus on complex issues that actually need your expertise.",
-                timeSaved: "10-15 hrs/week",
-                moneySaved: "$1,500-3,000/month",
-                howSteps: [
-                    "List your 20-30 most frequently asked questions and answers",
-                    "Organize them into categories (pricing, process, policies, etc.)",
-                    "Set up a simple chatbot using a tool like Tidio or Crisp (free tiers available)",
-                    "Train it with your FAQ content and test thoroughly"
-                ],
-                scores: { support: 10, save_time: 10, scale: 10, intermediate: 9, low: 9, short: 9, some: 9, medium: 10, product: 9 }
-            },
-            {
-                id: 5,
-                title: "Automated Lead Follow-Up Sequences",
-                category: "Sales & Automation",
-                description: "Set up AI-written email sequences that nurture leads automatically based on their behavior.",
-                whyText: "You're losing deals because leads fall through the cracks. Automated follow-up ensures every lead gets consistent, personalized attention - even when you're busy with other things.",
-                timeSaved: "5-8 hrs/week",
-                moneySaved: "$2,000-5,000/month",
-                howSteps: [
-                    "Map your ideal follow-up timeline (day 1, 3, 7, 14, etc.)",
-                    "Use Claude to write a sequence of 5-7 emails that provide value and build trust",
-                    "Set up automation in your email tool or CRM",
-                    "Track open rates and refine messaging monthly"
-                ],
-                scores: { sales: 10, grow_revenue: 10, save_time: 8, intermediate: 8, low: 8, medium_budget: 9, some: 10, integrated: 10, small: 9, service: 9 }
-            },
-            {
-                id: 6,
-                title: "Meeting Notes & Action Item Extractor",
-                category: "Operations",
-                description: "Use AI to turn meeting recordings or notes into structured summaries with clear action items.",
-                whyText: "Meetings are only valuable if follow-through happens. AI can turn your messy notes into organized summaries with clear owners and deadlines, ensuring nothing falls through the cracks.",
-                timeSaved: "3-5 hrs/week",
-                moneySaved: "$300-600/month",
-                howSteps: [
-                    "Start recording meetings (Zoom, Google Meet, or voice memo)",
-                    "Use a transcription tool (Otter.ai free tier works great)",
-                    "Feed transcripts to Claude with a prompt for summaries + action items",
-                    "Share structured notes with your team within hours"
-                ],
-                scores: { admin: 9, save_time: 10, intermediate: 8, free: 8, immediate: 9, some: 8, medium: 10, large: 10, small: 8 }
-            },
-            {
-                id: 7,
-                title: "Product Description Writer",
-                category: "E-commerce & Content",
-                description: "Generate compelling, SEO-optimized product descriptions at scale using AI.",
-                whyText: "Writing unique descriptions for every product is exhausting and time-consuming. AI can generate compelling, SEO-friendly copy that converts, letting you list products 10x faster.",
-                timeSaved: "10-20 hrs/month",
-                moneySaved: "$500-2,000/month",
-                howSteps: [
-                    "Create a template with your brand voice and key selling points",
-                    "Gather product specs, features, and target keywords",
-                    "Use Claude to generate descriptions in batches",
-                    "Edit for accuracy and upload to your store"
-                ],
-                scores: { content: 9, product: 10, scale: 9, beginner: 9, free: 9, short: 8, minimal: 9, solo: 9 }
-            },
-            {
-                id: 8,
-                title: "Client Onboarding Automation",
-                category: "Operations & Customer Success",
-                description: "Create an automated welcome sequence that gets new clients started without manual hand-holding.",
-                whyText: "Great onboarding determines client success and retention. An automated system ensures every client gets a consistent, thorough welcome experience while freeing you from repetitive tasks.",
-                timeSaved: "5-10 hrs/week",
-                moneySaved: "$800-2,000/month",
-                howSteps: [
-                    "Map out your ideal onboarding journey (what clients need to know/do)",
-                    "Create welcome emails, how-to guides, and FAQ docs with Claude",
-                    "Set up automated email sequence triggered by new client signup",
-                    "Add personal check-in touchpoints at key milestones"
-                ],
-                scores: { admin: 9, support: 9, scale: 10, service: 10, saas: 10, intermediate: 8, low: 9, short: 9, some: 9, small: 10 }
-            },
-            {
-                id: 9,
-                title: "Competitor Analysis Reports",
-                category: "Strategy & Research",
-                description: "Use AI to regularly analyze competitor content, pricing, and positioning to stay ahead.",
-                whyText: "Knowing what competitors are doing helps you differentiate and spot opportunities. AI can do the research legwork, surfacing insights that would take you hours to compile manually.",
-                timeSaved: "4-8 hrs/month",
-                moneySaved: "$300-800/month",
-                howSteps: [
-                    "Identify 3-5 key competitors to track",
-                    "Create a template for the information you want to capture",
-                    "Use Claude to analyze their websites, social, and content monthly",
-                    "Compile insights into actionable strategy recommendations"
-                ],
-                scores: { grow_revenue: 9, strategic: 10, advanced: 9, medium_budget: 8, medium_time: 9, integrated: 8, saas: 9, medium: 9 }
-            },
-            {
-                id: 10,
-                title: "Invoice & Expense Automation",
-                category: "Finance & Operations",
-                description: "Automate invoice creation, expense categorization, and financial reporting.",
-                whyText: "Financial admin is necessary but not the best use of your time. Automation ensures accuracy, speeds up cash flow, and gives you real-time visibility into your business finances.",
-                timeSaved: "4-6 hrs/month",
-                moneySaved: "$200-500/month",
-                howSteps: [
-                    "Choose an invoicing tool with automation features (Wave is free)",
-                    "Set up recurring invoices for regular clients",
-                    "Create expense categories and rules for auto-categorization",
-                    "Use AI to generate financial summaries monthly"
-                ],
-                scores: { admin: 10, reduce_costs: 10, save_time: 9, beginner: 9, free: 10, short: 8, minimal: 10, solo: 10, service: 8 }
-            },
-            {
-                id: 11,
-                title: "Course/Training Content Generator",
-                category: "Education & Content",
-                description: "Create comprehensive course outlines, lesson plans, and educational content with AI assistance.",
-                whyText: "Creating educational content is incredibly time-intensive. AI can help you structure courses, generate lesson content, and create supplementary materials 5x faster than starting from scratch.",
-                timeSaved: "15-30 hrs/course",
-                moneySaved: "$1,000-5,000/course",
-                howSteps: [
-                    "Define your course topic and learning objectives",
-                    "Use Claude to create a comprehensive module outline",
-                    "Generate lesson content, examples, and exercises for each module",
-                    "Create quizzes, worksheets, and supplementary materials"
-                ],
-                scores: { content: 10, content_biz: 10, scale: 9, intermediate: 9, low: 8, medium_time: 10, some: 8, solo: 9 }
-            },
-            {
-                id: 12,
-                title: "SOP & Process Documentation",
-                category: "Operations & Team",
-                description: "Document your business processes so tasks can be delegated or automated consistently.",
-                whyText: "You can't scale what isn't documented. SOPs let you hand off tasks confidently, onboard team members faster, and identify what can be automated. This is foundational for growth.",
-                timeSaved: "10-20 hrs/month",
-                moneySaved: "$500-2,000/month",
-                howSteps: [
-                    "List all recurring tasks in your business",
-                    "Record yourself doing each task (Loom works great)",
-                    "Use Claude to turn recordings into step-by-step SOPs",
-                    "Store in a central location (Notion, Google Drive) for team access"
-                ],
-                scores: { admin: 8, scale: 10, save_time: 8, intermediate: 8, free: 9, medium_time: 9, some: 8, small: 10, medium: 10 }
-            },
-            {
-                id: 13,
-                title: "Personalized Upsell & Cross-sell Emails",
-                category: "Sales & Revenue",
-                description: "Create AI-powered email campaigns that recommend additional products/services based on purchase history.",
-                whyText: "Your existing customers are your best revenue source. AI can analyze purchase patterns and create personalized recommendations that feel helpful rather than salesy, increasing lifetime value.",
-                timeSaved: "3-5 hrs/week",
-                moneySaved: "$1,000-5,000/month",
-                howSteps: [
-                    "Analyze your product/service catalog for natural pairings",
-                    "Segment customers by what they've purchased",
-                    "Use Claude to write personalized recommendation emails for each segment",
-                    "Set up automated triggers based on purchase behavior"
-                ],
-                scores: { sales: 9, grow_revenue: 10, product: 10, saas: 9, advanced: 9, medium_budget: 9, medium_time: 8, integrated: 10, medium: 9 }
-            },
-            {
-                id: 14,
-                title: "Blog-to-Social Content Repurposer",
-                category: "Content & Marketing",
-                description: "Turn one piece of long-form content into dozens of social posts, emails, and snippets automatically.",
-                whyText: "You're creating great content but only using it once. AI can repurpose a single blog post into 20+ pieces of content across platforms, maximizing your content ROI dramatically.",
-                timeSaved: "6-10 hrs/month",
-                moneySaved: "$400-1,000/month",
-                howSteps: [
-                    "Take your best-performing blog posts or content pieces",
-                    "Feed them to Claude with prompts for different formats",
-                    "Generate Twitter threads, LinkedIn posts, email snippets, and quotes",
-                    "Schedule across platforms throughout the month"
-                ],
-                scores: { content: 10, grow_revenue: 8, save_time: 9, beginner: 10, free: 10, immediate: 9, minimal: 9, solo: 10, content_biz: 10 }
-            },
-            {
-                id: 15,
-                title: "Dynamic Pricing Optimizer",
-                category: "Revenue & Strategy",
-                description: "Use AI to analyze market conditions and optimize your pricing for maximum revenue.",
-                whyText: "Most businesses leave money on the table with static pricing. AI can help you test price points, analyze competitor pricing, and find the optimal price that maximizes revenue without losing customers.",
-                timeSaved: "2-4 hrs/month",
-                moneySaved: "$2,000-10,000/month",
-                howSteps: [
-                    "Gather historical sales data and pricing information",
-                    "Use Claude to analyze price elasticity and market positioning",
-                    "Design A/B tests for different price points",
-                    "Implement dynamic pricing rules based on demand signals"
-                ],
-                scores: { grow_revenue: 10, reduce_costs: 8, product: 10, saas: 10, expert: 10, high: 10, strategic: 10, advanced_tools: 10, medium: 9, large: 10 }
-            },
-            {
-                id: 16,
-                title: "Customer Feedback Analyzer",
-                category: "Customer Success & Product",
-                description: "Automatically categorize and extract insights from customer reviews, surveys, and support tickets.",
-                whyText: "Your customers are telling you exactly what they want - if you're listening. AI can process hundreds of feedback points to surface trends, pain points, and opportunities you'd otherwise miss.",
-                timeSaved: "5-10 hrs/month",
-                moneySaved: "$500-2,000/month",
-                howSteps: [
-                    "Collect all customer feedback sources (reviews, surveys, tickets, emails)",
-                    "Use Claude to categorize feedback by theme and sentiment",
-                    "Generate monthly insight reports with actionable recommendations",
-                    "Prioritize product/service improvements based on frequency and impact"
-                ],
-                scores: { support: 9, scale: 9, product: 9, saas: 10, intermediate: 9, low: 9, short: 9, some: 9, medium: 10 }
-            },
-            {
-                id: 17,
-                title: "Weekly Newsletter Writer",
-                category: "Content & Marketing",
-                description: "Create engaging weekly newsletters with AI that curate content, write summaries, and maintain your voice.",
-                whyText: "Newsletters build relationships but take forever to write. AI can help you curate content, write engaging copy, and maintain consistency - turning a 3-hour task into 30 minutes.",
-                timeSaved: "8-12 hrs/month",
-                moneySaved: "$400-1,000/month",
-                howSteps: [
-                    "Define your newsletter format and content pillars",
-                    "Create a weekly content curation system (save links, notes throughout week)",
-                    "Use Claude to write sections based on your notes and format",
-                    "Edit for your voice and personal touches, then send"
-                ],
-                scores: { content: 10, grow_revenue: 8, content_biz: 10, beginner: 9, free: 9, short: 9, minimal: 9, solo: 10 }
-            },
-            {
-                id: 18,
-                title: "Sales Call Prep Assistant",
-                category: "Sales",
-                description: "Use AI to research prospects and prepare personalized talking points before every sales call.",
-                whyText: "Preparation is the key to closing deals, but research takes time. AI can compile prospect information and create custom talking points in minutes, making every call more effective.",
-                timeSaved: "4-8 hrs/week",
-                moneySaved: "$1,500-4,000/month",
-                howSteps: [
-                    "Create a research template (company info, recent news, potential pain points)",
-                    "Before calls, gather prospect's website, LinkedIn, and recent content",
-                    "Use Claude to analyze and create personalized talking points",
-                    "Add specific questions and potential objections to address"
-                ],
-                scores: { sales: 10, grow_revenue: 10, service: 10, saas: 9, intermediate: 8, low: 8, immediate: 9, some: 9, small: 10 }
-            },
-            {
-                id: 19,
-                title: "Automated Review Response System",
-                category: "Customer Success & Marketing",
-                description: "Generate thoughtful, personalized responses to customer reviews across all platforms.",
-                whyText: "Responding to reviews builds trust and improves SEO, but it's tedious. AI can draft personalized responses that address specific feedback while maintaining your brand voice.",
-                timeSaved: "3-6 hrs/month",
-                moneySaved: "$200-500/month",
-                howSteps: [
-                    "Set up alerts for new reviews across platforms",
-                    "Create response templates for different review types (positive, negative, neutral)",
-                    "Use Claude to personalize responses based on specific feedback",
-                    "Review, adjust, and post within 24 hours"
-                ],
-                scores: { support: 8, grow_revenue: 7, product: 9, beginner: 10, free: 10, immediate: 10, minimal: 10, solo: 9 }
-            },
-            {
-                id: 20,
-                title: "Contract & Legal Document Drafter",
-                category: "Operations & Legal",
-                description: "Use AI to create first drafts of contracts, agreements, and legal documents based on templates.",
-                whyText: "Legal documents are necessary but expensive. AI can create solid first drafts based on your templates, reducing lawyer time and ensuring you don't operate without proper agreements.",
-                timeSaved: "5-10 hrs/month",
-                moneySaved: "$500-2,000/month",
-                howSteps: [
-                    "Gather your existing contracts and identify common elements",
-                    "Create modular templates with variable sections",
-                    "Use Claude to draft new documents by combining templates with specifics",
-                    "Have a lawyer review final versions for critical agreements"
-                ],
-                scores: { admin: 9, reduce_costs: 10, service: 10, intermediate: 9, low: 8, short: 9, some: 8, small: 9 }
-            }
+            // Content & Marketing (1-50)
+            {id:1,t:"Blog post writing from outline",c:"Content & Marketing",d:"beginner",tags:["content","writing"]},
+            {id:2,t:"Social media content calendar",c:"Content & Marketing",d:"beginner",tags:["content","social","planning"]},
+            {id:3,t:"Email newsletter sequences",c:"Content & Marketing",d:"beginner",tags:["content","email","automation"]},
+            {id:4,t:"Ad copy variations (A/B testing)",c:"Content & Marketing",d:"intermediate",tags:["content","ads","revenue"]},
+            {id:5,t:"SEO keyword research & optimization",c:"Content & Marketing",d:"intermediate",tags:["content","seo","growth"]},
+            {id:6,t:"Product descriptions for e-commerce",c:"Content & Marketing",d:"beginner",tags:["content","product","ecommerce"]},
+            {id:7,t:"Landing page copy",c:"Content & Marketing",d:"intermediate",tags:["content","conversion","revenue"]},
+            {id:8,t:"Press releases",c:"Content & Marketing",d:"intermediate",tags:["content","pr","growth"]},
+            {id:9,t:"Case study writing",c:"Content & Marketing",d:"intermediate",tags:["content","sales","service"]},
+            {id:10,t:"Testimonial request emails",c:"Content & Marketing",d:"beginner",tags:["content","email","support"]},
+            {id:11,t:"Podcast show notes",c:"Content & Marketing",d:"beginner",tags:["content","creator"]},
+            {id:12,t:"YouTube video scripts",c:"Content & Marketing",d:"intermediate",tags:["content","video","creator"]},
+            {id:13,t:"LinkedIn thought leadership posts",c:"Content & Marketing",d:"beginner",tags:["content","social","service"]},
+            {id:14,t:"Twitter/X thread creation",c:"Content & Marketing",d:"beginner",tags:["content","social"]},
+            {id:15,t:"Instagram caption writing",c:"Content & Marketing",d:"beginner",tags:["content","social"]},
+            {id:16,t:"TikTok script hooks",c:"Content & Marketing",d:"beginner",tags:["content","video","creator"]},
+            {id:17,t:"Webinar presentation outlines",c:"Content & Marketing",d:"intermediate",tags:["content","sales","revenue"]},
+            {id:18,t:"Lead magnet content (ebooks, guides)",c:"Content & Marketing",d:"intermediate",tags:["content","sales","revenue"]},
+            {id:19,t:"Email subject line generator",c:"Content & Marketing",d:"beginner",tags:["content","email"]},
+            {id:20,t:"Hashtag research",c:"Content & Marketing",d:"beginner",tags:["content","social"]},
+            {id:21,t:"Competitor content analysis",c:"Content & Marketing",d:"intermediate",tags:["content","strategy"]},
+            {id:22,t:"Content repurposing (blog → social → email)",c:"Content & Marketing",d:"beginner",tags:["content","efficiency"]},
+            {id:23,t:"Brand voice guidelines document",c:"Content & Marketing",d:"intermediate",tags:["content","admin","scale"]},
+            {id:24,t:"Tagline and slogan brainstorming",c:"Content & Marketing",d:"beginner",tags:["content","creative"]},
+            {id:25,t:"Website About page copy",c:"Content & Marketing",d:"beginner",tags:["content","writing"]},
+            {id:26,t:"FAQ page creation",c:"Content & Marketing",d:"beginner",tags:["content","support"]},
+            {id:27,t:"Meta descriptions for SEO",c:"Content & Marketing",d:"beginner",tags:["content","seo"]},
+            {id:28,t:"Guest post pitches",c:"Content & Marketing",d:"intermediate",tags:["content","outreach","growth"]},
+            {id:29,t:"Influencer outreach templates",c:"Content & Marketing",d:"intermediate",tags:["content","outreach","growth"]},
+            {id:30,t:"Affiliate marketing copy",c:"Content & Marketing",d:"intermediate",tags:["content","revenue","product"]},
+            {id:31,t:"Product launch announcements",c:"Content & Marketing",d:"beginner",tags:["content","product","revenue"]},
+            {id:32,t:"Holiday/seasonal campaign ideas",c:"Content & Marketing",d:"beginner",tags:["content","planning"]},
+            {id:33,t:"User-generated content prompts",c:"Content & Marketing",d:"beginner",tags:["content","engagement"]},
+            {id:34,t:"Contest/giveaway rules & copy",c:"Content & Marketing",d:"beginner",tags:["content","engagement"]},
+            {id:35,t:"Brand storytelling narratives",c:"Content & Marketing",d:"intermediate",tags:["content","creative"]},
+            {id:36,t:"Explainer video scripts",c:"Content & Marketing",d:"intermediate",tags:["content","video"]},
+            {id:37,t:"Infographic content outlines",c:"Content & Marketing",d:"intermediate",tags:["content","visual"]},
+            {id:38,t:"Podcast guest interview questions",c:"Content & Marketing",d:"beginner",tags:["content","creator"]},
+            {id:39,t:"Community post templates",c:"Content & Marketing",d:"beginner",tags:["content","engagement"]},
+            {id:40,t:"Event promotion copy",c:"Content & Marketing",d:"beginner",tags:["content","events"]},
+            {id:41,t:"Referral program messaging",c:"Content & Marketing",d:"intermediate",tags:["content","revenue","growth"]},
+            {id:42,t:"Upsell/cross-sell email sequences",c:"Content & Marketing",d:"intermediate",tags:["content","sales","revenue"]},
+            {id:43,t:"Cart abandonment emails",c:"Content & Marketing",d:"intermediate",tags:["content","ecommerce","revenue"]},
+            {id:44,t:"Win-back campaign copy",c:"Content & Marketing",d:"intermediate",tags:["content","retention"]},
+            {id:45,t:"Milestone celebration posts",c:"Content & Marketing",d:"beginner",tags:["content","engagement"]},
+            {id:46,t:"Behind-the-scenes content ideas",c:"Content & Marketing",d:"beginner",tags:["content","creator"]},
+            {id:47,t:"Educational content series",c:"Content & Marketing",d:"intermediate",tags:["content","creator","education"]},
+            {id:48,t:"Industry trend commentary",c:"Content & Marketing",d:"intermediate",tags:["content","thought-leadership"]},
+            {id:49,t:"Myth-busting content",c:"Content & Marketing",d:"beginner",tags:["content","education"]},
+            {id:50,t:"Comparison/vs content pieces",c:"Content & Marketing",d:"intermediate",tags:["content","seo","sales"]},
+
+            // Customer & Sales (51-95)
+            {id:51,t:"CRM setup and field configuration",c:"Customer & Sales",d:"intermediate",tags:["sales","admin","scale"]},
+            {id:52,t:"Sales script frameworks",c:"Customer & Sales",d:"intermediate",tags:["sales","revenue"]},
+            {id:53,t:"Cold email templates",c:"Customer & Sales",d:"beginner",tags:["sales","outreach","revenue"]},
+            {id:54,t:"Follow-up sequence automation",c:"Customer & Sales",d:"intermediate",tags:["sales","automation","revenue"]},
+            {id:55,t:"Lead qualification criteria",c:"Customer & Sales",d:"intermediate",tags:["sales","efficiency"]},
+            {id:56,t:"Discovery call question scripts",c:"Customer & Sales",d:"beginner",tags:["sales","service"]},
+            {id:57,t:"Objection handling playbook",c:"Customer & Sales",d:"intermediate",tags:["sales","revenue"]},
+            {id:58,t:"Proposal templates",c:"Customer & Sales",d:"intermediate",tags:["sales","service","revenue"]},
+            {id:59,t:"Quote/estimate generators",c:"Customer & Sales",d:"intermediate",tags:["sales","admin","service"]},
+            {id:60,t:"Contract templates",c:"Customer & Sales",d:"intermediate",tags:["sales","admin","legal"]},
+            {id:61,t:"Onboarding email sequences",c:"Customer & Sales",d:"intermediate",tags:["support","automation"]},
+            {id:62,t:"Customer welcome packets",c:"Customer & Sales",d:"beginner",tags:["support","service"]},
+            {id:63,t:"Upsell conversation scripts",c:"Customer & Sales",d:"intermediate",tags:["sales","revenue"]},
+            {id:64,t:"Renewal reminder sequences",c:"Customer & Sales",d:"intermediate",tags:["sales","retention","saas"]},
+            {id:65,t:"Churn prevention outreach",c:"Customer & Sales",d:"intermediate",tags:["support","retention","saas"]},
+            {id:66,t:"NPS survey follow-ups",c:"Customer & Sales",d:"beginner",tags:["support","feedback"]},
+            {id:67,t:"Customer feedback analysis",c:"Customer & Sales",d:"intermediate",tags:["support","analytics"]},
+            {id:68,t:"Support ticket response templates",c:"Customer & Sales",d:"beginner",tags:["support","efficiency"]},
+            {id:69,t:"Chatbot conversation flows",c:"Customer & Sales",d:"intermediate",tags:["support","automation","scale"]},
+            {id:70,t:"FAQ chatbot training",c:"Customer & Sales",d:"intermediate",tags:["support","automation"]},
+            {id:71,t:"Live chat scripts",c:"Customer & Sales",d:"beginner",tags:["support","sales"]},
+            {id:72,t:"Complaint resolution frameworks",c:"Customer & Sales",d:"intermediate",tags:["support","admin"]},
+            {id:73,t:"Refund policy communication",c:"Customer & Sales",d:"beginner",tags:["support","admin"]},
+            {id:74,t:"Customer success check-in templates",c:"Customer & Sales",d:"beginner",tags:["support","retention","service"]},
+            {id:75,t:"Quarterly business review templates",c:"Customer & Sales",d:"intermediate",tags:["sales","service"]},
+            {id:76,t:"Account health scorecards",c:"Customer & Sales",d:"advanced",tags:["sales","analytics","saas"]},
+            {id:77,t:"Customer segmentation criteria",c:"Customer & Sales",d:"intermediate",tags:["sales","analytics"]},
+            {id:78,t:"Ideal customer profile (ICP) documents",c:"Customer & Sales",d:"intermediate",tags:["sales","strategy"]},
+            {id:79,t:"Buyer persona development",c:"Customer & Sales",d:"intermediate",tags:["sales","strategy"]},
+            {id:80,t:"Sales battlecards vs competitors",c:"Customer & Sales",d:"intermediate",tags:["sales","strategy"]},
+            {id:81,t:"ROI calculators for prospects",c:"Customer & Sales",d:"advanced",tags:["sales","revenue","tool"]},
+            {id:82,t:"Demo script frameworks",c:"Customer & Sales",d:"intermediate",tags:["sales","saas"]},
+            {id:83,t:"Trial-to-paid conversion emails",c:"Customer & Sales",d:"intermediate",tags:["sales","saas","revenue"]},
+            {id:84,t:"Partnership pitch templates",c:"Customer & Sales",d:"intermediate",tags:["sales","growth"]},
+            {id:85,t:"Affiliate recruitment outreach",c:"Customer & Sales",d:"intermediate",tags:["sales","revenue"]},
+            {id:86,t:"Reseller/channel partner materials",c:"Customer & Sales",d:"intermediate",tags:["sales","growth"]},
+            {id:87,t:"Customer advisory board invites",c:"Customer & Sales",d:"intermediate",tags:["support","engagement"]},
+            {id:88,t:"Beta tester recruitment",c:"Customer & Sales",d:"beginner",tags:["sales","product","saas"]},
+            {id:89,t:"Product feedback surveys",c:"Customer & Sales",d:"beginner",tags:["support","product"]},
+            {id:90,t:"Customer interview guides",c:"Customer & Sales",d:"intermediate",tags:["support","research"]},
+            {id:91,t:"Testimonial collection workflows",c:"Customer & Sales",d:"beginner",tags:["sales","content"]},
+            {id:92,t:"Case study interview questions",c:"Customer & Sales",d:"beginner",tags:["sales","content"]},
+            {id:93,t:"Reference request templates",c:"Customer & Sales",d:"beginner",tags:["sales"]},
+            {id:94,t:"Customer gifting strategies",c:"Customer & Sales",d:"beginner",tags:["support","retention"]},
+            {id:95,t:"Loyalty program design",c:"Customer & Sales",d:"intermediate",tags:["sales","retention","product"]},
+
+            // Operations & Automation (96-140)
+            {id:96,t:"Zapier/Make workflow design",c:"Operations & Automation",d:"intermediate",tags:["admin","automation"]},
+            {id:97,t:"Email automation sequences",c:"Operations & Automation",d:"intermediate",tags:["admin","automation","email"]},
+            {id:98,t:"Invoice generation automation",c:"Operations & Automation",d:"intermediate",tags:["admin","automation","finance"]},
+            {id:99,t:"Payment reminder workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","automation","revenue"]},
+            {id:100,t:"Expense categorization rules",c:"Operations & Automation",d:"beginner",tags:["admin","finance"]},
+            {id:101,t:"Receipt processing workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","automation"]},
+            {id:102,t:"Calendar scheduling automation",c:"Operations & Automation",d:"beginner",tags:["admin","automation"]},
+            {id:103,t:"Meeting booking workflows",c:"Operations & Automation",d:"beginner",tags:["admin","automation"]},
+            {id:104,t:"Task assignment automation",c:"Operations & Automation",d:"intermediate",tags:["admin","automation","scale"]},
+            {id:105,t:"Project status update triggers",c:"Operations & Automation",d:"intermediate",tags:["admin","automation"]},
+            {id:106,t:"Slack notification workflows",c:"Operations & Automation",d:"beginner",tags:["admin","automation"]},
+            {id:107,t:"Form submission routing",c:"Operations & Automation",d:"beginner",tags:["admin","automation"]},
+            {id:108,t:"Lead routing rules",c:"Operations & Automation",d:"intermediate",tags:["sales","automation"]},
+            {id:109,t:"Data sync between tools",c:"Operations & Automation",d:"intermediate",tags:["admin","automation"]},
+            {id:110,t:"Backup automation workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","automation"]},
+            {id:111,t:"Report generation scheduling",c:"Operations & Automation",d:"intermediate",tags:["admin","automation","analytics"]},
+            {id:112,t:"Social media auto-posting",c:"Operations & Automation",d:"beginner",tags:["content","automation"]},
+            {id:113,t:"RSS-to-social automation",c:"Operations & Automation",d:"intermediate",tags:["content","automation"]},
+            {id:114,t:"Inventory alert triggers",c:"Operations & Automation",d:"intermediate",tags:["admin","product","ecommerce"]},
+            {id:115,t:"Reorder point notifications",c:"Operations & Automation",d:"intermediate",tags:["admin","product"]},
+            {id:116,t:"Shipping notification workflows",c:"Operations & Automation",d:"beginner",tags:["support","ecommerce"]},
+            {id:117,t:"Order confirmation automation",c:"Operations & Automation",d:"beginner",tags:["support","ecommerce"]},
+            {id:118,t:"Delivery tracking updates",c:"Operations & Automation",d:"intermediate",tags:["support","ecommerce"]},
+            {id:119,t:"Review request automation",c:"Operations & Automation",d:"beginner",tags:["sales","automation"]},
+            {id:120,t:"Feedback collection triggers",c:"Operations & Automation",d:"beginner",tags:["support","automation"]},
+            {id:121,t:"Employee onboarding workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","scale","hr"]},
+            {id:122,t:"Offboarding checklists automation",c:"Operations & Automation",d:"intermediate",tags:["admin","hr"]},
+            {id:123,t:"Time tracking reminders",c:"Operations & Automation",d:"beginner",tags:["admin","automation"]},
+            {id:124,t:"Timesheet approval workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","automation"]},
+            {id:125,t:"PTO request automation",c:"Operations & Automation",d:"intermediate",tags:["admin","hr"]},
+            {id:126,t:"Birthday/anniversary reminders",c:"Operations & Automation",d:"beginner",tags:["admin","culture"]},
+            {id:127,t:"Contract renewal alerts",c:"Operations & Automation",d:"intermediate",tags:["admin","revenue"]},
+            {id:128,t:"Subscription management workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","saas","revenue"]},
+            {id:129,t:"Dunning email automation",c:"Operations & Automation",d:"intermediate",tags:["admin","revenue","saas"]},
+            {id:130,t:"Failed payment retry workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","revenue"]},
+            {id:131,t:"Affiliate payout automation",c:"Operations & Automation",d:"intermediate",tags:["admin","revenue"]},
+            {id:132,t:"Commission calculation workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","finance"]},
+            {id:133,t:"Referral tracking automation",c:"Operations & Automation",d:"intermediate",tags:["sales","automation"]},
+            {id:134,t:"UTM parameter tracking",c:"Operations & Automation",d:"intermediate",tags:["content","analytics"]},
+            {id:135,t:"Lead source attribution",c:"Operations & Automation",d:"advanced",tags:["sales","analytics"]},
+            {id:136,t:"Webhook integrations",c:"Operations & Automation",d:"advanced",tags:["admin","automation"]},
+            {id:137,t:"API connection workflows",c:"Operations & Automation",d:"advanced",tags:["admin","automation"]},
+            {id:138,t:"Database sync automation",c:"Operations & Automation",d:"advanced",tags:["admin","automation"]},
+            {id:139,t:"File organization workflows",c:"Operations & Automation",d:"beginner",tags:["admin","automation"]},
+            {id:140,t:"Document approval workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","automation","scale"]},
+
+            // Data & Analytics (141-180)
+            {id:141,t:"Sales dashboard design",c:"Data & Analytics",d:"intermediate",tags:["analytics","sales"]},
+            {id:142,t:"Marketing metrics tracking",c:"Data & Analytics",d:"intermediate",tags:["analytics","content"]},
+            {id:143,t:"Customer cohort analysis",c:"Data & Analytics",d:"advanced",tags:["analytics","saas"]},
+            {id:144,t:"Churn rate analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","saas","retention"]},
+            {id:145,t:"Revenue forecasting models",c:"Data & Analytics",d:"advanced",tags:["analytics","finance","revenue"]},
+            {id:146,t:"Cash flow projections",c:"Data & Analytics",d:"advanced",tags:["analytics","finance"]},
+            {id:147,t:"Expense trend analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","finance"]},
+            {id:148,t:"Profit margin calculations",c:"Data & Analytics",d:"intermediate",tags:["analytics","finance"]},
+            {id:149,t:"Unit economics modeling",c:"Data & Analytics",d:"advanced",tags:["analytics","saas","strategy"]},
+            {id:150,t:"Customer lifetime value (LTV) analysis",c:"Data & Analytics",d:"advanced",tags:["analytics","revenue"]},
+            {id:151,t:"Customer acquisition cost (CAC) tracking",c:"Data & Analytics",d:"intermediate",tags:["analytics","revenue"]},
+            {id:152,t:"LTV:CAC ratio monitoring",c:"Data & Analytics",d:"advanced",tags:["analytics","saas"]},
+            {id:153,t:"Funnel conversion analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","sales","revenue"]},
+            {id:154,t:"Website traffic analysis",c:"Data & Analytics",d:"beginner",tags:["analytics","content"]},
+            {id:155,t:"SEO ranking tracking",c:"Data & Analytics",d:"intermediate",tags:["analytics","content","seo"]},
+            {id:156,t:"Social media analytics",c:"Data & Analytics",d:"beginner",tags:["analytics","content"]},
+            {id:157,t:"Email performance metrics",c:"Data & Analytics",d:"beginner",tags:["analytics","email"]},
+            {id:158,t:"A/B test result analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","revenue"]},
+            {id:159,t:"Campaign ROI calculations",c:"Data & Analytics",d:"intermediate",tags:["analytics","revenue"]},
+            {id:160,t:"Attribution modeling",c:"Data & Analytics",d:"advanced",tags:["analytics","revenue"]},
+            {id:161,t:"Competitive pricing analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","strategy","revenue"]},
+            {id:162,t:"Market size estimation",c:"Data & Analytics",d:"advanced",tags:["analytics","strategy"]},
+            {id:163,t:"TAM/SAM/SOM calculations",c:"Data & Analytics",d:"advanced",tags:["analytics","strategy"]},
+            {id:164,t:"Industry benchmark comparison",c:"Data & Analytics",d:"intermediate",tags:["analytics","strategy"]},
+            {id:165,t:"Sentiment analysis on reviews",c:"Data & Analytics",d:"intermediate",tags:["analytics","support"]},
+            {id:166,t:"Customer feedback categorization",c:"Data & Analytics",d:"intermediate",tags:["analytics","support"]},
+            {id:167,t:"Support ticket trend analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","support"]},
+            {id:168,t:"Product usage analytics",c:"Data & Analytics",d:"intermediate",tags:["analytics","product","saas"]},
+            {id:169,t:"Feature adoption tracking",c:"Data & Analytics",d:"intermediate",tags:["analytics","product","saas"]},
+            {id:170,t:"User engagement scoring",c:"Data & Analytics",d:"advanced",tags:["analytics","saas"]},
+            {id:171,t:"Net Promoter Score tracking",c:"Data & Analytics",d:"beginner",tags:["analytics","support"]},
+            {id:172,t:"Customer satisfaction trends",c:"Data & Analytics",d:"intermediate",tags:["analytics","support"]},
+            {id:173,t:"Employee satisfaction analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","hr"]},
+            {id:174,t:"Productivity metrics tracking",c:"Data & Analytics",d:"intermediate",tags:["analytics","admin"]},
+            {id:175,t:"Project profitability analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","service","finance"]},
+            {id:176,t:"Resource utilization reports",c:"Data & Analytics",d:"intermediate",tags:["analytics","service","scale"]},
+            {id:177,t:"Inventory turnover analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","product","ecommerce"]},
+            {id:178,t:"Supplier performance tracking",c:"Data & Analytics",d:"intermediate",tags:["analytics","admin"]},
+            {id:179,t:"Quality metrics monitoring",c:"Data & Analytics",d:"intermediate",tags:["analytics","product"]},
+            {id:180,t:"SLA compliance reporting",c:"Data & Analytics",d:"intermediate",tags:["analytics","service"]},
+
+            // Decision Making & Strategy (181-225)
+            {id:181,t:"Pricing strategy analysis",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","revenue"]},
+            {id:182,t:"Price increase modeling",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","revenue"]},
+            {id:183,t:"Discount impact analysis",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","revenue"]},
+            {id:184,t:"Market entry evaluation",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","growth"]},
+            {id:185,t:"Go/no-go decision frameworks",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","admin"]},
+            {id:186,t:"Build vs buy analysis",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","admin"]},
+            {id:187,t:"Hire vs outsource decisions",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","hr","scale"]},
+            {id:188,t:"Vendor selection scorecards",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","admin"]},
+            {id:189,t:"Partnership evaluation criteria",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","growth"]},
+            {id:190,t:"Investment decision frameworks",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","finance"]},
+            {id:191,t:"Acquisition target analysis",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","growth"]},
+            {id:192,t:"Merger feasibility assessment",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","growth"]},
+            {id:193,t:"Exit strategy planning",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","finance"]},
+            {id:194,t:"Scenario planning models",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","planning"]},
+            {id:195,t:"Risk assessment matrices",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","admin"]},
+            {id:196,t:"SWOT analysis facilitation",c:"Decision Making & Strategy",d:"beginner",tags:["strategy","planning"]},
+            {id:197,t:"Porter's Five Forces analysis",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy"]},
+            {id:198,t:"Competitive positioning maps",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","sales"]},
+            {id:199,t:"Blue ocean strategy canvas",c:"Decision Making & Strategy",d:"advanced",tags:["strategy"]},
+            {id:200,t:"Business model canvas creation",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","planning"]},
+            {id:201,t:"Value proposition design",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","sales"]},
+            {id:202,t:"OKR planning and tracking",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","planning","scale"]},
+            {id:203,t:"KPI selection frameworks",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","analytics"]},
+            {id:204,t:"Goal setting workshops",c:"Decision Making & Strategy",d:"beginner",tags:["strategy","planning"]},
+            {id:205,t:"Quarterly planning facilitation",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","planning"]},
+            {id:206,t:"Annual strategy development",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","planning"]},
+            {id:207,t:"Budget allocation decisions",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","finance"]},
+            {id:208,t:"Resource prioritization",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","admin","scale"]},
+            {id:209,t:"Project prioritization scoring",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","admin"]},
+            {id:210,t:"Feature roadmap planning",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","product","saas"]},
+            {id:211,t:"Technical debt assessment",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","saas"]},
+            {id:212,t:"Platform migration decisions",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","admin"]},
+            {id:213,t:"Tool consolidation analysis",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","admin","cost"]},
+            {id:214,t:"Vendor negotiation prep",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","admin","cost"]},
+            {id:215,t:"Contract renewal decisions",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","admin"]},
+            {id:216,t:"Lease vs buy analysis",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","finance"]},
+            {id:217,t:"Expansion location analysis",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","growth"]},
+            {id:218,t:"Hiring plan development",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","hr","scale"]},
+            {id:219,t:"Compensation benchmarking",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","hr"]},
+            {id:220,t:"Benefits package design",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","hr"]},
+            {id:221,t:"Organizational restructuring",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","scale"]},
+            {id:222,t:"Role definition decisions",c:"Decision Making & Strategy",d:"intermediate",tags:["strategy","hr"]},
+            {id:223,t:"Succession planning",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","hr"]},
+            {id:224,t:"Crisis response planning",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","admin"]},
+            {id:225,t:"Business continuity planning",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","admin"]},
+
+            // Internal Systems & Documentation (226-265)
+            {id:226,t:"Standard Operating Procedures (SOPs)",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","scale","documentation"]},
+            {id:227,t:"Employee handbook creation",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","hr","documentation"]},
+            {id:228,t:"Policy documentation",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","documentation"]},
+            {id:229,t:"Process flowcharts",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","documentation"]},
+            {id:230,t:"Training manual development",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","scale","documentation"]},
+            {id:231,t:"Onboarding documentation",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","hr","documentation"]},
+            {id:232,t:"Role descriptions",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","hr"]},
+            {id:233,t:"Job posting templates",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","hr"]},
+            {id:234,t:"Interview question banks",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","hr"]},
+            {id:235,t:"Performance review templates",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","hr"]},
+            {id:236,t:"1:1 meeting frameworks",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","scale"]},
+            {id:237,t:"Team meeting agendas",c:"Internal Systems & Documentation",d:"beginner",tags:["admin"]},
+            {id:238,t:"All-hands presentation templates",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","scale"]},
+            {id:239,t:"Company wiki/knowledge base",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","scale","documentation"]},
+            {id:240,t:"Internal FAQ documents",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","documentation"]},
+            {id:241,t:"Troubleshooting guides",c:"Internal Systems & Documentation",d:"intermediate",tags:["support","documentation"]},
+            {id:242,t:"Technical documentation",c:"Internal Systems & Documentation",d:"advanced",tags:["admin","documentation","saas"]},
+            {id:243,t:"API documentation",c:"Internal Systems & Documentation",d:"advanced",tags:["admin","documentation","saas"]},
+            {id:244,t:"User guides/manuals",c:"Internal Systems & Documentation",d:"intermediate",tags:["support","documentation"]},
+            {id:245,t:"Quick reference cards",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","documentation"]},
+            {id:246,t:"Cheat sheets",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","documentation"]},
+            {id:247,t:"Decision trees",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","support","scale"]},
+            {id:248,t:"Escalation procedures",c:"Internal Systems & Documentation",d:"intermediate",tags:["support","scale"]},
+            {id:249,t:"Communication templates",c:"Internal Systems & Documentation",d:"beginner",tags:["admin"]},
+            {id:250,t:"Announcement templates",c:"Internal Systems & Documentation",d:"beginner",tags:["admin"]},
+            {id:251,t:"Change management docs",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","scale"]},
+            {id:252,t:"Project documentation templates",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","documentation"]},
+            {id:253,t:"Post-mortem templates",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin"]},
+            {id:254,t:"Lessons learned frameworks",c:"Internal Systems & Documentation",d:"beginner",tags:["admin"]},
+            {id:255,t:"Best practices guides",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","documentation"]},
+            {id:256,t:"Style guides",c:"Internal Systems & Documentation",d:"intermediate",tags:["content","documentation"]},
+            {id:257,t:"Brand guidelines",c:"Internal Systems & Documentation",d:"intermediate",tags:["content","documentation"]},
+            {id:258,t:"Voice and tone guides",c:"Internal Systems & Documentation",d:"intermediate",tags:["content","documentation"]},
+            {id:259,t:"Legal compliance checklists",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","legal"]},
+            {id:260,t:"Security protocols",c:"Internal Systems & Documentation",d:"advanced",tags:["admin","legal"]},
+            {id:261,t:"Privacy policy templates",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","legal"]},
+            {id:262,t:"Terms of service drafts",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","legal"]},
+            {id:263,t:"Data handling procedures",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","legal"]},
+            {id:264,t:"Vendor management docs",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin"]},
+            {id:265,t:"Asset inventory systems",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin"]},
+
+            // Product & Development (266-305)
+            {id:266,t:"No-code app prototypes",c:"Product & Development",d:"intermediate",tags:["product","tool"]},
+            {id:267,t:"Internal tool building",c:"Product & Development",d:"intermediate",tags:["admin","tool"]},
+            {id:268,t:"Database schema design",c:"Product & Development",d:"advanced",tags:["product","saas"]},
+            {id:269,t:"Airtable/Notion setups",c:"Product & Development",d:"beginner",tags:["admin","tool"]},
+            {id:270,t:"Spreadsheet automation",c:"Product & Development",d:"intermediate",tags:["admin","automation"]},
+            {id:271,t:"Custom calculator tools",c:"Product & Development",d:"intermediate",tags:["sales","tool","revenue"]},
+            {id:272,t:"Booking/scheduling systems",c:"Product & Development",d:"intermediate",tags:["admin","service","tool"]},
+            {id:273,t:"Customer portal design",c:"Product & Development",d:"advanced",tags:["support","saas","tool"]},
+            {id:274,t:"Member directory systems",c:"Product & Development",d:"intermediate",tags:["admin","tool"]},
+            {id:275,t:"Event management tools",c:"Product & Development",d:"intermediate",tags:["admin","tool"]},
+            {id:276,t:"Survey/form builders",c:"Product & Development",d:"beginner",tags:["support","tool"]},
+            {id:277,t:"Quiz/assessment tools",c:"Product & Development",d:"intermediate",tags:["content","tool","education"]},
+            {id:278,t:"Lead scoring systems",c:"Product & Development",d:"advanced",tags:["sales","automation","tool"]},
+            {id:279,t:"Simple CRM builds",c:"Product & Development",d:"intermediate",tags:["sales","tool"]},
+            {id:280,t:"Project management setups",c:"Product & Development",d:"intermediate",tags:["admin","tool"]},
+            {id:281,t:"Time tracking systems",c:"Product & Development",d:"intermediate",tags:["admin","service","tool"]},
+            {id:282,t:"Expense tracking tools",c:"Product & Development",d:"intermediate",tags:["admin","finance","tool"]},
+            {id:283,t:"Invoice generators",c:"Product & Development",d:"intermediate",tags:["admin","finance","tool"]},
+            {id:284,t:"Proposal builders",c:"Product & Development",d:"intermediate",tags:["sales","service","tool"]},
+            {id:285,t:"Contract management systems",c:"Product & Development",d:"intermediate",tags:["admin","legal","tool"]},
+            {id:286,t:"Digital signature workflows",c:"Product & Development",d:"intermediate",tags:["admin","tool"]},
+            {id:287,t:"File sharing systems",c:"Product & Development",d:"beginner",tags:["admin","tool"]},
+            {id:288,t:"Collaboration workspaces",c:"Product & Development",d:"intermediate",tags:["admin","scale","tool"]},
+            {id:289,t:"Task management systems",c:"Product & Development",d:"beginner",tags:["admin","tool"]},
+            {id:290,t:"Habit tracking tools",c:"Product & Development",d:"beginner",tags:["admin","tool"]},
+            {id:291,t:"Goal tracking dashboards",c:"Product & Development",d:"intermediate",tags:["admin","tool"]},
+            {id:292,t:"OKR tracking systems",c:"Product & Development",d:"intermediate",tags:["admin","scale","tool"]},
+            {id:293,t:"Feedback collection tools",c:"Product & Development",d:"beginner",tags:["support","tool"]},
+            {id:294,t:"Review management systems",c:"Product & Development",d:"intermediate",tags:["support","product","tool"]},
+            {id:295,t:"Testimonial display widgets",c:"Product & Development",d:"beginner",tags:["sales","tool"]},
+            {id:296,t:"Social proof tools",c:"Product & Development",d:"intermediate",tags:["sales","revenue","tool"]},
+            {id:297,t:"Countdown/urgency widgets",c:"Product & Development",d:"beginner",tags:["sales","revenue","tool"]},
+            {id:298,t:"Pop-up/modal builders",c:"Product & Development",d:"beginner",tags:["sales","revenue","tool"]},
+            {id:299,t:"Landing page builders",c:"Product & Development",d:"intermediate",tags:["content","revenue","tool"]},
+            {id:300,t:"Email template builders",c:"Product & Development",d:"beginner",tags:["content","email","tool"]},
+            {id:301,t:"Chatbot builders",c:"Product & Development",d:"intermediate",tags:["support","automation","tool"]},
+            {id:302,t:"FAQ bot systems",c:"Product & Development",d:"intermediate",tags:["support","automation","tool"]},
+            {id:303,t:"Knowledge base systems",c:"Product & Development",d:"intermediate",tags:["support","scale","tool"]},
+            {id:304,t:"Help desk setups",c:"Product & Development",d:"intermediate",tags:["support","scale","tool"]},
+            {id:305,t:"Ticketing systems",c:"Product & Development",d:"intermediate",tags:["support","scale","tool"]},
+
+            // Industry-Specific (306-335)
+            {id:306,t:"Product catalog management",c:"Industry: E-commerce",d:"intermediate",tags:["product","ecommerce"]},
+            {id:307,t:"Inventory forecasting",c:"Industry: E-commerce",d:"advanced",tags:["analytics","ecommerce"]},
+            {id:308,t:"Dynamic pricing rules",c:"Industry: E-commerce",d:"advanced",tags:["revenue","ecommerce"]},
+            {id:309,t:"Bundle/kit recommendations",c:"Industry: E-commerce",d:"intermediate",tags:["revenue","ecommerce"]},
+            {id:310,t:"Return prediction models",c:"Industry: E-commerce",d:"advanced",tags:["analytics","ecommerce"]},
+            {id:311,t:"Trial engagement scoring",c:"Industry: SaaS",d:"advanced",tags:["sales","saas"]},
+            {id:312,t:"Feature usage analysis",c:"Industry: SaaS",d:"intermediate",tags:["analytics","saas"]},
+            {id:313,t:"Upgrade trigger identification",c:"Industry: SaaS",d:"advanced",tags:["revenue","saas"]},
+            {id:314,t:"Churn prediction models",c:"Industry: SaaS",d:"advanced",tags:["retention","saas"]},
+            {id:315,t:"Usage-based billing setup",c:"Industry: SaaS",d:"advanced",tags:["revenue","saas"]},
+            {id:316,t:"Proposal automation",c:"Industry: Consulting/Agency",d:"intermediate",tags:["sales","service"]},
+            {id:317,t:"Scope of work templates",c:"Industry: Consulting/Agency",d:"intermediate",tags:["sales","service"]},
+            {id:318,t:"Client reporting automation",c:"Industry: Consulting/Agency",d:"intermediate",tags:["admin","service"]},
+            {id:319,t:"Utilization tracking",c:"Industry: Consulting/Agency",d:"intermediate",tags:["analytics","service"]},
+            {id:320,t:"Project profitability analysis",c:"Industry: Consulting/Agency",d:"intermediate",tags:["analytics","service"]},
+            {id:321,t:"Curriculum development",c:"Industry: Coaching/Courses",d:"intermediate",tags:["content","education","creator"]},
+            {id:322,t:"Lesson plan creation",c:"Industry: Coaching/Courses",d:"beginner",tags:["content","education","creator"]},
+            {id:323,t:"Student progress tracking",c:"Industry: Coaching/Courses",d:"intermediate",tags:["admin","education"]},
+            {id:324,t:"Certification workflows",c:"Industry: Coaching/Courses",d:"intermediate",tags:["admin","education"]},
+            {id:325,t:"Community engagement systems",c:"Industry: Coaching/Courses",d:"intermediate",tags:["support","education","creator"]},
+            {id:326,t:"Listing description generation",c:"Industry: Real Estate",d:"beginner",tags:["content","realestate"]},
+            {id:327,t:"Market analysis reports",c:"Industry: Real Estate",d:"intermediate",tags:["analytics","realestate"]},
+            {id:328,t:"Comparable property analysis",c:"Industry: Real Estate",d:"intermediate",tags:["analytics","realestate"]},
+            {id:329,t:"Client matching systems",c:"Industry: Real Estate",d:"intermediate",tags:["sales","realestate"]},
+            {id:330,t:"Transaction coordination",c:"Industry: Real Estate",d:"intermediate",tags:["admin","realestate"]},
+            {id:331,t:"Appointment reminder systems",c:"Industry: Healthcare/Wellness",d:"beginner",tags:["admin","healthcare"]},
+            {id:332,t:"Patient intake automation",c:"Industry: Healthcare/Wellness",d:"intermediate",tags:["admin","healthcare"]},
+            {id:333,t:"Treatment plan templates",c:"Industry: Healthcare/Wellness",d:"intermediate",tags:["content","healthcare"]},
+            {id:334,t:"Progress tracking systems",c:"Industry: Healthcare/Wellness",d:"intermediate",tags:["admin","healthcare"]},
+            {id:335,t:"Compliance documentation",c:"Industry: Healthcare/Wellness",d:"intermediate",tags:["admin","legal","healthcare"]},
+
+            // Advanced/Emerging (336-355)
+            {id:336,t:"AI agent workflows",c:"Advanced & Emerging",d:"advanced",tags:["automation","advanced"]},
+            {id:337,t:"Multi-step reasoning chains",c:"Advanced & Emerging",d:"advanced",tags:["automation","advanced"]},
+            {id:338,t:"Automated research pipelines",c:"Advanced & Emerging",d:"advanced",tags:["content","automation","advanced"]},
+            {id:339,t:"Content-to-code generation",c:"Advanced & Emerging",d:"advanced",tags:["product","advanced"]},
+            {id:340,t:"Voice interface prototypes",c:"Advanced & Emerging",d:"advanced",tags:["product","advanced"]},
+            {id:341,t:"Predictive analytics models",c:"Advanced & Emerging",d:"advanced",tags:["analytics","advanced"]},
+            {id:342,t:"Recommendation engines",c:"Advanced & Emerging",d:"advanced",tags:["revenue","product","advanced"]},
+            {id:343,t:"Personalization systems",c:"Advanced & Emerging",d:"advanced",tags:["revenue","advanced"]},
+            {id:344,t:"Dynamic content generation",c:"Advanced & Emerging",d:"advanced",tags:["content","advanced"]},
+            {id:345,t:"Real-time translation workflows",c:"Advanced & Emerging",d:"advanced",tags:["content","advanced"]},
+            {id:346,t:"Sentiment monitoring systems",c:"Advanced & Emerging",d:"intermediate",tags:["analytics","support","advanced"]},
+            {id:347,t:"Trend detection pipelines",c:"Advanced & Emerging",d:"advanced",tags:["analytics","advanced"]},
+            {id:348,t:"Anomaly detection rules",c:"Advanced & Emerging",d:"advanced",tags:["analytics","advanced"]},
+            {id:349,t:"Fraud prevention logic",c:"Advanced & Emerging",d:"advanced",tags:["admin","legal","advanced"]},
+            {id:350,t:"Quality assurance automation",c:"Advanced & Emerging",d:"advanced",tags:["admin","product","advanced"]},
+            {id:351,t:"Testing scenario generation",c:"Advanced & Emerging",d:"advanced",tags:["product","saas","advanced"]},
+            {id:352,t:"Documentation from code",c:"Advanced & Emerging",d:"intermediate",tags:["admin","saas","documentation"]},
+            {id:353,t:"Code review assistance",c:"Advanced & Emerging",d:"advanced",tags:["product","saas","advanced"]},
+            {id:354,t:"Architecture decision records",c:"Advanced & Emerging",d:"intermediate",tags:["admin","saas","documentation"]},
+            {id:355,t:"Technical spec generation",c:"Advanced & Emerging",d:"intermediate",tags:["product","saas","documentation"]},
+
+            // High-Intent Lead Capture (356-365)
+            {id:356,t:"Savings/ROI calculators that capture emails",c:"High-Intent Lead Capture",d:"intermediate",tags:["sales","revenue","tool"]},
+            {id:357,t:"RFP/bid opportunity scrapers for your industry",c:"High-Intent Lead Capture",d:"advanced",tags:["sales","automation","revenue"]},
+            {id:358,t:"Competitor switch-kit generators",c:"High-Intent Lead Capture",d:"intermediate",tags:["sales","content","revenue"]},
+            {id:359,t:"Audit/assessment tools that pre-qualify leads",c:"High-Intent Lead Capture",d:"intermediate",tags:["sales","tool","revenue"]},
+            {id:360,t:"Waitlist systems with referral mechanics",c:"High-Intent Lead Capture",d:"intermediate",tags:["sales","growth"]},
+            {id:361,t:"Free tool embeds that showcase expertise",c:"High-Intent Lead Capture",d:"intermediate",tags:["sales","content","tool"]},
+            {id:362,t:"Quiz funnels that segment by purchase intent",c:"High-Intent Lead Capture",d:"intermediate",tags:["sales","revenue","tool"]},
+            {id:363,t:"Comparison shopping tools for your market",c:"High-Intent Lead Capture",d:"advanced",tags:["sales","tool","revenue"]},
+            {id:364,t:"Industry benchmark reports as lead magnets",c:"High-Intent Lead Capture",d:"intermediate",tags:["content","sales","revenue"]},
+            {id:365,t:"Automated demo environment generators",c:"High-Intent Lead Capture",d:"advanced",tags:["sales","saas","tool"]},
+
+            // Sales Velocity & Closing (366-375)
+            {id:366,t:"Automated proposal drafters from call notes",c:"Sales Velocity & Closing",d:"advanced",tags:["sales","automation","revenue"]},
+            {id:367,t:"Objection response databases with win-rate tracking",c:"Sales Velocity & Closing",d:"intermediate",tags:["sales","revenue"]},
+            {id:368,t:"Mutual Action Plan (MAP) generators",c:"Sales Velocity & Closing",d:"intermediate",tags:["sales","revenue"]},
+            {id:369,t:"Champion enablement content creators",c:"Sales Velocity & Closing",d:"intermediate",tags:["sales","content"]},
+            {id:370,t:"Deal risk scoring with next-action suggestions",c:"Sales Velocity & Closing",d:"advanced",tags:["sales","analytics","revenue"]},
+            {id:371,t:"Competitive displacement playbooks",c:"Sales Velocity & Closing",d:"intermediate",tags:["sales","strategy"]},
+            {id:372,t:"Value engineering calculators",c:"Sales Velocity & Closing",d:"advanced",tags:["sales","tool","revenue"]},
+            {id:373,t:"Executive summary generators for complex deals",c:"Sales Velocity & Closing",d:"intermediate",tags:["sales","content"]},
+            {id:374,t:"Multi-stakeholder influence mapping tools",c:"Sales Velocity & Closing",d:"advanced",tags:["sales","strategy"]},
+            {id:375,t:"Contract redline prediction and response",c:"Sales Velocity & Closing",d:"advanced",tags:["sales","legal","automation"]},
+
+            // Retention & Expansion (376-385)
+            {id:376,t:"Usage-based upsell opportunity alerts",c:"Retention & Expansion",d:"advanced",tags:["sales","saas","revenue"]},
+            {id:377,t:"Customer health score dashboards with triggers",c:"Retention & Expansion",d:"advanced",tags:["support","analytics","saas"]},
+            {id:378,t:"Automated ROI/value realization reports",c:"Retention & Expansion",d:"intermediate",tags:["support","retention","revenue"]},
+            {id:379,t:"Expansion opportunity identification systems",c:"Retention & Expansion",d:"advanced",tags:["sales","saas","revenue"]},
+            {id:380,t:"Churn risk predictors with save playbooks",c:"Retention & Expansion",d:"advanced",tags:["support","retention","saas"]},
+            {id:381,t:"Customer milestone celebration automation",c:"Retention & Expansion",d:"beginner",tags:["support","retention"]},
+            {id:382,t:"Renewal pricing optimization models",c:"Retention & Expansion",d:"advanced",tags:["sales","revenue","saas"]},
+            {id:383,t:"Cross-sell recommendation engines",c:"Retention & Expansion",d:"advanced",tags:["sales","revenue"]},
+            {id:384,t:"Customer advocacy program automation",c:"Retention & Expansion",d:"intermediate",tags:["support","growth"]},
+            {id:385,t:"Success story capture and publishing workflows",c:"Retention & Expansion",d:"intermediate",tags:["content","sales"]},
+
+            // Operational Leverage (386-395)
+            {id:386,t:"Meeting-to-SOP converters",c:"Operational Leverage",d:"intermediate",tags:["admin","automation","scale"]},
+            {id:387,t:"Tech stack audit and consolidation analyzers",c:"Operational Leverage",d:"intermediate",tags:["admin","cost","strategy"]},
+            {id:388,t:"Vendor spend optimization dashboards",c:"Operational Leverage",d:"intermediate",tags:["admin","cost","analytics"]},
+            {id:389,t:"Process bottleneck identification systems",c:"Operational Leverage",d:"advanced",tags:["admin","analytics","scale"]},
+            {id:390,t:"Capacity planning models",c:"Operational Leverage",d:"advanced",tags:["admin","analytics","scale"]},
+            {id:391,t:"Knowledge extraction from departing employees",c:"Operational Leverage",d:"intermediate",tags:["admin","hr","documentation"]},
+            {id:392,t:"Compliance monitoring and alert systems",c:"Operational Leverage",d:"advanced",tags:["admin","legal"]},
+            {id:393,t:"Quality assurance sampling automation",c:"Operational Leverage",d:"intermediate",tags:["admin","product"]},
+            {id:394,t:"Internal service level tracking",c:"Operational Leverage",d:"intermediate",tags:["admin","analytics"]},
+            {id:395,t:"Resource allocation optimization tools",c:"Operational Leverage",d:"advanced",tags:["admin","analytics","scale"]},
+
+            // Direct Revenue - Affiliate & Partnership (396-405)
+            {id:396,t:"Affiliate performance leaderboards",c:"Direct Revenue: Partnerships",d:"intermediate",tags:["sales","revenue","analytics"]},
+            {id:397,t:"Partner deal registration systems",c:"Direct Revenue: Partnerships",d:"intermediate",tags:["sales","revenue"]},
+            {id:398,t:"Co-marketing campaign coordinators",c:"Direct Revenue: Partnerships",d:"intermediate",tags:["content","growth"]},
+            {id:399,t:"Revenue share calculation automation",c:"Direct Revenue: Partnerships",d:"intermediate",tags:["admin","finance"]},
+            {id:400,t:"Partner portal content management",c:"Direct Revenue: Partnerships",d:"intermediate",tags:["content","sales"]},
+            {id:401,t:"Affiliate recruitment and vetting workflows",c:"Direct Revenue: Partnerships",d:"intermediate",tags:["sales","growth"]},
+            {id:402,t:"Commission dispute resolution systems",c:"Direct Revenue: Partnerships",d:"intermediate",tags:["admin","support"]},
+            {id:403,t:"Partner certification tracking",c:"Direct Revenue: Partnerships",d:"intermediate",tags:["admin","sales"]},
+            {id:404,t:"Joint venture opportunity evaluators",c:"Direct Revenue: Partnerships",d:"advanced",tags:["strategy","growth"]},
+            {id:405,t:"Channel conflict detection systems",c:"Direct Revenue: Partnerships",d:"advanced",tags:["sales","analytics"]},
+
+            // Direct Revenue - Pricing & Monetization (406-415)
+            {id:406,t:"Dynamic pricing engines",c:"Direct Revenue: Pricing",d:"advanced",tags:["revenue","product","analytics"]},
+            {id:407,t:"Price elasticity testing frameworks",c:"Direct Revenue: Pricing",d:"advanced",tags:["revenue","analytics"]},
+            {id:408,t:"Bundle optimization analyzers",c:"Direct Revenue: Pricing",d:"intermediate",tags:["revenue","product"]},
+            {id:409,t:"Discount impact calculators",c:"Direct Revenue: Pricing",d:"intermediate",tags:["revenue","analytics"]},
+            {id:410,t:"Freemium conversion optimizers",c:"Direct Revenue: Pricing",d:"advanced",tags:["revenue","saas"]},
+            {id:411,t:"Usage-based pricing model builders",c:"Direct Revenue: Pricing",d:"advanced",tags:["revenue","saas"]},
+            {id:412,t:"Price increase communication systems",c:"Direct Revenue: Pricing",d:"intermediate",tags:["revenue","content"]},
+            {id:413,t:"Competitive pricing monitors",c:"Direct Revenue: Pricing",d:"intermediate",tags:["revenue","analytics"]},
+            {id:414,t:"Margin optimization tools",c:"Direct Revenue: Pricing",d:"intermediate",tags:["revenue","finance"]},
+            {id:415,t:"Revenue leakage detectors",c:"Direct Revenue: Pricing",d:"advanced",tags:["revenue","analytics"]},
+
+            // Direct Revenue - Content Monetization (416-425)
+            {id:416,t:"Paywall optimization systems",c:"Direct Revenue: Content Monetization",d:"advanced",tags:["revenue","content","creator"]},
+            {id:417,t:"Premium content gating strategies",c:"Direct Revenue: Content Monetization",d:"intermediate",tags:["revenue","content","creator"]},
+            {id:418,t:"Sponsored content matching platforms",c:"Direct Revenue: Content Monetization",d:"advanced",tags:["revenue","content","creator"]},
+            {id:419,t:"Newsletter monetization dashboards",c:"Direct Revenue: Content Monetization",d:"intermediate",tags:["revenue","content","creator"]},
+            {id:420,t:"Course/training pricing optimizers",c:"Direct Revenue: Content Monetization",d:"intermediate",tags:["revenue","education","creator"]},
+            {id:421,t:"Membership tier value calculators",c:"Direct Revenue: Content Monetization",d:"intermediate",tags:["revenue","creator"]},
+            {id:422,t:"Content licensing opportunity finders",c:"Direct Revenue: Content Monetization",d:"intermediate",tags:["revenue","content"]},
+            {id:423,t:"Syndication revenue trackers",c:"Direct Revenue: Content Monetization",d:"intermediate",tags:["revenue","content","analytics"]},
+            {id:424,t:"Speaking engagement lead generators",c:"Direct Revenue: Content Monetization",d:"intermediate",tags:["revenue","content","service"]},
+            {id:425,t:"Book/ebook launch coordinators",c:"Direct Revenue: Content Monetization",d:"intermediate",tags:["content","revenue","creator"]},
+
+            // Direct Revenue - Lead Gen (426-435)
+            {id:426,t:"SEO content gap analyzers",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["content","seo","growth"]},
+            {id:427,t:"Keyword opportunity scorers",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["content","seo","growth"]},
+            {id:428,t:"Backlink outreach automation",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["content","seo","outreach"]},
+            {id:429,t:"Guest posting opportunity finders",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["content","growth","outreach"]},
+            {id:430,t:"Podcast guesting pitch systems",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["content","growth","outreach"]},
+            {id:431,t:"PR opportunity monitors",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["content","growth"]},
+            {id:432,t:"HARO response automation",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["content","growth","automation"]},
+            {id:433,t:"Industry event ROI calculators",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["analytics","growth"]},
+            {id:434,t:"Webinar promotion optimizers",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["content","revenue","growth"]},
+            {id:435,t:"Lead magnet performance trackers",c:"Direct Revenue: Lead Generation",d:"intermediate",tags:["analytics","sales"]},
+
+            // Direct Revenue - Conversion (436-445)
+            {id:436,t:"Landing page variant generators",c:"Direct Revenue: Conversion",d:"intermediate",tags:["content","revenue"]},
+            {id:437,t:"Form abandonment recovery systems",c:"Direct Revenue: Conversion",d:"intermediate",tags:["sales","revenue","automation"]},
+            {id:438,t:"Exit intent offer optimizers",c:"Direct Revenue: Conversion",d:"intermediate",tags:["sales","revenue"]},
+            {id:439,t:"Social proof placement testers",c:"Direct Revenue: Conversion",d:"intermediate",tags:["sales","revenue"]},
+            {id:440,t:"Trust signal effectiveness trackers",c:"Direct Revenue: Conversion",d:"intermediate",tags:["analytics","revenue"]},
+            {id:441,t:"Checkout flow optimizers",c:"Direct Revenue: Conversion",d:"advanced",tags:["revenue","ecommerce"]},
+            {id:442,t:"Upsell/cross-sell timing systems",c:"Direct Revenue: Conversion",d:"advanced",tags:["sales","revenue"]},
+            {id:443,t:"Cart recovery sequence builders",c:"Direct Revenue: Conversion",d:"intermediate",tags:["sales","ecommerce","revenue"]},
+            {id:444,t:"Free trial conversion optimizers",c:"Direct Revenue: Conversion",d:"advanced",tags:["sales","saas","revenue"]},
+            {id:445,t:"Demo booking rate improvers",c:"Direct Revenue: Conversion",d:"intermediate",tags:["sales","revenue"]},
+
+            // Direct Revenue - CAC Reduction (446-455)
+            {id:446,t:"Channel attribution models",c:"Direct Revenue: CAC Reduction",d:"advanced",tags:["analytics","revenue"]},
+            {id:447,t:"Ad spend optimization dashboards",c:"Direct Revenue: CAC Reduction",d:"intermediate",tags:["analytics","cost"]},
+            {id:448,t:"Organic vs paid mix analyzers",c:"Direct Revenue: CAC Reduction",d:"intermediate",tags:["analytics","cost"]},
+            {id:449,t:"Referral program ROI trackers",c:"Direct Revenue: CAC Reduction",d:"intermediate",tags:["analytics","growth","revenue"]},
+            {id:450,t:"Influencer partnership evaluators",c:"Direct Revenue: CAC Reduction",d:"intermediate",tags:["analytics","growth"]},
+            {id:451,t:"Community-led growth metrics",c:"Direct Revenue: CAC Reduction",d:"intermediate",tags:["analytics","growth"]},
+            {id:452,t:"Word-of-mouth tracking systems",c:"Direct Revenue: CAC Reduction",d:"intermediate",tags:["analytics","growth"]},
+            {id:453,t:"Brand search volume monitors",c:"Direct Revenue: CAC Reduction",d:"beginner",tags:["analytics","growth"]},
+            {id:454,t:"Customer acquisition forecasters",c:"Direct Revenue: CAC Reduction",d:"advanced",tags:["analytics","revenue","planning"]},
+            {id:455,t:"Marketing efficiency dashboards",c:"Direct Revenue: CAC Reduction",d:"intermediate",tags:["analytics","cost"]}
         ];
+
+        // Impact data by category
+        const impactData = {
+            "Content & Marketing": { time: "5-15 hrs/month", money: "$300-1,500/month" },
+            "Customer & Sales": { time: "5-20 hrs/month", money: "$1,000-5,000/month" },
+            "Operations & Automation": { time: "10-30 hrs/month", money: "$500-3,000/month" },
+            "Data & Analytics": { time: "5-15 hrs/month", money: "$500-2,500/month" },
+            "Decision Making & Strategy": { time: "5-10 hrs/month", money: "$1,000-10,000/month" },
+            "Internal Systems & Documentation": { time: "10-20 hrs/month", money: "$300-1,500/month" },
+            "Product & Development": { time: "10-40 hrs/month", money: "$1,000-5,000/month" },
+            "Industry: E-commerce": { time: "10-25 hrs/month", money: "$1,000-10,000/month" },
+            "Industry: SaaS": { time: "10-30 hrs/month", money: "$2,000-15,000/month" },
+            "Industry: Consulting/Agency": { time: "10-20 hrs/month", money: "$1,500-5,000/month" },
+            "Industry: Coaching/Courses": { time: "15-30 hrs/month", money: "$1,000-8,000/month" },
+            "Industry: Real Estate": { time: "5-15 hrs/month", money: "$500-3,000/month" },
+            "Industry: Healthcare/Wellness": { time: "5-15 hrs/month", money: "$500-2,000/month" },
+            "Advanced & Emerging": { time: "20-50 hrs/month", money: "$2,000-20,000/month" },
+            "High-Intent Lead Capture": { time: "10-20 hrs/month", money: "$2,000-10,000/month" },
+            "Sales Velocity & Closing": { time: "10-25 hrs/month", money: "$3,000-15,000/month" },
+            "Retention & Expansion": { time: "5-15 hrs/month", money: "$2,000-20,000/month" },
+            "Operational Leverage": { time: "15-40 hrs/month", money: "$1,000-5,000/month" },
+            "Direct Revenue: Partnerships": { time: "5-15 hrs/month", money: "$1,000-10,000/month" },
+            "Direct Revenue: Pricing": { time: "5-15 hrs/month", money: "$2,000-20,000/month" },
+            "Direct Revenue: Content Monetization": { time: "10-20 hrs/month", money: "$1,000-10,000/month" },
+            "Direct Revenue: Lead Generation": { time: "10-25 hrs/month", money: "$1,000-8,000/month" },
+            "Direct Revenue: Conversion": { time: "5-15 hrs/month", money: "$2,000-15,000/month" },
+            "Direct Revenue: CAC Reduction": { time: "5-10 hrs/month", money: "$1,000-10,000/month" }
+        };
 
         // State
         let currentQuestion = 0;
         let answers = {};
 
-        // Start Quiz
         function startQuiz() {
             document.getElementById('startScreen').classList.add('hidden');
             document.getElementById('quizScreen').classList.remove('hidden');
@@ -1090,17 +1163,14 @@
             showQuestion(0);
         }
 
-        // Show Question
         function showQuestion(index) {
             const q = questions[index];
             currentQuestion = index;
 
-            // Update progress
             const progress = ((index) / questions.length) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
             document.getElementById('currentQ').textContent = index + 1;
 
-            // Build question HTML
             const card = document.getElementById('questionCard');
             card.innerHTML = `
                 <div class="question-number">QUESTION ${index + 1}</div>
@@ -1118,28 +1188,23 @@
                     `).join('')}
                 </div>
                 <div class="nav-buttons">
-                    <button class="nav-btn back" onclick="prevQuestion()" ${index === 0 ? 'style="visibility:hidden"' : ''}>
-                        ← Back
-                    </button>
+                    <button class="nav-btn back" onclick="prevQuestion()" ${index === 0 ? 'style="visibility:hidden"' : ''}>← Back</button>
                     <button class="nav-btn next" onclick="nextQuestion()" ${!answers[q.id] ? 'disabled' : ''}>
                         ${index === questions.length - 1 ? 'See Results' : 'Next →'}
                     </button>
                 </div>
             `;
 
-            // Animate in
             card.style.animation = 'none';
-            card.offsetHeight; // Trigger reflow
+            card.offsetHeight;
             card.style.animation = 'slideIn 0.5s ease';
         }
 
-        // Select Option
         function selectOption(questionId, value) {
             answers[questionId] = value;
             showQuestion(currentQuestion);
         }
 
-        // Navigation
         function nextQuestion() {
             if (currentQuestion < questions.length - 1) {
                 showQuestion(currentQuestion + 1);
@@ -1149,121 +1214,105 @@
         }
 
         function prevQuestion() {
-            if (currentQuestion > 0) {
-                showQuestion(currentQuestion - 1);
-            }
+            if (currentQuestion > 0) showQuestion(currentQuestion - 1);
         }
 
-        // Show Loading
         function showLoading() {
             document.getElementById('quizScreen').classList.add('hidden');
             document.getElementById('loadingScreen').classList.remove('hidden');
-
-            // Simulate analysis time
-            setTimeout(() => {
-                showResults();
-            }, 2500);
+            setTimeout(() => showResults(), 2500);
         }
 
-        // Calculate & Show Results
         function showResults() {
             document.getElementById('loadingScreen').classList.add('hidden');
             document.getElementById('resultsScreen').classList.remove('hidden');
 
-            // Score each use case based on answers
-            const scoredUseCases = useCases.map(uc => {
+            const scored = useCases.map(uc => {
                 let score = 0;
+                const tags = uc.tags;
 
-                // Business type match
-                if (answers.business_type === 'service' && uc.scores.service) score += uc.scores.service;
-                if (answers.business_type === 'product' && uc.scores.product) score += uc.scores.product;
-                if (answers.business_type === 'saas' && uc.scores.saas) score += uc.scores.saas;
-                if (answers.business_type === 'content' && uc.scores.content_biz) score += uc.scores.content_biz;
+                // Business type scoring
+                if (answers.business_type === 'service' && tags.includes('service')) score += 15;
+                if (answers.business_type === 'product' && (tags.includes('product') || tags.includes('ecommerce'))) score += 15;
+                if (answers.business_type === 'saas' && tags.includes('saas')) score += 15;
+                if (answers.business_type === 'content' && (tags.includes('creator') || tags.includes('education') || tags.includes('content'))) score += 12;
 
-                // Team size match
-                if (answers.team_size === 'solo' && uc.scores.solo) score += uc.scores.solo;
-                if (answers.team_size === 'small' && uc.scores.small) score += uc.scores.small;
-                if (answers.team_size === 'medium' && uc.scores.medium) score += uc.scores.medium;
-                if (answers.team_size === 'large' && uc.scores.large) score += uc.scores.large;
+                // Team size
+                if (answers.team_size === 'solo' && uc.d === 'beginner') score += 10;
+                if (answers.team_size === 'small' && (uc.d === 'beginner' || uc.d === 'intermediate')) score += 8;
+                if (answers.team_size === 'medium' && tags.includes('scale')) score += 10;
+                if (answers.team_size === 'large' && (tags.includes('scale') || tags.includes('analytics'))) score += 10;
 
-                // Pain point match (highest weight)
-                if (answers.biggest_pain === 'content' && uc.scores.content) score += uc.scores.content * 1.5;
-                if (answers.biggest_pain === 'admin' && uc.scores.admin) score += uc.scores.admin * 1.5;
-                if (answers.biggest_pain === 'sales' && uc.scores.sales) score += uc.scores.sales * 1.5;
-                if (answers.biggest_pain === 'support' && uc.scores.support) score += uc.scores.support * 1.5;
+                // Pain point (highest weight)
+                if (answers.biggest_pain === 'content' && tags.includes('content')) score += 20;
+                if (answers.biggest_pain === 'admin' && (tags.includes('admin') || tags.includes('automation'))) score += 20;
+                if (answers.biggest_pain === 'sales' && tags.includes('sales')) score += 20;
+                if (answers.biggest_pain === 'support' && tags.includes('support')) score += 20;
 
-                // Goal match (high weight)
-                if (answers.revenue_goal === 'grow_revenue' && uc.scores.grow_revenue) score += uc.scores.grow_revenue * 1.3;
-                if (answers.revenue_goal === 'save_time' && uc.scores.save_time) score += uc.scores.save_time * 1.3;
-                if (answers.revenue_goal === 'reduce_costs' && uc.scores.reduce_costs) score += uc.scores.reduce_costs * 1.3;
-                if (answers.revenue_goal === 'scale' && uc.scores.scale) score += uc.scores.scale * 1.3;
+                // Goal
+                if (answers.revenue_goal === 'grow_revenue' && (tags.includes('revenue') || tags.includes('growth'))) score += 15;
+                if (answers.revenue_goal === 'save_time' && (tags.includes('automation') || tags.includes('efficiency'))) score += 15;
+                if (answers.revenue_goal === 'reduce_costs' && (tags.includes('cost') || tags.includes('efficiency'))) score += 15;
+                if (answers.revenue_goal === 'scale' && tags.includes('scale')) score += 15;
 
-                // Tech comfort match
-                if (answers.tech_comfort === 'beginner' && uc.scores.beginner) score += uc.scores.beginner;
-                if (answers.tech_comfort === 'intermediate' && uc.scores.intermediate) score += uc.scores.intermediate;
-                if (answers.tech_comfort === 'advanced' && uc.scores.advanced) score += uc.scores.advanced;
-                if (answers.tech_comfort === 'expert' && uc.scores.expert) score += uc.scores.expert;
+                // Tech comfort + difficulty match
+                if (answers.tech_comfort === 'beginner' && uc.d === 'beginner') score += 12;
+                if (answers.tech_comfort === 'intermediate' && (uc.d === 'beginner' || uc.d === 'intermediate')) score += 10;
+                if (answers.tech_comfort === 'advanced' && uc.d !== 'beginner') score += 8;
+                if (answers.tech_comfort === 'expert' && uc.d === 'advanced') score += 10;
 
-                // Budget match
-                if (answers.budget === 'free' && uc.scores.free) score += uc.scores.free;
-                if (answers.budget === 'low' && uc.scores.low) score += uc.scores.low;
-                if (answers.budget === 'medium' && uc.scores.medium_budget) score += uc.scores.medium_budget;
-                if (answers.budget === 'high' && uc.scores.high) score += uc.scores.high;
+                // Budget
+                if (answers.budget === 'free' && uc.d === 'beginner') score += 8;
+                if (answers.budget === 'high' && uc.d === 'advanced') score += 8;
 
-                // Timeline match
-                if (answers.quick_win === 'immediate' && uc.scores.immediate) score += uc.scores.immediate;
-                if (answers.quick_win === 'short' && uc.scores.short) score += uc.scores.short;
-                if (answers.quick_win === 'medium' && uc.scores.medium_time) score += uc.scores.medium_time;
-                if (answers.quick_win === 'strategic' && uc.scores.strategic) score += uc.scores.strategic;
+                // Timeline
+                if (answers.quick_win === 'immediate' && uc.d === 'beginner') score += 10;
+                if (answers.quick_win === 'short' && (uc.d === 'beginner' || uc.d === 'intermediate')) score += 8;
+                if (answers.quick_win === 'strategic' && uc.d === 'advanced') score += 8;
 
-                // Tools match
-                if (answers.current_tools === 'minimal' && uc.scores.minimal) score += uc.scores.minimal;
-                if (answers.current_tools === 'some' && uc.scores.some) score += uc.scores.some;
-                if (answers.current_tools === 'integrated' && uc.scores.integrated) score += uc.scores.integrated;
-                if (answers.current_tools === 'advanced' && uc.scores.advanced_tools) score += uc.scores.advanced_tools;
+                // Tools
+                if (answers.current_tools === 'minimal' && uc.d === 'beginner') score += 5;
+                if (answers.current_tools === 'integrated' && tags.includes('automation')) score += 8;
+                if (answers.current_tools === 'advanced_tools' && tags.includes('automation')) score += 10;
 
                 return { ...uc, score };
             });
 
-            // Get top 3
-            const top3 = scoredUseCases
-                .sort((a, b) => b.score - a.score)
-                .slice(0, 3);
-
-            // Store for download
+            const top3 = scored.sort((a, b) => b.score - a.score).slice(0, 3);
             window.topResults = top3;
             window.userAnswers = answers;
 
-            // Render results
             const container = document.getElementById('resultsContainer');
-            container.innerHTML = top3.map((uc, i) => `
+            container.innerHTML = top3.map((uc, i) => {
+                const impact = impactData[uc.c] || { time: "5-15 hrs/month", money: "$500-3,000/month" };
+                return `
                 <div class="result-card">
                     <div class="result-rank">#${i + 1}</div>
-                    <h3 class="result-title">${uc.title}</h3>
-                    <span class="result-category">${uc.category}</span>
+                    <h3 class="result-title">${uc.t}</h3>
+                    <span class="result-category">${uc.c}</span>
 
                     <div class="why-section">
                         <h4>WHY THIS IS PERFECT FOR YOU</h4>
-                        <p>${customizeWhyText(uc, answers)}</p>
+                        <p>${generateWhyText(uc, answers)}</p>
                     </div>
 
                     <div class="impact-grid">
                         <div class="impact-box time">
                             <div class="impact-icon">⏱️</div>
                             <div class="impact-label">Time Saved</div>
-                            <div class="impact-value">${uc.timeSaved}</div>
+                            <div class="impact-value">${impact.time}</div>
                         </div>
                         <div class="impact-box money">
                             <div class="impact-icon">💰</div>
                             <div class="impact-label">Value Created</div>
-                            <div class="impact-value">${uc.moneySaved}</div>
+                            <div class="impact-value">${impact.money}</div>
                         </div>
                     </div>
 
                     <div class="how-section">
                         <h4>How to Get Started:</h4>
                         <div class="how-steps">
-                            ${uc.howSteps.map((step, j) => `
+                            ${generateHowSteps(uc).map((step, j) => `
                                 <div class="how-step">
                                     <div class="step-number">${j + 1}</div>
                                     <div class="step-text">${step}</div>
@@ -1272,66 +1321,147 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
-        // Customize why text based on answers
-        function customizeWhyText(useCase, answers) {
-            let text = useCase.whyText;
+        function generateWhyText(uc, answers) {
+            const tags = uc.tags;
+            let reasons = [];
 
-            // Add personalization based on answers
-            const personalizations = [];
+            // Pain point alignment
+            if (answers.biggest_pain === 'content' && tags.includes('content')) {
+                reasons.push("This directly addresses your content creation challenges, helping you produce more in less time while maintaining quality.");
+            }
+            if (answers.biggest_pain === 'admin' && (tags.includes('admin') || tags.includes('automation'))) {
+                reasons.push("This tackles your administrative overhead head-on, automating repetitive tasks so you can focus on high-value work.");
+            }
+            if (answers.biggest_pain === 'sales' && tags.includes('sales')) {
+                reasons.push("This streamlines your sales process, helping you close more deals faster and with less manual effort.");
+            }
+            if (answers.biggest_pain === 'support' && tags.includes('support')) {
+                reasons.push("This helps you handle customer requests more efficiently, improving satisfaction while reducing your time investment.");
+            }
 
+            // Goal alignment
+            if (answers.revenue_goal === 'grow_revenue' && (tags.includes('revenue') || tags.includes('growth'))) {
+                reasons.push("It's directly tied to revenue growth - exactly what you're focused on right now.");
+            }
+            if (answers.revenue_goal === 'save_time') {
+                reasons.push("This is a time-saver that will free up hours in your week for more strategic work.");
+            }
+            if (answers.revenue_goal === 'scale' && tags.includes('scale')) {
+                reasons.push("This creates systems that let you handle more volume without proportionally more effort - key for scaling.");
+            }
+
+            // Team size context
             if (answers.team_size === 'solo') {
-                personalizations.push("As a solo operator, this is especially valuable because you're wearing all the hats - this gives you leverage.");
+                reasons.push("As a solo operator wearing all the hats, this gives you leverage to compete with larger teams.");
             } else if (answers.team_size === 'small') {
-                personalizations.push("With a small team, this helps you punch above your weight and compete with bigger players.");
-            } else if (answers.team_size === 'medium' || answers.team_size === 'large') {
-                personalizations.push("For your team size, this creates compounding efficiency gains across the organization.");
+                reasons.push("For your small team, this creates capacity without adding headcount.");
             }
 
-            if (answers.revenue_goal === 'grow_revenue') {
-                personalizations.push("This directly supports your revenue growth goals by freeing up time for high-value activities.");
-            } else if (answers.revenue_goal === 'save_time') {
-                personalizations.push("This directly addresses your need to save time and work smarter, not harder.");
-            } else if (answers.revenue_goal === 'reduce_costs') {
-                personalizations.push("This helps reduce costs by eliminating the need for additional hires or expensive tools.");
-            } else if (answers.revenue_goal === 'scale') {
-                personalizations.push("This is key infrastructure for scaling - you'll handle 2-3x the volume without proportional time increase.");
+            // Difficulty match
+            if (uc.d === 'beginner' && (answers.tech_comfort === 'beginner' || answers.quick_win === 'immediate')) {
+                reasons.push("Best of all, you can implement this quickly - it's beginner-friendly and you'll see results fast.");
             }
 
-            if (personalizations.length > 0) {
-                text += " " + personalizations[Math.floor(Math.random() * personalizations.length)];
-            }
-
-            return text;
+            return reasons.slice(0, 3).join(" ") || "This use case matches your business profile and goals, offering strong ROI for your specific situation.";
         }
 
-        // Download Results
+        function generateHowSteps(uc) {
+            const tags = uc.tags;
+            const title = uc.t.toLowerCase();
+
+            // Generic steps based on category/type
+            if (tags.includes('automation')) {
+                return [
+                    "Identify the specific process or workflow you want to automate",
+                    "Map out the current steps and decision points",
+                    "Use Claude to design the automation logic and create any needed templates",
+                    "Implement using your existing tools (Zapier, Make, or native integrations)",
+                    "Test with real scenarios and refine based on results"
+                ];
+            }
+            if (tags.includes('content')) {
+                return [
+                    "Define your content goals, audience, and key messages",
+                    "Create a template or framework with Claude for consistent output",
+                    "Generate initial content and refine to match your voice",
+                    "Set up a system for regular production (batch when possible)",
+                    "Track performance and iterate on what works"
+                ];
+            }
+            if (tags.includes('analytics')) {
+                return [
+                    "Identify the key metrics that matter for this analysis",
+                    "Gather your data sources and ensure access",
+                    "Use Claude to help structure your analysis framework",
+                    "Build a simple dashboard or report template",
+                    "Schedule regular review and action cycles"
+                ];
+            }
+            if (tags.includes('sales')) {
+                return [
+                    "Document your current sales process and pain points",
+                    "Use Claude to create templates, scripts, or frameworks",
+                    "Integrate with your CRM or sales tools",
+                    "Train yourself/team on the new approach",
+                    "Track conversion metrics and optimize"
+                ];
+            }
+            if (tags.includes('support')) {
+                return [
+                    "Audit your current support requests and common issues",
+                    "Create response templates or knowledge base content with Claude",
+                    "Set up the system in your support tool or workflow",
+                    "Test with real customer scenarios",
+                    "Monitor satisfaction and continuously improve"
+                ];
+            }
+            if (tags.includes('tool')) {
+                return [
+                    "Define the core functionality you need",
+                    "Choose a no-code platform (Notion, Airtable, or similar)",
+                    "Use Claude to help design the structure and logic",
+                    "Build a minimum viable version and test",
+                    "Iterate based on actual usage"
+                ];
+            }
+
+            // Default steps
+            return [
+                "Define your specific goals and success metrics",
+                "Research existing solutions or templates you can adapt",
+                "Use Claude to help plan and create the core components",
+                "Implement a pilot version and test with real scenarios",
+                "Refine based on results and scale up"
+            ];
+        }
+
         function downloadResults() {
             const results = window.topResults;
-            const answers = window.userAnswers;
-
             let text = "# Your Personalized AI Use Case Recommendations\n\n";
             text += `Generated: ${new Date().toLocaleDateString()}\n\n`;
-            text += "---\n\n";
+            text += "Based on your quiz answers, these are the top 3 AI projects for your business.\n\n---\n\n";
 
             results.forEach((uc, i) => {
-                text += `## #${i + 1}: ${uc.title}\n\n`;
-                text += `**Category:** ${uc.category}\n\n`;
-                text += `### Why This Is Perfect For You\n${customizeWhyText(uc, answers)}\n\n`;
+                const impact = impactData[uc.c] || { time: "5-15 hrs/month", money: "$500-3,000/month" };
+                text += `## #${i + 1}: ${uc.t}\n\n`;
+                text += `**Category:** ${uc.c}\n`;
+                text += `**Difficulty:** ${uc.d}\n\n`;
+                text += `### Why This Is Perfect For You\n${generateWhyText(uc, window.userAnswers)}\n\n`;
                 text += `### Expected Impact\n`;
-                text += `- **Time Saved:** ${uc.timeSaved}\n`;
-                text += `- **Value Created:** ${uc.moneySaved}\n\n`;
+                text += `- **Time Saved:** ${impact.time}\n`;
+                text += `- **Value Created:** ${impact.money}\n\n`;
                 text += `### How to Get Started\n`;
-                uc.howSteps.forEach((step, j) => {
+                generateHowSteps(uc).forEach((step, j) => {
                     text += `${j + 1}. ${step}\n`;
                 });
                 text += "\n---\n\n";
             });
 
             text += "\n*Generated by CoLab Lisbon AI Use Case Finder*\n";
-            text += "*colablisbon.com/usecases*\n";
+            text += "*455 use cases analyzed to find your perfect match*\n";
 
             const blob = new Blob([text], { type: 'text/markdown' });
             const url = URL.createObjectURL(blob);
@@ -1344,7 +1474,6 @@
             URL.revokeObjectURL(url);
         }
 
-        // Restart Quiz
         function restartQuiz() {
             answers = {};
             currentQuestion = 0;
