@@ -347,16 +347,6 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--charcoal);
-            margin-bottom: 10px;
-        }
-
-        .result-category {
-            display: inline-block;
-            background: #f5f5f5;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #666;
             margin-bottom: 20px;
         }
 
@@ -375,50 +365,70 @@
             margin-bottom: 12px;
         }
 
-        .section-box p, .section-box li {
+        .section-box p {
             color: #555;
             line-height: 1.7;
+            margin-bottom: 10px;
         }
 
-        .section-box ul {
-            margin-left: 20px;
-            margin-top: 10px;
+        .section-box p:last-child {
+            margin-bottom: 0;
         }
 
-        .section-box li {
-            margin-bottom: 8px;
-        }
-
-        .impact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .impact-box {
-            background: linear-gradient(135deg, #f8f8f8, #fff);
+        .roi-box {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border: 2px solid var(--lime);
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .roi-box h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: #166534;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .roi-calc {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .roi-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ddd;
+            color: #555;
+        }
+
+        .roi-line:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .roi-total {
+            background: var(--lime);
+            border-radius: 10px;
+            padding: 15px;
             text-align: center;
         }
 
-        .impact-box.time { border: 2px solid var(--lime); }
-        .impact-box.money { border: 2px solid var(--coral); }
-        .impact-icon { font-size: 2rem; margin-bottom: 10px; }
-
-        .impact-label {
-            font-size: 0.8rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .roi-total-label {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 5px;
         }
 
-        .impact-value {
+        .roi-total-value {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4rem;
+            font-size: 2rem;
             color: var(--charcoal);
-            margin-top: 5px;
         }
 
         .prompt-box {
@@ -568,7 +578,6 @@
             .start-screen h1 { font-size: 2.5rem; }
             .question-card { padding: 30px 25px; }
             .question-text { font-size: 1.3rem; }
-            .impact-grid { grid-template-columns: 1fr; }
             .result-card { padding: 30px 25px; }
         }
     </style>
@@ -582,21 +591,21 @@
 
     <div class="container">
         <div id="startScreen" class="start-screen">
-            <h1>Find Your Perfect AI Project</h1>
-            <p class="subtitle">Answer a few questions about your business and we'll recommend the top 3 AI use cases that will save you the most time and money - complete with example prompts you can use right away.</p>
+            <h1>Find Your Highest-ROI AI Project</h1>
+            <p class="subtitle">Answer a few questions about your business. We'll recommend 3 specific AI use cases with realistic ROI calculations and ready-to-use prompts.</p>
 
             <div class="features">
                 <div class="feature">
                     <div class="feature-icon">🎯</div>
-                    <div class="feature-text">Personalized to<br>your business</div>
+                    <div class="feature-text">Matched to<br>your situation</div>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">⏱️</div>
-                    <div class="feature-text">Takes only<br>2 minutes</div>
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">Real ROI<br>calculations</div>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">💬</div>
-                    <div class="feature-text">Ready-to-use<br>prompts included</div>
+                    <div class="feature-text">Copy-paste<br>prompts</div>
                 </div>
             </div>
 
@@ -616,13 +625,13 @@
         <div id="loadingScreen" class="loading-screen hidden">
             <div class="loading-spinner"></div>
             <div class="loading-text">Analyzing your business...</div>
-            <div class="loading-subtext">Finding the best AI opportunities for you</div>
+            <div class="loading-subtext">Calculating ROI for different use cases</div>
         </div>
 
         <div id="resultsScreen" class="results-screen hidden">
             <div class="results-header">
                 <h1>Your Top 3 AI Opportunities</h1>
-                <p>Based on your answers, here are the AI projects that will have the biggest impact on your business:</p>
+                <p>These are ranked by potential ROI based on your specific situation:</p>
             </div>
             <div id="resultsContainer"></div>
             <button class="download-btn" onclick="downloadResults()">DOWNLOAD MY RESULTS</button>
@@ -631,322 +640,531 @@
     </div>
 
     <script>
-        // Quiz Questions - First one is open-ended
         const questions = [
             {
                 id: 'business_pitch',
                 type: 'text',
                 question: "Tell me about your business",
-                hint: "Give me your elevator pitch! What do you do, who do you serve, and what makes you different? The more detail you share, the better I can personalize your recommendations.",
-                placeholder: "Example: I run a digital marketing agency specializing in helping e-commerce brands scale their Facebook and Instagram ads. We have a team of 5 and work with about 20 clients at a time. Our biggest challenge is creating enough content variations for testing..."
+                hint: "What do you do, who do you serve, and what's your biggest challenge right now? Be specific - the more detail, the better recommendations you'll get.",
+                placeholder: "Example: I run a marketing agency with 4 employees. We help e-commerce brands with paid ads and email marketing. We have about 12 clients and charge $3-5K/month retainer. My biggest challenge is that I spend 15+ hours a week writing ad copy, email sequences, and client reports instead of doing strategic work or selling."
             },
             {
-                id: 'team_size',
-                question: "How big is your team?",
+                id: 'hourly_value',
+                question: "What's an hour of your time worth?",
+                hint: "Think about what you charge clients, or what you'd pay someone to do your work.",
                 options: [
-                    { value: 'solo', icon: '👤', title: 'Just me', desc: 'Solo entrepreneur or freelancer' },
-                    { value: 'small', icon: '👥', title: '2-5 people', desc: 'Small but mighty team' },
-                    { value: 'medium', icon: '👨‍👩‍👧‍👦', title: '6-20 people', desc: 'Growing organization' },
-                    { value: 'large', icon: '🏢', title: '20+ people', desc: 'Established company' }
+                    { value: '25', icon: '💵', title: '$25/hour', desc: 'Early stage, building up' },
+                    { value: '50', icon: '💰', title: '$50/hour', desc: 'Established freelancer/small business' },
+                    { value: '100', icon: '💎', title: '$100/hour', desc: 'Expert/consultant rate' },
+                    { value: '200', icon: '🚀', title: '$200+/hour', desc: 'Premium services/executive' }
                 ]
             },
             {
                 id: 'biggest_pain',
-                question: "What's eating up most of your time right now?",
+                question: "Where do you lose the most time?",
                 options: [
-                    { value: 'content', icon: '✍️', title: 'Creating content', desc: 'Writing, social media, marketing materials, proposals' },
-                    { value: 'admin', icon: '📋', title: 'Admin & operations', desc: 'Emails, scheduling, paperwork, processes, data entry' },
-                    { value: 'sales', icon: '📞', title: 'Sales & business development', desc: 'Finding leads, follow-ups, closing deals, proposals' },
-                    { value: 'support', icon: '🎧', title: 'Customer communication', desc: 'Answering questions, onboarding, handling requests' }
+                    { value: 'content', icon: '✍️', title: 'Writing & content creation', desc: 'Blog posts, social media, emails, marketing copy, proposals' },
+                    { value: 'admin', icon: '📋', title: 'Repetitive admin tasks', desc: 'Data entry, formatting, organizing, scheduling, reporting' },
+                    { value: 'sales', icon: '📞', title: 'Sales process', desc: 'Lead research, follow-ups, proposals, prospecting emails' },
+                    { value: 'support', icon: '🎧', title: 'Customer communication', desc: 'Answering similar questions, onboarding, status updates' }
                 ]
             },
             {
-                id: 'revenue_goal',
-                question: "What would make the biggest difference for you right now?",
+                id: 'time_spent',
+                question: "How many hours per week do you spend on that?",
                 options: [
-                    { value: 'grow_revenue', icon: '📈', title: 'Grow revenue', desc: 'Get more customers, close more deals, increase sales' },
-                    { value: 'save_time', icon: '⏰', title: 'Save time', desc: 'Work fewer hours, eliminate busywork, get my life back' },
-                    { value: 'reduce_costs', icon: '💰', title: 'Reduce costs', desc: 'Cut expenses, improve margins, do more with less' },
-                    { value: 'scale', icon: '🚀', title: 'Scale operations', desc: 'Handle more clients/orders without burning out or hiring' }
+                    { value: '5', icon: '⏰', title: '3-5 hours', desc: 'A few hours scattered throughout the week' },
+                    { value: '10', icon: '📅', title: '6-10 hours', desc: 'About a day\'s worth per week' },
+                    { value: '15', icon: '😓', title: '11-15 hours', desc: 'Almost 2 full days per week' },
+                    { value: '20', icon: '🔥', title: '16+ hours', desc: 'Half my week or more' }
+                ]
+            },
+            {
+                id: 'revenue_model',
+                question: "How do you make money?",
+                options: [
+                    { value: 'service', icon: '💼', title: 'Client services', desc: 'Consulting, agency, freelance, done-for-you work' },
+                    { value: 'product', icon: '📦', title: 'Selling products', desc: 'E-commerce, physical goods, inventory-based' },
+                    { value: 'saas', icon: '☁️', title: 'Subscriptions/SaaS', desc: 'Recurring revenue, software, memberships' },
+                    { value: 'content', icon: '📱', title: 'Content/courses', desc: 'Digital products, courses, coaching, info products' }
+                ]
+            },
+            {
+                id: 'monthly_revenue',
+                question: "What's your approximate monthly revenue?",
+                options: [
+                    { value: '5000', icon: '🌱', title: 'Under $5K', desc: 'Getting started or side business' },
+                    { value: '15000', icon: '🌿', title: '$5K - $25K', desc: 'Growing business' },
+                    { value: '50000', icon: '🌳', title: '$25K - $100K', desc: 'Established business' },
+                    { value: '150000', icon: '🏔️', title: '$100K+', desc: 'Scaling operation' }
                 ]
             },
             {
                 id: 'tech_comfort',
-                question: "How comfortable are you with new technology?",
+                question: "How comfortable are you with AI tools?",
                 options: [
-                    { value: 'beginner', icon: '🌱', title: 'Keep it simple', desc: 'I prefer straightforward tools, learning as I go' },
-                    { value: 'intermediate', icon: '🌿', title: 'Pretty comfortable', desc: 'I can figure out most software and apps' },
-                    { value: 'advanced', icon: '🌳', title: 'Love it', desc: 'I enjoy automation, integrations, and optimizing workflows' },
-                    { value: 'expert', icon: '🔥', title: 'Power user', desc: 'I can code, use APIs, and build complex systems' }
+                    { value: 'new', icon: '🌱', title: 'Brand new to this', desc: 'Haven\'t really used ChatGPT/Claude yet' },
+                    { value: 'basic', icon: '🌿', title: 'I\'ve tried the basics', desc: 'Used for simple questions or writing help' },
+                    { value: 'regular', icon: '🌳', title: 'Use it regularly', desc: 'Part of my workflow, but could do more' },
+                    { value: 'power', icon: '🔥', title: 'Power user', desc: 'Use daily, built workflows, know prompting well' }
                 ]
             },
             {
-                id: 'budget',
-                question: "What's your budget for AI tools?",
+                id: 'timeline',
+                question: "What's your timeline?",
                 options: [
-                    { value: 'free', icon: '🆓', title: 'Free or minimal', desc: 'Just starting out, keeping costs low' },
-                    { value: 'low', icon: '💵', title: '$20-50/month', desc: 'Happy to pay for tools that save me time' },
-                    { value: 'medium', icon: '💰', title: '$50-200/month', desc: 'Ready to invest in real efficiency gains' },
-                    { value: 'high', icon: '💎', title: '$200+/month', desc: 'ROI matters more than the price tag' }
-                ]
-            },
-            {
-                id: 'quick_win',
-                question: "What timeline are you working with?",
-                options: [
-                    { value: 'immediate', icon: '⚡', title: 'I need results this week', desc: 'Quick wins I can implement immediately' },
-                    { value: 'short', icon: '📅', title: 'This month is fine', desc: 'Willing to invest a few weeks in setup' },
-                    { value: 'medium_time', icon: '📆', title: 'Thinking quarterly', desc: 'Okay with bigger projects that pay off over time' },
-                    { value: 'strategic', icon: '🎯', title: 'Building for the long term', desc: 'Want strategic advantages, not just quick fixes' }
-                ]
-            },
-            {
-                id: 'current_tools',
-                question: "What's your current tech setup like?",
-                options: [
-                    { value: 'minimal', icon: '📝', title: 'Just the basics', desc: 'Email, spreadsheets, maybe social media scheduling' },
-                    { value: 'some', icon: '🔧', title: 'Some business tools', desc: 'CRM, project management, or marketing software' },
-                    { value: 'integrated', icon: '🔗', title: 'Connected ecosystem', desc: 'Multiple tools that sync and work together' },
-                    { value: 'advanced_tools', icon: '⚙️', title: 'Advanced stack', desc: 'Automations, APIs, custom integrations' }
+                    { value: 'today', icon: '⚡', title: 'I want to start today', desc: 'Show me something I can implement immediately' },
+                    { value: 'week', icon: '📅', title: 'This week', desc: 'Willing to spend a few hours setting up' },
+                    { value: 'month', icon: '📆', title: 'This month', desc: 'Can invest time in a bigger project' },
+                    { value: 'quarter', icon: '🎯', title: 'Thinking long-term', desc: 'Want strategic systems, not just quick fixes' }
                 ]
             }
         ];
 
-        // ALL 455 USE CASES (abbreviated for space - full data structure)
+        // High-quality use cases with realistic ROI
         const useCases = [
-            // Content & Marketing (1-50)
-            {id:1,t:"Blog post writing from outline",c:"Content & Marketing",d:"beginner",tags:["content","writing"],desc:"Transform rough outlines into polished, SEO-friendly blog posts that match your brand voice and engage your target audience.",impl:["Create a brand voice document describing your tone, style, and key messages","Prepare a content brief template with target keywords, audience, and goals","Use Claude to expand outlines into full drafts, then edit for your voice","Build a library of successful posts to use as reference examples"]},
-            {id:2,t:"Social media content calendar",c:"Content & Marketing",d:"beginner",tags:["content","social","planning"],desc:"Plan and create an entire month of social media content in one sitting, maintaining consistency while saving hours of daily scrambling.",impl:["Define 3-5 content pillars (themes you regularly discuss)","Map out key dates, launches, and events for the month","Generate post ideas for each pillar using Claude","Batch-write captions and schedule using Buffer, Later, or native scheduling"]},
-            {id:3,t:"Email newsletter sequences",c:"Content & Marketing",d:"beginner",tags:["content","email","automation"],desc:"Create automated email sequences that nurture subscribers, deliver value consistently, and convert readers into customers.",impl:["Map out your subscriber journey from signup to purchase","Define the goal and topic for each email in the sequence","Use Claude to write emails that provide value while building toward conversion","Set up automation triggers in your email platform (Mailchimp, ConvertKit, etc.)"]},
-            {id:4,t:"Ad copy variations (A/B testing)",c:"Content & Marketing",d:"intermediate",tags:["content","ads","revenue"],desc:"Generate dozens of ad copy variations for testing, helping you find winning messages faster and reduce cost per acquisition.",impl:["Document your best-performing ad copy and what made it work","Identify the key value propositions and pain points to test","Use Claude to create 10-20 variations of headlines and body copy","Run systematic A/B tests and track performance by variation"]},
-            {id:5,t:"SEO keyword research & optimization",c:"Content & Marketing",d:"intermediate",tags:["content","seo","growth"],desc:"Identify high-opportunity keywords and optimize your content to rank higher in search results, driving organic traffic.",impl:["Use free tools (Google Search Console, Ubersuggest) to find keyword opportunities","Analyze competitor content ranking for your target keywords","Use Claude to optimize existing content and create new keyword-targeted pieces","Track rankings and iterate based on what's working"]},
-            {id:6,t:"Product descriptions for e-commerce",c:"Content & Marketing",d:"beginner",tags:["content","product","ecommerce"],desc:"Write compelling, conversion-focused product descriptions at scale that highlight benefits and overcome objections.",impl:["Create a template with your brand voice and key selling points","Gather product specs, features, and target customer pain points","Use Claude to generate unique descriptions that sell benefits, not just features","A/B test descriptions on high-traffic products to optimize conversion"]},
-            {id:7,t:"Landing page copy",c:"Content & Marketing",d:"intermediate",tags:["content","conversion","revenue"],desc:"Create high-converting landing page copy that guides visitors toward action with clear value propositions and compelling CTAs.",impl:["Define your landing page goal and target audience clearly","Research competitor landing pages and identify what's working","Use Claude to write headline variations, benefit sections, and CTAs","Test different versions and optimize based on conversion data"]},
-            {id:8,t:"Press releases",c:"Content & Marketing",d:"intermediate",tags:["content","pr","growth"],desc:"Write professional press releases that get picked up by media outlets and increase your brand visibility.",impl:["Create a press release template following AP style guidelines","Identify the newsworthy angle in your announcement","Use Claude to draft releases that lead with the most compelling information","Build a media list and distribute through PR channels"]},
-            {id:9,t:"Case study writing",c:"Content & Marketing",d:"intermediate",tags:["content","sales","service"],desc:"Transform customer success stories into compelling case studies that build credibility and help close deals.",impl:["Create an interview template to capture key metrics and quotes","Interview customers about their challenges, solution, and results","Use Claude to structure the narrative: Challenge → Solution → Results","Add specific numbers, quotes, and visuals for credibility"]},
-            {id:10,t:"Testimonial request emails",c:"Content & Marketing",d:"beginner",tags:["content","email","support"],desc:"Craft personalized testimonial requests that actually get responses and generate powerful social proof.",impl:["Identify your happiest customers based on engagement or feedback","Create email templates for different customer segments","Use Claude to personalize requests highlighting specific wins","Make it easy to respond with specific questions or formats"]},
-            // ... continuing with more detailed entries
-            {id:11,t:"Podcast show notes",c:"Content & Marketing",d:"beginner",tags:["content","creator"],desc:"Transform podcast episodes into SEO-friendly show notes that drive discovery and provide value to listeners.",impl:["Create a show notes template with consistent sections","Transcribe episodes using tools like Otter.ai or Descript","Use Claude to summarize key points, extract quotes, and add timestamps","Include links, resources, and calls-to-action mentioned in the episode"]},
-            {id:12,t:"YouTube video scripts",c:"Content & Marketing",d:"intermediate",tags:["content","video","creator"],desc:"Write engaging video scripts that hook viewers in the first 10 seconds and keep them watching until the end.",impl:["Study your best-performing videos for patterns in hooks and structure","Create a script template: Hook → Problem → Solution → CTA","Use Claude to draft scripts optimized for retention","Read scripts aloud and edit for natural delivery"]},
-            {id:13,t:"LinkedIn thought leadership posts",c:"Content & Marketing",d:"beginner",tags:["content","social","service"],desc:"Build your professional brand with consistent, engaging LinkedIn content that attracts clients and opportunities.",impl:["Define 3-4 topics you want to be known for","Study high-performing posts in your niche for format patterns","Use Claude to draft posts that share insights from your experience","Engage authentically in comments to boost reach"]},
-            {id:14,t:"Twitter/X thread creation",c:"Content & Marketing",d:"beginner",tags:["content","social"],desc:"Turn ideas into viral-worthy threads that grow your following and establish expertise.",impl:["Identify topics where you have unique insights or experience","Study successful threads in your niche for structure patterns","Use Claude to expand ideas into 5-15 tweet threads with hooks","Schedule threads for optimal posting times"]},
-            {id:15,t:"Instagram caption writing",c:"Content & Marketing",d:"beginner",tags:["content","social"],desc:"Write captions that stop the scroll, drive engagement, and convert followers into customers.",impl:["Define your caption voice (educational, entertaining, inspirational, etc.)","Create templates for different post types (carousel, story, reel)","Use Claude to generate caption options with strong opening lines","Include clear calls-to-action and relevant hashtags"]},
-            {id:16,t:"TikTok script hooks",c:"Content & Marketing",d:"beginner",tags:["content","video","creator"],desc:"Create attention-grabbing hooks for short-form videos that capture viewers in the first 2 seconds.",impl:["Study trending hooks and formats in your niche","Create a swipe file of hooks that work","Use Claude to generate hook variations for your content topics","Test hooks with the same content to find what performs best"]},
-            {id:17,t:"Webinar presentation outlines",c:"Content & Marketing",d:"intermediate",tags:["content","sales","revenue"],desc:"Structure webinars that educate, engage, and convert attendees into customers.",impl:["Define your webinar goal and the transformation you'll provide","Create an outline: Hook → Problem → Content → Offer → Q&A","Use Claude to flesh out talking points and transitions","Build slides that support, not replace, your presentation"]},
-            {id:18,t:"Lead magnet content (ebooks, guides)",c:"Content & Marketing",d:"intermediate",tags:["content","sales","revenue"],desc:"Create valuable downloadable content that attracts your ideal customers and builds your email list.",impl:["Identify the #1 problem your ideal customer wants solved","Outline a step-by-step guide or resource that delivers quick wins","Use Claude to write comprehensive, actionable content","Design professionally using Canva or hire a designer"]},
-            {id:19,t:"Email subject line generator",c:"Content & Marketing",d:"beginner",tags:["content","email"],desc:"Create subject lines that boost open rates by cutting through inbox noise.",impl:["Analyze your best-performing subject lines for patterns","Identify what makes your audience curious or excited","Use Claude to generate 10-20 subject line options per email","A/B test subject lines to build data on what works"]},
-            {id:20,t:"Hashtag research",c:"Content & Marketing",d:"beginner",tags:["content","social"],desc:"Find the optimal hashtag mix to increase post visibility without looking spammy.",impl:["Research hashtags in your niche using tools or manual search","Create buckets: small (<10K), medium (10K-500K), large (500K+)","Use Claude to generate relevant hashtag sets for different topics","Test combinations and track which drive the most engagement"]},
+            {
+                id: 1,
+                title: "Client Proposal Generator",
+                tags: ["content", "sales", "service"],
+                problem: "Writing custom proposals from scratch for every prospect",
+                solution: "Create a system where you input discovery call notes and get a polished, customized proposal in 10 minutes instead of 2 hours.",
+                howItWorks: "You'll build a proposal template with your services, case studies, and pricing. After each sales call, you paste your notes into Claude with specific prompts. It generates a tailored proposal that addresses their exact pain points and goals.",
+                roiCalc: {
+                    timeTask: "Writing a proposal",
+                    timeBefore: 2,
+                    timeAfter: 0.25,
+                    frequency: "proposals per week",
+                    frequencyNum: 3
+                },
+                impl: [
+                    "Document your best 3 proposals - what made them win?",
+                    "Create a modular template: intro, understanding their problem, your approach, case studies, pricing, next steps",
+                    "Write a prompt that takes your discovery call notes and fills in each section",
+                    "Test with your next 3 prospects and refine based on results"
+                ],
+                prompt: `I just finished a discovery call. Help me create a proposal.
 
-            // Customer & Sales (51-95)
-            {id:51,t:"CRM setup and field configuration",c:"Customer & Sales",d:"intermediate",tags:["sales","admin","scale"],desc:"Configure your CRM to capture the right data and automate your sales process for consistent follow-through.",impl:["Map your sales process from lead to close","Identify the data points needed at each stage","Use Claude to help design custom fields and pipeline stages","Set up automation rules for follow-ups and stage changes"]},
-            {id:52,t:"Sales script frameworks",c:"Customer & Sales",d:"intermediate",tags:["sales","revenue"],desc:"Create conversational sales scripts that guide calls while leaving room for natural dialogue.",impl:["Document your best sales calls and what made them work","Identify key moments: opener, discovery, demo, objections, close","Use Claude to create flexible frameworks, not rigid scripts","Practice and refine based on real call outcomes"]},
-            {id:53,t:"Cold email templates",c:"Customer & Sales",d:"beginner",tags:["sales","outreach","revenue"],desc:"Write cold emails that actually get responses by leading with value and personalization.",impl:["Research your target prospects thoroughly before writing","Lead with insight about their business, not your product","Use Claude to create personalized templates at scale","A/B test subject lines, opening lines, and CTAs"]},
-            {id:54,t:"Follow-up sequence automation",c:"Customer & Sales",d:"intermediate",tags:["sales","automation","revenue"],desc:"Never let a lead slip through the cracks with automated, personalized follow-up sequences.",impl:["Map the ideal follow-up timeline and touchpoints","Write a sequence that adds value at each step, not just 'checking in'","Use Claude to create variations for different lead segments","Set up automation triggers based on engagement signals"]},
-            {id:55,t:"Lead qualification criteria",c:"Customer & Sales",d:"intermediate",tags:["sales","efficiency"],desc:"Define clear criteria to quickly identify which leads are worth pursuing and which aren't.",impl:["Analyze your best customers for common characteristics","Define BANT or similar qualification criteria","Use Claude to create qualification questions and scoring rubrics","Train your team and build into your CRM workflow"]},
-            {id:56,t:"Discovery call question scripts",c:"Customer & Sales",d:"beginner",tags:["sales","service"],desc:"Ask the right questions to uncover prospect needs and position your solution perfectly.",impl:["Define the key information you need from every discovery call","Create open-ended questions that get prospects talking","Use Claude to develop follow-up questions for common answers","Practice active listening and note-taking techniques"]},
-            {id:57,t:"Objection handling playbook",c:"Customer & Sales",d:"intermediate",tags:["sales","revenue"],desc:"Prepare responses to common objections so you never get caught off guard in a sales conversation.",impl:["Document every objection you've heard in sales calls","Categorize objections: price, timing, competition, authority, need","Use Claude to craft responses that acknowledge and reframe","Role-play objection handling until responses feel natural"]},
-            {id:58,t:"Proposal templates",c:"Customer & Sales",d:"intermediate",tags:["sales","service","revenue"],desc:"Create professional proposals quickly by using templates that adapt to each prospect's needs.",impl:["Analyze your winning proposals for common elements","Build modular sections that can be mixed and matched","Use Claude to customize proposals based on discovery call notes","Include case studies and social proof relevant to each prospect"]},
-            {id:59,t:"Quote/estimate generators",c:"Customer & Sales",d:"intermediate",tags:["sales","admin","service"],desc:"Generate accurate quotes quickly with standardized pricing and clear deliverables.",impl:["Document your pricing structure and all variables","Create a calculator or form that captures project requirements","Use Claude to generate professional quote documents","Build in upsell suggestions based on project type"]},
-            {id:60,t:"Contract templates",c:"Customer & Sales",d:"intermediate",tags:["sales","admin","legal"],desc:"Create clear, protective contracts that can be customized quickly for each engagement.",impl:["Work with a lawyer to create your base contract template","Identify sections that need customization per client","Use Claude to adapt language for different project types","Implement digital signatures for faster closing"]},
+MY SERVICES: [Paste your service offerings and pricing]
 
-            // Operations & Automation (96-140)
-            {id:96,t:"Zapier/Make workflow design",c:"Operations & Automation",d:"intermediate",tags:["admin","automation"],desc:"Connect your tools and automate repetitive tasks so you can focus on high-value work.",impl:["List all your manual, repetitive tasks across tools","Identify which tasks follow consistent rules and triggers","Use Claude to design workflow logic before building","Start simple with one automation and expand from there"]},
-            {id:97,t:"Email automation sequences",c:"Operations & Automation",d:"intermediate",tags:["admin","automation","email"],desc:"Set up emails that send automatically based on triggers, saving hours of manual follow-up.",impl:["Map all the emails you send repeatedly","Identify triggers: new signup, purchase, abandoned cart, etc.","Use Claude to write email sequences for each trigger","Set up in your email platform and monitor performance"]},
-            {id:98,t:"Invoice generation automation",c:"Operations & Automation",d:"intermediate",tags:["admin","automation","finance"],desc:"Generate and send invoices automatically so you get paid faster with less administrative work.",impl:["Standardize your invoice format and payment terms","Connect invoicing to your project/sales system","Use Claude to create invoice email templates","Set up automatic reminders for unpaid invoices"]},
-            {id:99,t:"Payment reminder workflows",c:"Operations & Automation",d:"intermediate",tags:["admin","automation","revenue"],desc:"Automatically remind clients about upcoming and overdue payments without awkward manual follow-up.",impl:["Create a reminder schedule: before due, day of, overdue","Write friendly but firm reminder emails for each stage","Automate sending based on invoice status","Escalate to phone calls for significantly overdue accounts"]},
-            {id:100,t:"Expense categorization rules",c:"Operations & Automation",d:"beginner",tags:["admin","finance"],desc:"Automatically categorize expenses so bookkeeping takes minutes instead of hours.",impl:["Define your expense categories aligned with tax needs","Create rules based on vendor, amount, or description patterns","Set up auto-categorization in your accounting software","Review and refine rules monthly"]},
+DISCOVERY CALL NOTES:
+[Paste your notes from the call - their challenges, goals, timeline, budget signals]
 
-            // Data & Analytics (141-180)
-            {id:141,t:"Sales dashboard design",c:"Data & Analytics",d:"intermediate",tags:["analytics","sales"],desc:"Create a visual dashboard that shows your sales health at a glance and identifies issues early.",impl:["Define the 5-7 metrics that matter most for your sales process","Choose a dashboard tool (Google Sheets, Notion, or dedicated software)","Use Claude to help structure calculations and visualizations","Review weekly and adjust based on what drives decisions"]},
-            {id:142,t:"Marketing metrics tracking",c:"Data & Analytics",d:"intermediate",tags:["analytics","content"],desc:"Track the metrics that actually matter for your marketing so you can double down on what works.",impl:["Define KPIs for each marketing channel you use","Set up tracking in Google Analytics, social platforms, and email tools","Use Claude to create a consolidated reporting template","Review metrics weekly and adjust strategy monthly"]},
-            {id:143,t:"Customer cohort analysis",c:"Data & Analytics",d:"advanced",tags:["analytics","saas"],desc:"Understand how different groups of customers behave over time to improve retention and lifetime value.",impl:["Define cohorts based on signup date, acquisition source, or plan","Set up tracking to monitor behavior by cohort","Use Claude to analyze patterns and identify insights","Apply findings to improve onboarding and retention"]},
-            {id:144,t:"Churn rate analysis",c:"Data & Analytics",d:"intermediate",tags:["analytics","saas","retention"],desc:"Understand why customers leave so you can fix the root causes and improve retention.",impl:["Calculate churn rate by time period and customer segment","Survey churned customers to understand reasons","Use Claude to analyze patterns in churn data","Implement changes and track impact on churn rate"]},
-            {id:145,t:"Revenue forecasting models",c:"Data & Analytics",d:"advanced",tags:["analytics","finance","revenue"],desc:"Predict future revenue based on your pipeline and historical patterns for better planning.",impl:["Analyze historical conversion rates by stage and source","Build a model that applies probabilities to current pipeline","Use Claude to create forecasting spreadsheet templates","Update weekly and refine model based on accuracy"]},
+RELEVANT CASE STUDY: [Paste a case study similar to their situation]
 
-            // Decision Making & Strategy (181-225)
-            {id:181,t:"Pricing strategy analysis",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","revenue"],desc:"Determine the optimal pricing for your products or services based on value, competition, and customer willingness to pay.",impl:["Research competitor pricing and positioning","Survey customers about perceived value and price sensitivity","Use Claude to analyze pricing scenarios and their impact","Test price changes with segments before broad rollout"]},
-            {id:182,t:"Price increase modeling",c:"Decision Making & Strategy",d:"advanced",tags:["strategy","revenue"],desc:"Model the impact of price increases on revenue and churn to make confident pricing decisions.",impl:["Analyze historical data on price changes and customer behavior","Identify which segments are most and least price-sensitive","Use Claude to model different increase scenarios","Plan communication strategy for price changes"]},
+Please create a proposal with:
+1. Executive summary (2-3 sentences showing I understood their problem)
+2. Their current situation and challenges (reflect back what they told me)
+3. Proposed solution (specific to their needs, not generic)
+4. Expected outcomes (realistic, based on my case study)
+5. Investment and timeline
+6. Next steps
 
-            // Internal Systems & Documentation (226-265)
-            {id:226,t:"Standard Operating Procedures (SOPs)",c:"Internal Systems & Documentation",d:"beginner",tags:["admin","scale","documentation"],desc:"Document your processes so anyone can execute them consistently, enabling delegation and scaling.",impl:["List all recurring tasks and processes in your business","Record yourself doing each task using Loom or similar","Use Claude to turn recordings into step-by-step written SOPs","Store in a central location and update as processes evolve"]},
-            {id:227,t:"Employee handbook creation",c:"Internal Systems & Documentation",d:"intermediate",tags:["admin","hr","documentation"],desc:"Create a comprehensive guide to your company culture, policies, and procedures for new and existing team members.",impl:["Outline all policies, benefits, and expectations","Research compliance requirements for your location/industry","Use Claude to draft sections and ensure consistent tone","Have legal review and update annually"]},
+Keep it conversational and confident, not salesy. About 1.5 pages.`
+            },
+            {
+                id: 2,
+                title: "Weekly Content Batch System",
+                tags: ["content", "growth"],
+                problem: "Scrambling to create social media posts every day",
+                solution: "Create a full week of content in one 90-minute session, with posts ready to schedule.",
+                howItWorks: "Once a week, you brain-dump your ideas, insights, and experiences. Claude transforms them into platform-specific posts - LinkedIn articles, Twitter threads, Instagram captions - all in your voice. You review, tweak, and schedule.",
+                roiCalc: {
+                    timeTask: "Creating social content",
+                    timeBefore: 1,
+                    timeAfter: 0.2,
+                    frequency: "posts per week",
+                    frequencyNum: 7
+                },
+                impl: [
+                    "Identify 3-4 'content pillars' - themes you always discuss",
+                    "Start a weekly voice note habit - capture ideas as they come",
+                    "Use a prompt to transform voice notes into post drafts",
+                    "Schedule everything on Monday, then don't think about it all week"
+                ],
+                prompt: `Help me create a week of social media content for my business.
 
-            // Product & Development (266-305)
-            {id:266,t:"No-code app prototypes",c:"Product & Development",d:"intermediate",tags:["product","tool"],desc:"Build functional app prototypes without coding to test ideas before investing in development.",impl:["Define the core user flow you want to test","Choose a no-code platform (Bubble, Glide, Softr)","Use Claude to help design the logic and user experience","Build MVP and test with real users before investing more"]},
-            {id:267,t:"Internal tool building",c:"Product & Development",d:"intermediate",tags:["admin","tool"],desc:"Create custom internal tools that automate your specific workflows and processes.",impl:["Identify the manual process you want to streamline","Document the logic, inputs, and outputs needed","Use Claude to design the tool structure and logic","Build using no-code tools or simple scripts"]},
+MY BUSINESS: [What you do and who you help]
+MY VOICE: [Describe your tone - casual/professional, use of humor, etc.]
+MY CONTENT PILLARS: [Your 3-4 main topics]
 
-            // Industry-Specific (306-335)
-            {id:306,t:"Product catalog management",c:"Industry: E-commerce",d:"intermediate",tags:["product","ecommerce"],desc:"Keep your product catalog organized, up-to-date, and optimized for search and conversion.",impl:["Audit your current catalog for consistency issues","Create templates for product data and descriptions","Use Claude to standardize and enhance product information","Implement a system for ongoing catalog maintenance"]},
-            {id:311,t:"Trial engagement scoring",c:"Industry: SaaS",d:"advanced",tags:["sales","saas"],desc:"Identify which trial users are most likely to convert so you can focus your attention on the right accounts.",impl:["Define engagement actions that correlate with conversion","Weight actions based on predictive value","Use Claude to create a scoring model and thresholds","Set up alerts for high-scoring trials"]},
-            {id:316,t:"Proposal automation",c:"Industry: Consulting/Agency",d:"intermediate",tags:["sales","service"],desc:"Generate customized proposals quickly by combining templates with client-specific information.",impl:["Create modular proposal sections for different services","Build an intake form to capture client requirements","Use Claude to generate customized proposals from templates","Include relevant case studies and team bios automatically"]},
-            {id:321,t:"Curriculum development",c:"Industry: Coaching/Courses",d:"intermediate",tags:["content","education","creator"],desc:"Design comprehensive course curricula that guide students from novice to competent in a structured way.",impl:["Define learning objectives and desired outcomes","Map the journey from beginner to achieving those outcomes","Use Claude to outline modules, lessons, and exercises","Include assessments to verify learning at key milestones"]},
-            {id:326,t:"Listing description generation",c:"Industry: Real Estate",d:"beginner",tags:["content","realestate"],desc:"Write compelling property descriptions that highlight key features and attract qualified buyers.",impl:["Create a template capturing property features and unique selling points","Define your brand voice for listings","Use Claude to generate descriptions that paint a picture","Optimize for local SEO and buyer search terms"]},
-            {id:331,t:"Appointment reminder systems",c:"Industry: Healthcare/Wellness",d:"beginner",tags:["admin","healthcare"],desc:"Reduce no-shows with automated appointment reminders via email, SMS, or both.",impl:["Define reminder timing: 1 week, 1 day, 1 hour before","Create message templates for each reminder","Set up automation in your scheduling software","Track no-show rates and adjust timing as needed"]},
+RAW IDEAS FROM THIS WEEK:
+[Paste your voice note transcripts, random thoughts, things you learned, client wins, frustrations, observations]
 
-            // Advanced/Emerging (336-355)
-            {id:336,t:"AI agent workflows",c:"Advanced & Emerging",d:"advanced",tags:["automation","advanced"],desc:"Create AI agents that can handle multi-step tasks autonomously, from research to execution.",impl:["Identify tasks with clear inputs, rules, and outputs","Design the decision tree the agent should follow","Use Claude to test and refine agent prompts","Start with low-stakes tasks and expand as trust builds"]},
-            {id:341,t:"Predictive analytics models",c:"Advanced & Emerging",d:"advanced",tags:["analytics","advanced"],desc:"Use historical data to predict future outcomes like churn, conversion, or demand.",impl:["Gather historical data with known outcomes","Identify patterns that precede the outcome you want to predict","Use Claude to help structure the predictive model","Validate predictions against real outcomes and refine"]},
+Please create:
+- 3 LinkedIn posts (mix of story, insight, and tactical tip)
+- 5 Twitter posts (punchy, standalone thoughts)
+- 2 longer-form ideas I could expand into articles
 
-            // High-Intent Lead Capture (356-365)
-            {id:356,t:"Savings/ROI calculators that capture emails",c:"High-Intent Lead Capture",d:"intermediate",tags:["sales","revenue","tool"],desc:"Build interactive calculators that demonstrate your value while capturing high-intent leads.",impl:["Define the calculation that matters most to your prospects","Create a simple calculator using Typeform, Outgrow, or custom build","Use Claude to write compelling copy around the calculator","Gate detailed results behind email capture"]},
-            {id:362,t:"Quiz funnels that segment by purchase intent",c:"High-Intent Lead Capture",d:"intermediate",tags:["sales","revenue","tool"],desc:"Use interactive quizzes to engage prospects, segment them by need, and deliver personalized follow-up.",impl:["Define the segments you want to identify","Create quiz questions that reveal segment membership","Use Claude to write engaging question copy and results","Set up automated follow-up sequences for each segment"]},
+For each post, make the first line a strong hook. Match my voice - don't make it sound like AI.`
+            },
+            {
+                id: 3,
+                title: "Customer Email Response Library",
+                tags: ["support", "admin"],
+                problem: "Typing similar responses to customer questions over and over",
+                solution: "Build a library of templated responses you can personalize in 30 seconds instead of 5 minutes.",
+                howItWorks: "Audit your last 50 customer emails. You'll find that 80% fit into 10-15 categories. Create response templates for each, with fill-in-the-blank personalization. When an email comes in, grab the template, personalize 1-2 lines, send.",
+                roiCalc: {
+                    timeTask: "Writing customer emails",
+                    timeBefore: 5,
+                    timeAfter: 1,
+                    frequency: "customer emails per week",
+                    frequencyNum: 25
+                },
+                impl: [
+                    "Export your last 50 sent emails and categorize them by topic",
+                    "Identify the top 15 most common types",
+                    "Use Claude to draft template responses for each category",
+                    "Store in a doc or text expander tool for instant access"
+                ],
+                prompt: `Help me create email response templates for my business.
 
-            // Sales Velocity & Closing (366-375)
-            {id:366,t:"Automated proposal drafters from call notes",c:"Sales Velocity & Closing",d:"advanced",tags:["sales","automation","revenue"],desc:"Turn sales call notes into draft proposals automatically, cutting proposal time by 80%.",impl:["Create a structured note-taking template for calls","Build a proposal template with variable sections","Use Claude to transform notes into customized proposals","Review and personalize before sending"]},
-            {id:370,t:"Deal risk scoring with next-action suggestions",c:"Sales Velocity & Closing",d:"advanced",tags:["sales","analytics","revenue"],desc:"Identify at-risk deals early and get AI-suggested actions to get them back on track.",impl:["Define signals that indicate deal risk (silence, stakeholder changes, etc.)","Create a scoring system based on risk factors","Use Claude to suggest specific actions for each risk type","Review at-risk deals in weekly pipeline reviews"]},
+MY BUSINESS: [What you do]
+MY TONE: [How you communicate - friendly, professional, casual, etc.]
 
-            // Retention & Expansion (376-385)
-            {id:376,t:"Usage-based upsell opportunity alerts",c:"Retention & Expansion",d:"advanced",tags:["sales","saas","revenue"],desc:"Automatically identify customers who are ready for an upgrade based on their usage patterns.",impl:["Define usage thresholds that indicate readiness for upgrade","Set up tracking to monitor customer usage against thresholds","Use Claude to create personalized upgrade outreach","Trigger alerts for sales or success team follow-up"]},
-            {id:380,t:"Churn risk predictors with save playbooks",c:"Retention & Expansion",d:"advanced",tags:["support","retention","saas"],desc:"Identify customers likely to churn before they leave and execute proven save strategies.",impl:["Analyze churned customers for common warning signs","Create a scoring model based on engagement and behavior","Use Claude to develop save playbooks for different risk profiles","Train team on executing saves and track success rates"]},
+Here are 5 example emails I've sent recently:
+[Paste 5 actual emails you've sent]
 
-            // Operational Leverage (386-395)
-            {id:386,t:"Meeting-to-SOP converters",c:"Operational Leverage",d:"intermediate",tags:["admin","automation","scale"],desc:"Automatically turn meeting recordings into documented processes and action items.",impl:["Record meetings where processes are discussed or decided","Transcribe using Otter, Fireflies, or similar","Use Claude to extract process steps and decisions","Format into SOPs and share with relevant team members"]},
-            {id:387,t:"Tech stack audit and consolidation analyzers",c:"Operational Leverage",d:"intermediate",tags:["admin","cost","strategy"],desc:"Identify overlapping tools and opportunities to consolidate your software subscriptions.",impl:["Inventory all tools, their costs, and what they're used for","Identify overlapping functionality and underutilized tools","Use Claude to analyze and recommend consolidation","Plan migration timeline for tool changes"]},
+Based on these, create 10 response templates for common situations like:
+- Initial inquiry response
+- Pricing questions
+- "Not right now" follow-up
+- Onboarding welcome
+- Project update
+- Handling a complaint
+- [Add other common scenarios]
 
-            // Direct Revenue (396-455)
-            {id:406,t:"Dynamic pricing engines",c:"Direct Revenue: Pricing",d:"advanced",tags:["revenue","product","analytics"],desc:"Adjust prices automatically based on demand, competition, inventory, or customer segment.",impl:["Define the factors that should influence pricing","Set rules and ranges for price adjustments","Use Claude to design the pricing logic","Monitor impact on conversion and revenue carefully"]},
-            {id:436,t:"Landing page variant generators",c:"Direct Revenue: Conversion",d:"intermediate",tags:["content","revenue"],desc:"Create multiple landing page versions quickly to find what converts best through testing.",impl:["Identify the elements you want to test (headlines, images, CTAs)","Use Claude to generate variations of each element","Build pages using your landing page tool","Run A/B tests with sufficient traffic for statistical significance"]},
-            {id:443,t:"Cart recovery sequence builders",c:"Direct Revenue: Conversion",d:"intermediate",tags:["sales","ecommerce","revenue"],desc:"Win back abandoned carts with automated email sequences that address objections and create urgency.",impl:["Analyze why customers abandon carts (surveys, data)","Create a sequence: reminder → value → urgency → last chance","Use Claude to write emails that overcome specific objections","Test timing and offers to optimize recovery rate"]},
-            {id:455,t:"Marketing efficiency dashboards",c:"Direct Revenue: CAC Reduction",d:"intermediate",tags:["analytics","cost"],desc:"Track marketing ROI across channels to allocate budget to what actually works.",impl:["Define metrics that matter: CAC, LTV, payback period by channel","Set up tracking to attribute conversions to channels","Use Claude to design a dashboard that highlights efficiency","Review weekly and shift budget to highest-performing channels"]}
-        ];
+For each template:
+- Include [BRACKETS] for parts I need to personalize
+- Keep my voice and tone
+- Make them feel personal, not corporate`
+            },
+            {
+                id: 4,
+                title: "Discovery Call Prep System",
+                tags: ["sales", "service"],
+                problem: "Going into sales calls without enough research on prospects",
+                solution: "Get a comprehensive prospect briefing in 5 minutes that would take 30 minutes to compile manually.",
+                howItWorks: "Before each call, paste the prospect's website URL and LinkedIn profile into Claude. Get back a briefing with their business model, likely pain points, recent news, and suggested talking points. Walk into every call prepared.",
+                roiCalc: {
+                    timeTask: "Researching prospects",
+                    timeBefore: 30,
+                    timeAfter: 5,
+                    frequency: "sales calls per week",
+                    frequencyNum: 4
+                },
+                impl: [
+                    "Create a research template with the info you actually use in calls",
+                    "Build a prompt that takes LinkedIn + website and outputs your template",
+                    "Test it on 5 past clients to see if it would have been accurate",
+                    "Make this a required step before every discovery call"
+                ],
+                prompt: `I have a discovery call coming up. Help me prepare.
 
-        // Add remaining use cases with basic structure
-        for (let i = 21; i <= 455; i++) {
-            if (!useCases.find(u => u.id === i)) {
-                useCases.push({id: i, t: `Use case ${i}`, c: "General", d: "intermediate", tags: [], desc: "", impl: []});
+PROSPECT INFORMATION:
+Company: [Company name]
+Website: [URL]
+Contact: [Name and title]
+LinkedIn: [Profile URL or paste their About section]
+How they found me: [Referral, website, cold outreach, etc.]
+
+MY SERVICES: [Brief description of what you offer]
+
+Please provide:
+1. Company overview (what they do, who they serve, business model)
+2. Likely pain points based on their industry/size/stage
+3. Recent news or changes that might be relevant
+4. Questions I should ask to uncover their real challenges
+5. How my services might specifically help them (not generic)
+6. Potential objections and how to address them
+
+Keep it brief and actionable - I need to review this in 5 minutes before the call.`
+            },
+            {
+                id: 5,
+                title: "Meeting Notes → Action Items Converter",
+                tags: ["admin", "service"],
+                problem: "Meetings end and nothing happens because notes are messy and action items unclear",
+                solution: "Turn any meeting recording or notes into a clear summary with specific action items, owners, and deadlines in 2 minutes.",
+                howItWorks: "Record your meetings (Zoom, voice memo, whatever). Get a transcript (Otter.ai has a free tier). Paste into Claude and get back: key decisions, action items with owners, follow-up needed, and a summary you can share.",
+                roiCalc: {
+                    timeTask: "Processing meeting notes",
+                    timeBefore: 15,
+                    timeAfter: 2,
+                    frequency: "meetings per week",
+                    frequencyNum: 6
+                },
+                impl: [
+                    "Start recording all meetings (get permission)",
+                    "Use Otter.ai or similar for free transcription",
+                    "Create a consistent action item format",
+                    "Send summary to all attendees within 1 hour of meeting end"
+                ],
+                prompt: `Process these meeting notes and extract what matters.
+
+MEETING CONTEXT:
+Type: [Client call, team meeting, etc.]
+Attendees: [Names and roles]
+Purpose: [What the meeting was about]
+
+TRANSCRIPT/NOTES:
+[Paste the transcript or your rough notes]
+
+Please provide:
+
+## Summary (3-5 sentences)
+What was discussed and decided
+
+## Key Decisions Made
+Bullet list of anything that was agreed upon
+
+## Action Items
+Format: [OWNER] - [TASK] - [DUE DATE if mentioned]
+
+## Open Questions
+Things that still need answers
+
+## Follow-up Needed
+Any meetings to schedule or people to loop in`
+            },
+            {
+                id: 6,
+                title: "Client Onboarding Automation",
+                tags: ["support", "admin", "service"],
+                problem: "Manually walking each new client through the same onboarding steps",
+                solution: "Create a self-serve onboarding system that delivers information, collects what you need, and answers common questions automatically.",
+                howItWorks: "Map your ideal onboarding journey. Create welcome emails, instructional content, and FAQ documents. Set up a simple automation so clients get the right information at the right time without you manually sending each thing.",
+                roiCalc: {
+                    timeTask: "Onboarding each new client",
+                    timeBefore: 4,
+                    timeAfter: 0.5,
+                    frequency: "new clients per month",
+                    frequencyNum: 3
+                },
+                impl: [
+                    "Document every step of your current onboarding process",
+                    "Create content for each step: welcome email, intake form, how-to guides, FAQs",
+                    "Set up email automation (Mailchimp free tier works) to drip content",
+                    "Add a personal check-in call at day 3 to maintain the human touch"
+                ],
+                prompt: `Help me create client onboarding content for my business.
+
+MY BUSINESS: [What you do]
+CLIENT TYPE: [Who your clients typically are]
+
+CURRENT ONBOARDING STEPS:
+[List out everything that happens from signed contract to project kickoff]
+
+COMMON NEW CLIENT QUESTIONS:
+[List questions clients always ask in the first week]
+
+Please create:
+
+1. Welcome email (warm, excited, sets expectations)
+
+2. "What to expect" document covering:
+   - Timeline and milestones
+   - How communication works
+   - What you need from them
+   - What they can expect from you
+
+3. FAQ document answering common questions
+
+4. Day 3 check-in email template (making sure they have everything they need)
+
+Match my tone: [professional/casual/friendly/etc.]`
+            },
+            {
+                id: 7,
+                title: "Product Description Engine",
+                tags: ["content", "product"],
+                problem: "Writing unique, compelling descriptions for every product",
+                solution: "Generate SEO-optimized, conversion-focused product descriptions in 2 minutes instead of 20.",
+                howItWorks: "Create a brand voice guide and description template. For each product, input specs and features. Get back descriptions that highlight benefits, overcome objections, and include relevant keywords.",
+                roiCalc: {
+                    timeTask: "Writing product descriptions",
+                    timeBefore: 20,
+                    timeAfter: 3,
+                    frequency: "products per month",
+                    frequencyNum: 10
+                },
+                impl: [
+                    "Analyze your best-selling products' descriptions - what makes them work?",
+                    "Create a template structure: hook, benefits, specs, social proof, CTA",
+                    "Build a prompt that takes product specs and outputs descriptions",
+                    "A/B test AI descriptions vs. old ones on new products"
+                ],
+                prompt: `Write a product description for my e-commerce store.
+
+BRAND VOICE: [Describe your brand - playful, premium, eco-conscious, etc.]
+TARGET CUSTOMER: [Who buys this and why]
+
+PRODUCT INFO:
+Name: [Product name]
+Category: [Category]
+Price: [Price point]
+Key features: [List 5-7 features]
+Materials/specs: [Technical details]
+What problem it solves: [Why someone buys this]
+
+KEYWORDS TO INCLUDE: [SEO keywords if you have them]
+
+Please write:
+1. A compelling headline (not just the product name)
+2. A hook paragraph (2-3 sentences that grab attention)
+3. Benefits section (focus on how it improves their life, not just features)
+4. Specs section (for detail-oriented buyers)
+5. A closing line with subtle urgency
+
+Keep it scannable with short paragraphs. Sound like a human, not a robot.`
+            },
+            {
+                id: 8,
+                title: "Course Curriculum Builder",
+                tags: ["content", "education"],
+                problem: "Struggling to structure course content in a logical, engaging way",
+                solution: "Transform your expertise into a well-organized curriculum with learning objectives, modules, and lesson outlines.",
+                howItWorks: "You know your subject, but organizing it for learners is different. Input what you want to teach, Claude helps structure it into modules, lessons, and exercises that build on each other logically.",
+                roiCalc: {
+                    timeTask: "Creating course structure",
+                    timeBefore: 20,
+                    timeAfter: 3,
+                    frequency: "hours total for a course",
+                    frequencyNum: 1,
+                    isOneTime: true,
+                    oneTimeValue: 5000
+                },
+                impl: [
+                    "Brain dump everything you know about the topic",
+                    "Use Claude to organize into logical modules",
+                    "Add learning objectives for each section",
+                    "Create exercises that apply each concept"
+                ],
+                prompt: `Help me structure a course curriculum.
+
+COURSE TOPIC: [What you're teaching]
+TARGET STUDENT: [Who this is for and their starting level]
+TRANSFORMATION: [What they'll be able to do after completing the course]
+COURSE LENGTH: [Number of modules or hours you're targeting]
+
+EVERYTHING I WANT TO COVER:
+[Brain dump all the topics, concepts, skills, and knowledge you want to include - don't worry about order]
+
+Please create:
+
+1. Course overview and promise (what students will achieve)
+
+2. Module breakdown:
+   - Module name
+   - Learning objectives (what they'll be able to do)
+   - Key topics covered
+   - Suggested lesson format (video, reading, exercise, etc.)
+
+3. Logical sequence explanation (why this order makes sense)
+
+4. Exercises/assignments for each module
+
+5. Prerequisites (if any) and recommended pacing
+
+Make sure concepts build on each other and there are practical applications throughout.`
+            },
+            {
+                id: 9,
+                title: "SOPs From Your Brain",
+                tags: ["admin", "scale"],
+                problem: "All the knowledge is in your head, making it impossible to delegate",
+                solution: "Document your processes so anyone can follow them, enabling you to delegate or eventually sell the business.",
+                howItWorks: "Record yourself doing a task while explaining your thinking. Transcribe it. Claude converts your stream-of-consciousness into clear, step-by-step procedures anyone can follow.",
+                roiCalc: {
+                    timeTask: "Work that could be delegated",
+                    timeBefore: 10,
+                    timeAfter: 0,
+                    frequency: "hours per week freed up",
+                    frequencyNum: 1,
+                    isOneTime: true,
+                    oneTimeValue: 2000
+                },
+                impl: [
+                    "List every task you do repeatedly that someone else could do",
+                    "Record yourself doing each task with Loom (explain as you go)",
+                    "Use Claude to convert recordings into written SOPs",
+                    "Have someone follow the SOP and note where they get stuck"
+                ],
+                prompt: `Convert this recording transcript into a clear SOP.
+
+TASK: [Name of the process]
+WHO WILL USE THIS: [Team member, VA, future hire, etc.]
+TOOLS NEEDED: [Software, accounts, access required]
+
+TRANSCRIPT:
+[Paste the transcript of you explaining/doing the task]
+
+Please create an SOP with:
+
+1. Purpose: Why this task matters and when it should be done
+2. Prerequisites: What needs to be in place before starting
+3. Step-by-step instructions:
+   - Numbered steps with clear actions
+   - Screenshots placeholders where visuals would help [SCREENSHOT: description]
+   - Decision points clearly marked (If X, do Y. If Z, do W.)
+4. Quality check: How to verify the task was done correctly
+5. Common mistakes to avoid
+6. Who to contact if stuck
+
+Write for someone with no context. Be specific about where to click, what to type, etc.`
+            },
+            {
+                id: 10,
+                title: "Email Sequence Writer",
+                tags: ["content", "sales", "growth"],
+                problem: "Need to nurture leads but don't have time to write email sequences",
+                solution: "Create a complete email nurture sequence (5-7 emails) in an hour instead of a full day.",
+                howItWorks: "Define your sequence goal and target audience. Claude writes emails that build on each other, provide value, address objections, and naturally lead toward your offer.",
+                roiCalc: {
+                    timeTask: "Writing an email sequence",
+                    timeBefore: 8,
+                    timeAfter: 1.5,
+                    frequency: "sequences created per quarter",
+                    frequencyNum: 2
+                },
+                impl: [
+                    "Map the journey: what does the reader need to believe before they buy?",
+                    "Define the value each email provides (don't just sell)",
+                    "Use Claude to draft the full sequence with a consistent arc",
+                    "Add personal stories and examples to make it uniquely yours"
+                ],
+                prompt: `Write a nurture email sequence for my business.
+
+GOAL: [What action you want readers to take at the end]
+TARGET READER: [Who they are and what they're struggling with]
+MY OFFER: [What you're eventually selling]
+
+OBJECTIONS THEY HAVE:
+[List 3-5 reasons they might not buy]
+
+VALUE I CAN PROVIDE:
+[What insights, tips, or frameworks can you share that help them even if they don't buy?]
+
+Please write a 6-email sequence:
+
+Email 1: Welcome + quick win (deliver immediate value)
+Email 2: Story that illustrates the problem
+Email 3: Educational content that shifts their thinking
+Email 4: Case study or social proof
+Email 5: Address biggest objection
+Email 6: Clear CTA with urgency
+
+For each email:
+- Subject line (make it curiosity-driven, not salesy)
+- Preview text
+- Body (300-400 words, conversational)
+- Clear single CTA
+
+My tone is [casual/professional/friendly/etc.]. Make it feel like it's coming from a real person.`
             }
-        }
-
-        // Fill in all the missing use cases with proper data
-        const allUseCases = [
-            ...useCases.filter(u => u.desc), // Keep detailed ones
-            // Add the rest with generated content based on category
         ];
 
-        // Impact data by category
-        const impactData = {
-            "Content & Marketing": { time: "5-15 hrs/month", money: "$300-1,500/month" },
-            "Customer & Sales": { time: "5-20 hrs/month", money: "$1,000-5,000/month" },
-            "Operations & Automation": { time: "10-30 hrs/month", money: "$500-3,000/month" },
-            "Data & Analytics": { time: "5-15 hrs/month", money: "$500-2,500/month" },
-            "Decision Making & Strategy": { time: "5-10 hrs/month", money: "$1,000-10,000/month" },
-            "Internal Systems & Documentation": { time: "10-20 hrs/month", money: "$300-1,500/month" },
-            "Product & Development": { time: "10-40 hrs/month", money: "$1,000-5,000/month" },
-            "Industry: E-commerce": { time: "10-25 hrs/month", money: "$1,000-10,000/month" },
-            "Industry: SaaS": { time: "10-30 hrs/month", money: "$2,000-15,000/month" },
-            "Industry: Consulting/Agency": { time: "10-20 hrs/month", money: "$1,500-5,000/month" },
-            "Industry: Coaching/Courses": { time: "15-30 hrs/month", money: "$1,000-8,000/month" },
-            "Industry: Real Estate": { time: "5-15 hrs/month", money: "$500-3,000/month" },
-            "Industry: Healthcare/Wellness": { time: "5-15 hrs/month", money: "$500-2,000/month" },
-            "Advanced & Emerging": { time: "20-50 hrs/month", money: "$2,000-20,000/month" },
-            "High-Intent Lead Capture": { time: "10-20 hrs/month", money: "$2,000-10,000/month" },
-            "Sales Velocity & Closing": { time: "10-25 hrs/month", money: "$3,000-15,000/month" },
-            "Retention & Expansion": { time: "5-15 hrs/month", money: "$2,000-20,000/month" },
-            "Operational Leverage": { time: "15-40 hrs/month", money: "$1,000-5,000/month" },
-            "Direct Revenue: Pricing": { time: "5-15 hrs/month", money: "$2,000-20,000/month" },
-            "Direct Revenue: Conversion": { time: "5-15 hrs/month", money: "$2,000-15,000/month" },
-            "Direct Revenue: CAC Reduction": { time: "5-10 hrs/month", money: "$1,000-10,000/month" }
-        };
-
-        // Example prompts by use case type
-        const examplePrompts = {
-            content: `I need help creating [CONTENT TYPE] for my [BUSINESS TYPE].
-
-My target audience is: [DESCRIBE YOUR IDEAL CUSTOMER]
-My brand voice is: [DESCRIBE YOUR TONE - e.g., professional but friendly, bold and edgy, warm and supportive]
-The goal of this content is: [WHAT ACTION DO YOU WANT READERS TO TAKE]
-
-Here's the topic/outline: [YOUR TOPIC OR ROUGH OUTLINE]
-
-Please create [NUMBER] variations that I can test.`,
-
-            sales: `Help me create a [SALES ASSET TYPE] for my [BUSINESS TYPE].
-
-What I sell: [YOUR PRODUCT/SERVICE]
-Who I sell to: [YOUR IDEAL CUSTOMER PROFILE]
-The main problem I solve: [CORE PAIN POINT]
-What makes us different: [YOUR UNIQUE VALUE PROPOSITION]
-
-Key objections I often hear:
-- [OBJECTION 1]
-- [OBJECTION 2]
-
-Please create a [ASSET TYPE] that addresses these objections and emphasizes our value.`,
-
-            automation: `I want to automate [PROCESS NAME] in my business.
-
-Current process:
-1. [STEP 1]
-2. [STEP 2]
-3. [STEP 3]
-
-Tools I currently use: [LIST YOUR TOOLS]
-Trigger for this workflow: [WHAT STARTS THE PROCESS]
-Desired outcome: [WHAT SHOULD HAPPEN AT THE END]
-
-Please help me design an automation workflow that handles this, including what tools to use and how to connect them.`,
-
-            analytics: `Help me create a [DASHBOARD/ANALYSIS] for tracking [WHAT YOU WANT TO TRACK].
-
-My business model: [HOW YOU MAKE MONEY]
-Key decisions this will inform: [WHAT WILL YOU DO WITH THIS DATA]
-Data sources available: [WHERE YOUR DATA LIVES]
-
-Please help me:
-1. Define the key metrics I should track
-2. Create formulas or calculations needed
-3. Suggest a layout/structure for the dashboard
-4. Recommend how often to review and what actions to take based on different results`,
-
-            documentation: `Help me create [DOCUMENT TYPE] for my [BUSINESS/TEAM].
-
-Purpose of this document: [WHY YOU NEED IT]
-Who will use it: [AUDIENCE]
-Current state: [WHAT EXISTS NOW, IF ANYTHING]
-
-Key information to include:
-- [TOPIC 1]
-- [TOPIC 2]
-- [TOPIC 3]
-
-Please create a comprehensive [DOCUMENT TYPE] that is clear, actionable, and easy to maintain.`,
-
-            strategy: `I need help with [STRATEGIC DECISION] for my business.
-
-Current situation:
-- Business model: [HOW YOU MAKE MONEY]
-- Size: [TEAM SIZE, REVENUE RANGE]
-- Main challenge: [WHAT'S PROMPTING THIS DECISION]
-
-Options I'm considering:
-- Option A: [DESCRIBE]
-- Option B: [DESCRIBE]
-
-Please help me:
-1. Analyze the pros and cons of each option
-2. Identify factors I might be missing
-3. Suggest a framework for making this decision
-4. Recommend next steps regardless of which option I choose`,
-
-            tool: `Help me design a [TOOL/SYSTEM] for my business.
-
-Problem it needs to solve: [WHAT PAIN POINT]
-Who will use it: [USERS]
-Key features needed:
-- [FEATURE 1]
-- [FEATURE 2]
-- [FEATURE 3]
-
-Technical constraints: [NO-CODE ONLY, BUDGET, EXISTING TOOLS, ETC.]
-
-Please help me:
-1. Design the user flow
-2. Recommend the best platform/approach to build it
-3. Outline the key components and how they connect
-4. Suggest how to test and iterate`
-        };
-
-        // State
         let currentQuestion = 0;
         let answers = {};
 
@@ -968,7 +1186,6 @@ Please help me:
             const card = document.getElementById('questionCard');
 
             if (q.type === 'text') {
-                // Open-ended text question
                 card.innerHTML = `
                     <div class="question-number">QUESTION ${index + 1}</div>
                     <div class="question-text">${q.question}</div>
@@ -976,16 +1193,14 @@ Please help me:
                     <textarea class="text-input-area" id="textAnswer" placeholder="${q.placeholder}" oninput="updateTextAnswer('${q.id}')">${answers[q.id] || ''}</textarea>
                     <div class="nav-buttons">
                         <button class="nav-btn back" onclick="prevQuestion()" ${index === 0 ? 'style="visibility:hidden"' : ''}>← Back</button>
-                        <button class="nav-btn next" onclick="nextQuestion()" ${!answers[q.id] || answers[q.id].length < 20 ? 'disabled' : ''}>
-                            Next →
-                        </button>
+                        <button class="nav-btn next" onclick="nextQuestion()" ${!answers[q.id] || answers[q.id].length < 20 ? 'disabled' : ''}>Next →</button>
                     </div>
                 `;
             } else {
-                // Multiple choice question
                 card.innerHTML = `
                     <div class="question-number">QUESTION ${index + 1}</div>
                     <div class="question-text">${q.question}</div>
+                    ${q.hint ? `<div class="question-hint">${q.hint}</div>` : ''}
                     <div class="options">
                         ${q.options.map(opt => `
                             <div class="option ${answers[q.id] === opt.value ? 'selected' : ''}"
@@ -1013,10 +1228,8 @@ Please help me:
         }
 
         function updateTextAnswer(questionId) {
-            const textarea = document.getElementById('textAnswer');
-            answers[questionId] = textarea.value;
-            const nextBtn = document.querySelector('.nav-btn.next');
-            nextBtn.disabled = textarea.value.length < 20;
+            answers[questionId] = document.getElementById('textAnswer').value;
+            document.querySelector('.nav-btn.next').disabled = answers[questionId].length < 20;
         }
 
         function selectOption(questionId, value) {
@@ -1039,81 +1252,43 @@ Please help me:
         function showLoading() {
             document.getElementById('quizScreen').classList.add('hidden');
             document.getElementById('loadingScreen').classList.remove('hidden');
-            setTimeout(() => showResults(), 2500);
-        }
-
-        function analyzeBusinessPitch(pitch) {
-            const p = pitch.toLowerCase();
-            const signals = {
-                service: /consult|coach|agency|freelanc|adviso|design|develop|market|account|legal|real estate|architect/i.test(p),
-                product: /e-?commerce|product|store|shop|sell|retail|manufactur|physical|inventory/i.test(p),
-                saas: /saas|software|app|platform|subscription|tool|tech|api/i.test(p),
-                content: /course|content|creator|influenc|coach|train|educat|media|podcast|youtube|newsletter/i.test(p),
-                ecommerce: /e-?commerce|shopify|amazon|store|product|retail/i.test(p),
-                healthcare: /health|wellness|medical|therapy|fitness|clinic|patient/i.test(p),
-                realestate: /real estate|property|realtor|broker|listing/i.test(p)
-            };
-            return signals;
+            setTimeout(() => showResults(), 2000);
         }
 
         function showResults() {
             document.getElementById('loadingScreen').classList.add('hidden');
             document.getElementById('resultsScreen').classList.remove('hidden');
 
-            const businessSignals = analyzeBusinessPitch(answers.business_pitch || '');
+            const hourlyRate = parseInt(answers.hourly_value) || 50;
+            const weeklyHours = parseInt(answers.time_spent) || 10;
+            const pitch = (answers.business_pitch || '').toLowerCase();
 
-            const scored = useCases.filter(uc => uc.desc).map(uc => {
+            // Score use cases
+            const scored = useCases.map(uc => {
                 let score = 0;
-                const tags = uc.tags || [];
 
-                // Business pitch analysis
-                if (businessSignals.service && tags.includes('service')) score += 15;
-                if (businessSignals.product && (tags.includes('product') || tags.includes('ecommerce'))) score += 15;
-                if (businessSignals.saas && tags.includes('saas')) score += 15;
-                if (businessSignals.content && (tags.includes('creator') || tags.includes('education') || tags.includes('content'))) score += 12;
-                if (businessSignals.ecommerce && tags.includes('ecommerce')) score += 10;
-                if (businessSignals.healthcare && tags.includes('healthcare')) score += 10;
-                if (businessSignals.realestate && tags.includes('realestate')) score += 10;
+                // Pain point match (highest weight)
+                if (answers.biggest_pain && uc.tags.includes(answers.biggest_pain)) score += 50;
 
-                // Team size
-                if (answers.team_size === 'solo' && uc.d === 'beginner') score += 10;
-                if (answers.team_size === 'small' && (uc.d === 'beginner' || uc.d === 'intermediate')) score += 8;
-                if (answers.team_size === 'medium' && tags.includes('scale')) score += 10;
-                if (answers.team_size === 'large' && (tags.includes('scale') || tags.includes('analytics'))) score += 10;
+                // Revenue model match
+                if (answers.revenue_model && uc.tags.includes(answers.revenue_model)) score += 20;
 
-                // Pain point (highest weight)
-                if (answers.biggest_pain === 'content' && tags.includes('content')) score += 25;
-                if (answers.biggest_pain === 'admin' && (tags.includes('admin') || tags.includes('automation'))) score += 25;
-                if (answers.biggest_pain === 'sales' && tags.includes('sales')) score += 25;
-                if (answers.biggest_pain === 'support' && tags.includes('support')) score += 25;
+                // Business pitch keyword matching
+                if (pitch.includes('agenc')) score += uc.tags.includes('service') ? 15 : 0;
+                if (pitch.includes('coach') || pitch.includes('course')) score += uc.tags.includes('education') ? 15 : 0;
+                if (pitch.includes('ecommerce') || pitch.includes('product')) score += uc.tags.includes('product') ? 15 : 0;
+                if (pitch.includes('saas') || pitch.includes('software')) score += uc.tags.includes('saas') ? 15 : 0;
 
-                // Goal
-                if (answers.revenue_goal === 'grow_revenue' && (tags.includes('revenue') || tags.includes('growth'))) score += 15;
-                if (answers.revenue_goal === 'save_time' && (tags.includes('automation') || tags.includes('efficiency'))) score += 15;
-                if (answers.revenue_goal === 'reduce_costs' && (tags.includes('cost') || tags.includes('efficiency'))) score += 15;
-                if (answers.revenue_goal === 'scale' && tags.includes('scale')) score += 15;
+                // Tech comfort - beginners get beginner-friendly options
+                if (answers.tech_comfort === 'new' || answers.tech_comfort === 'basic') {
+                    if (['content', 'support', 'admin'].some(t => uc.tags.includes(t))) score += 10;
+                }
 
-                // Tech comfort + difficulty match
-                if (answers.tech_comfort === 'beginner' && uc.d === 'beginner') score += 12;
-                if (answers.tech_comfort === 'intermediate' && (uc.d === 'beginner' || uc.d === 'intermediate')) score += 10;
-                if (answers.tech_comfort === 'advanced' && uc.d !== 'beginner') score += 8;
-                if (answers.tech_comfort === 'expert' && uc.d === 'advanced') score += 10;
+                // Calculate ROI for ranking
+                const roi = calculateROI(uc, hourlyRate, weeklyHours);
+                score += roi.monthlyValue / 100; // Weight by ROI
 
-                // Budget
-                if (answers.budget === 'free' && uc.d === 'beginner') score += 8;
-                if (answers.budget === 'high' && uc.d === 'advanced') score += 8;
-
-                // Timeline
-                if (answers.quick_win === 'immediate' && uc.d === 'beginner') score += 10;
-                if (answers.quick_win === 'short' && (uc.d === 'beginner' || uc.d === 'intermediate')) score += 8;
-                if (answers.quick_win === 'strategic' && uc.d === 'advanced') score += 8;
-
-                // Tools
-                if (answers.current_tools === 'minimal' && uc.d === 'beginner') score += 5;
-                if (answers.current_tools === 'integrated' && tags.includes('automation')) score += 8;
-                if (answers.current_tools === 'advanced_tools' && tags.includes('automation')) score += 10;
-
-                return { ...uc, score };
+                return { ...uc, score, roi };
             });
 
             const top3 = scored.sort((a, b) => b.score - a.score).slice(0, 3);
@@ -1121,40 +1296,118 @@ Please help me:
             window.userAnswers = answers;
 
             const container = document.getElementById('resultsContainer');
-            container.innerHTML = top3.map((uc, i) => {
-                const impact = impactData[uc.c] || { time: "5-15 hrs/month", money: "$500-3,000/month" };
-                const promptType = getPromptType(uc.tags);
-                const prompt = generateExamplePrompt(uc, answers, promptType);
+            container.innerHTML = top3.map((uc, i) => renderResultCard(uc, i, hourlyRate)).join('');
+        }
 
-                return `
+        function calculateROI(uc, hourlyRate, weeklyHours) {
+            const roi = uc.roiCalc;
+
+            if (roi.isOneTime) {
+                return {
+                    timeSavedWeekly: 0,
+                    timeSavedMonthly: 0,
+                    monthlyValue: roi.oneTimeValue,
+                    explanation: `One-time project value: $${roi.oneTimeValue.toLocaleString()}`,
+                    isOneTime: true
+                };
+            }
+
+            // Adjust frequency based on user's situation
+            let adjustedFrequency = roi.frequencyNum;
+            if (roi.frequency.includes('per week')) {
+                // Scale based on how much time they spend on this type of work
+                const timeRatio = weeklyHours / 10;
+                adjustedFrequency = Math.round(roi.frequencyNum * timeRatio);
+            }
+
+            const timeSavedPerTask = roi.timeBefore - roi.timeAfter;
+            const timeSavedWeekly = timeSavedPerTask * adjustedFrequency / (roi.frequency.includes('month') ? 4 : 1);
+            const timeSavedMonthly = timeSavedWeekly * 4;
+            const monthlyValue = Math.round(timeSavedMonthly * hourlyRate);
+
+            return {
+                timeSavedPerTask,
+                adjustedFrequency,
+                timeSavedWeekly: Math.round(timeSavedWeekly * 10) / 10,
+                timeSavedMonthly: Math.round(timeSavedMonthly),
+                monthlyValue,
+                roi
+            };
+        }
+
+        function renderResultCard(uc, index, hourlyRate) {
+            const roi = uc.roi;
+
+            let roiHTML;
+            if (roi.isOneTime) {
+                roiHTML = `
+                    <div class="roi-box">
+                        <h4>💰 POTENTIAL VALUE</h4>
+                        <div class="roi-calc">
+                            <p style="color: #555; margin-bottom: 10px;">This is a one-time project that creates lasting value:</p>
+                        </div>
+                        <div class="roi-total">
+                            <div class="roi-total-label">Estimated Value</div>
+                            <div class="roi-total-value">$${roi.monthlyValue.toLocaleString()}</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                roiHTML = `
+                    <div class="roi-box">
+                        <h4>💰 YOUR ROI CALCULATION</h4>
+                        <div class="roi-calc">
+                            <div class="roi-line">
+                                <span>Time per ${roi.roi.timeTask}:</span>
+                                <span>${roi.roi.timeBefore}h → ${roi.roi.timeAfter}h</span>
+                            </div>
+                            <div class="roi-line">
+                                <span>Time saved per task:</span>
+                                <span>${roi.timeSavedPerTask} hours</span>
+                            </div>
+                            <div class="roi-line">
+                                <span>Your frequency:</span>
+                                <span>~${roi.adjustedFrequency}x ${roi.roi.frequency}</span>
+                            </div>
+                            <div class="roi-line">
+                                <span>Hours saved monthly:</span>
+                                <span>${roi.timeSavedMonthly} hours</span>
+                            </div>
+                            <div class="roi-line">
+                                <span>Your hourly value:</span>
+                                <span>$${hourlyRate}/hr</span>
+                            </div>
+                        </div>
+                        <div class="roi-total">
+                            <div class="roi-total-label">Monthly Value</div>
+                            <div class="roi-total-value">$${roi.monthlyValue.toLocaleString()}/mo</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
                 <div class="result-card">
-                    <div class="result-rank">#${i + 1}</div>
-                    <h3 class="result-title">${uc.t}</h3>
-                    <span class="result-category">${uc.c}</span>
+                    <div class="result-rank">#${index + 1}</div>
+                    <h3 class="result-title">${uc.title}</h3>
 
                     <div class="section-box">
-                        <h4>WHAT THIS IS & WHY IT'S PERFECT FOR YOU</h4>
-                        <p>${uc.desc || generateDescription(uc, answers)}</p>
-                        <p style="margin-top: 15px;"><strong>${generateWhyText(uc, answers)}</strong></p>
+                        <h4>THE PROBLEM</h4>
+                        <p>${uc.problem}</p>
                     </div>
 
-                    <div class="impact-grid">
-                        <div class="impact-box time">
-                            <div class="impact-icon">⏱️</div>
-                            <div class="impact-label">Time Saved</div>
-                            <div class="impact-value">${impact.time}</div>
-                        </div>
-                        <div class="impact-box money">
-                            <div class="impact-icon">💰</div>
-                            <div class="impact-label">Value Created</div>
-                            <div class="impact-value">${impact.money}</div>
-                        </div>
+                    <div class="section-box">
+                        <h4>THE SOLUTION</h4>
+                        <p>${uc.solution}</p>
+                        <p><strong>How it works:</strong> ${uc.howItWorks}</p>
                     </div>
+
+                    ${roiHTML}
 
                     <div class="how-section">
-                        <h4>How to Implement This:</h4>
+                        <h4>How to implement this:</h4>
                         <div class="how-steps">
-                            ${(uc.impl || generateImplementationSteps(uc)).map((step, j) => `
+                            ${uc.impl.map((step, j) => `
                                 <div class="how-step">
                                     <div class="step-number">${j + 1}</div>
                                     <div class="step-text">${step}</div>
@@ -1164,159 +1417,11 @@ Please help me:
                     </div>
 
                     <div class="prompt-box">
-                        <h4>EXAMPLE PROMPT TO GET STARTED</h4>
-                        <div class="prompt-text" id="prompt-${i}"><button class="copy-prompt-btn" onclick="copyPrompt(${i})">Copy</button>${prompt.trim()}</div>
+                        <h4>COPY THIS PROMPT TO GET STARTED</h4>
+                        <div class="prompt-text" id="prompt-${index}"><button class="copy-prompt-btn" onclick="copyPrompt(${index})">Copy</button>${uc.prompt.trim()}</div>
                     </div>
                 </div>
-            `}).join('');
-        }
-
-        function getPromptType(tags) {
-            if (tags.includes('content') || tags.includes('writing')) return 'content';
-            if (tags.includes('sales') || tags.includes('outreach')) return 'sales';
-            if (tags.includes('automation') || tags.includes('admin')) return 'automation';
-            if (tags.includes('analytics')) return 'analytics';
-            if (tags.includes('documentation') || tags.includes('hr')) return 'documentation';
-            if (tags.includes('strategy')) return 'strategy';
-            if (tags.includes('tool')) return 'tool';
-            return 'content';
-        }
-
-        function generateExamplePrompt(uc, answers, promptType) {
-            const businessDesc = answers.business_pitch ? answers.business_pitch.substring(0, 100) + '...' : '[YOUR BUSINESS]';
-
-            const prompts = {
-                content: `I run a business: ${businessDesc}
-
-Help me create ${uc.t.toLowerCase()} that will resonate with my target audience.
-
-My goals:
-- ${answers.revenue_goal === 'grow_revenue' ? 'Attract more customers and increase sales' : ''}
-- ${answers.revenue_goal === 'save_time' ? 'Save time while maintaining quality' : ''}
-- ${answers.revenue_goal === 'scale' ? 'Create systems I can repeat consistently' : ''}
-
-Please provide:
-1. A strategic approach for this
-2. 3 specific examples I can use or adapt
-3. Tips for making this uniquely mine`,
-
-                sales: `I need help with ${uc.t.toLowerCase()} for my business.
-
-About my business: ${businessDesc}
-
-My biggest challenge right now: ${answers.biggest_pain === 'sales' ? 'Converting leads into customers' : 'Finding more time for sales activities'}
-
-Please create:
-1. A framework I can follow
-2. Specific templates or scripts I can customize
-3. Tips for handling common objections or challenges`,
-
-                automation: `I want to set up ${uc.t.toLowerCase()} for my business.
-
-Current situation: ${businessDesc}
-
-My tech comfort level: ${answers.tech_comfort}
-Tools I currently use: ${answers.current_tools === 'minimal' ? 'Basic tools (email, spreadsheets)' : answers.current_tools === 'some' ? 'Some business software' : 'Multiple connected tools'}
-
-Please help me:
-1. Design the workflow logic step-by-step
-2. Recommend specific tools or approaches for my skill level
-3. Outline how to test and refine the automation`,
-
-                analytics: `Help me set up ${uc.t.toLowerCase()}.
-
-My business: ${businessDesc}
-Team size: ${answers.team_size}
-Goal: ${answers.revenue_goal === 'grow_revenue' ? 'Grow revenue' : answers.revenue_goal === 'save_time' ? 'Save time' : 'Improve efficiency'}
-
-Please provide:
-1. The key metrics I should track
-2. A simple dashboard structure I can build
-3. How often to review and what actions to take based on results`,
-
-                documentation: `Help me create ${uc.t.toLowerCase()}.
-
-About my business: ${businessDesc}
-Team size: ${answers.team_size}
-Main challenge: Getting consistent results as we ${answers.revenue_goal === 'scale' ? 'scale' : 'grow'}
-
-Please create:
-1. An outline of what to include
-2. A template I can fill in
-3. Tips for keeping it updated and useful`,
-
-                strategy: `I need strategic help with ${uc.t.toLowerCase()}.
-
-My business: ${businessDesc}
-Current priority: ${answers.revenue_goal === 'grow_revenue' ? 'Growing revenue' : answers.revenue_goal === 'save_time' ? 'Saving time' : answers.revenue_goal === 'reduce_costs' ? 'Reducing costs' : 'Scaling operations'}
-Timeline: ${answers.quick_win === 'immediate' ? 'Need quick wins' : answers.quick_win === 'strategic' ? 'Building for long-term' : 'Willing to invest time for results'}
-
-Please help me:
-1. Analyze my current situation
-2. Identify the key factors to consider
-3. Recommend a specific approach with next steps`,
-
-                tool: `Help me build ${uc.t.toLowerCase()}.
-
-My business: ${businessDesc}
-Tech comfort: ${answers.tech_comfort}
-Budget: ${answers.budget === 'free' ? 'Prefer free/low-cost options' : 'Willing to invest in the right solution'}
-
-Please provide:
-1. The core features this should have
-2. Recommended tools or platforms to build it
-3. Step-by-step implementation guide`
-            };
-
-            return prompts[promptType] || prompts.content;
-        }
-
-        function generateDescription(uc, answers) {
-            return `This helps you ${uc.t.toLowerCase()}, saving significant time while improving quality and consistency. Based on your business and goals, this is a high-impact opportunity.`;
-        }
-
-        function generateWhyText(uc, answers) {
-            const reasons = [];
-            const tags = uc.tags || [];
-
-            if (answers.biggest_pain === 'content' && tags.includes('content')) {
-                reasons.push("This directly tackles your content creation challenges.");
-            }
-            if (answers.biggest_pain === 'admin' && (tags.includes('admin') || tags.includes('automation'))) {
-                reasons.push("This eliminates the administrative work that's eating up your time.");
-            }
-            if (answers.biggest_pain === 'sales' && tags.includes('sales')) {
-                reasons.push("This strengthens your sales process where you need it most.");
-            }
-            if (answers.biggest_pain === 'support' && tags.includes('support')) {
-                reasons.push("This helps you handle customer communication more efficiently.");
-            }
-
-            if (answers.revenue_goal === 'grow_revenue' && (tags.includes('revenue') || tags.includes('growth'))) {
-                reasons.push("It's directly tied to revenue growth - exactly what you're focused on.");
-            }
-            if (answers.revenue_goal === 'save_time') {
-                reasons.push("This will free up hours in your week for higher-value work.");
-            }
-            if (answers.revenue_goal === 'scale' && tags.includes('scale')) {
-                reasons.push("This creates repeatable systems essential for scaling.");
-            }
-
-            if (answers.team_size === 'solo') {
-                reasons.push("As a solo operator, this gives you leverage to do more with less.");
-            }
-
-            return reasons.slice(0, 2).join(" ") || "This matches your business profile and will deliver strong ROI for your specific situation.";
-        }
-
-        function generateImplementationSteps(uc) {
-            return [
-                "Define your specific goals and what success looks like",
-                "Gather any existing materials or data you'll need",
-                "Use the example prompt above as a starting point with Claude",
-                "Review the output and customize it for your business",
-                "Implement, test with real scenarios, and refine based on results"
-            ];
+            `;
         }
 
         function copyPrompt(index) {
@@ -1331,31 +1436,22 @@ Please provide:
 
         function downloadResults() {
             const results = window.topResults;
-            let text = "# Your Personalized AI Use Case Recommendations\n\n";
-            text += `Generated: ${new Date().toLocaleDateString()}\n\n`;
-            text += "---\n\n";
+            const hourlyRate = parseInt(window.userAnswers.hourly_value) || 50;
+
+            let text = "# Your AI Use Case Recommendations\n\n";
+            text += `Generated: ${new Date().toLocaleDateString()}\n`;
+            text += `Based on: $${hourlyRate}/hour value\n\n---\n\n`;
 
             results.forEach((uc, i) => {
-                const impact = impactData[uc.c] || { time: "5-15 hrs/month", money: "$500-3,000/month" };
-                const promptType = getPromptType(uc.tags || []);
-                const prompt = generateExamplePrompt(uc, window.userAnswers, promptType);
-
-                text += `## #${i + 1}: ${uc.t}\n\n`;
-                text += `**Category:** ${uc.c}\n\n`;
-                text += `### What This Is\n${uc.desc || generateDescription(uc, window.userAnswers)}\n\n`;
-                text += `### Why This Is Perfect For You\n${generateWhyText(uc, window.userAnswers)}\n\n`;
-                text += `### Expected Impact\n`;
-                text += `- **Time Saved:** ${impact.time}\n`;
-                text += `- **Value Created:** ${impact.money}\n\n`;
-                text += `### How to Implement\n`;
-                (uc.impl || generateImplementationSteps(uc)).forEach((step, j) => {
-                    text += `${j + 1}. ${step}\n`;
-                });
-                text += `\n### Example Prompt\n\`\`\`\n${prompt}\n\`\`\`\n`;
-                text += "\n---\n\n";
+                text += `## #${i + 1}: ${uc.title}\n\n`;
+                text += `**Problem:** ${uc.problem}\n\n`;
+                text += `**Solution:** ${uc.solution}\n\n`;
+                text += `**How it works:** ${uc.howItWorks}\n\n`;
+                text += `**Monthly value:** $${uc.roi.monthlyValue.toLocaleString()}\n\n`;
+                text += `### Implementation Steps\n`;
+                uc.impl.forEach((step, j) => text += `${j + 1}. ${step}\n`);
+                text += `\n### Prompt\n\`\`\`\n${uc.prompt}\n\`\`\`\n\n---\n\n`;
             });
-
-            text += "\n*Generated by CoLab Lisbon AI Use Case Finder*\n";
 
             const blob = new Blob([text], { type: 'text/markdown' });
             const url = URL.createObjectURL(blob);
