@@ -354,31 +354,32 @@
         }
 
         .arch-component {
-            background: white;
-            border: 1px solid #e0e0e0;
+            background: #2a2a3e;
+            border: 1px solid #555;
             border-radius: 8px;
             padding: 10px 14px;
             font-size: 0.8rem;
+            color: #e0e0e0;
         }
 
         .arch-component.mcp {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border-color: #f59e0b;
+            background: #2a2a3e;
+            border-color: var(--coral);
         }
 
         .arch-component.skill {
-            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-            border-color: #3b82f6;
+            background: #2a2a3e;
+            border-color: var(--lime);
         }
 
         .arch-component.data {
-            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-            border-color: #10b981;
+            background: #2a2a3e;
+            border-color: #888;
         }
 
         .arch-component.output {
-            background: linear-gradient(135deg, #fce7f3, #fbcfe8);
-            border-color: #ec4899;
+            background: #2a2a3e;
+            border-color: var(--salmon);
         }
 
         .arch-label {
@@ -420,53 +421,53 @@
         }
 
         .skills-box {
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            border: 1px solid #93c5fd;
+            background: #1a1a2e;
+            border: 1px solid var(--lime);
             border-radius: 10px;
             padding: 20px;
             margin-top: 18px;
         }
 
         .skills-box .section-label {
-            color: #1e40af;
+            color: var(--lime);
             margin-top: 0;
         }
 
         .skill-item {
-            background: white;
+            background: #2a2a3e;
             border-radius: 8px;
             padding: 12px 15px;
             margin-top: 10px;
-            border-left: 3px solid #3b82f6;
+            border-left: 3px solid var(--lime);
         }
 
         .skill-name {
             font-weight: 600;
             font-size: 0.9rem;
-            color: var(--charcoal);
+            color: #fff;
             margin-bottom: 4px;
         }
 
         .skill-desc {
             font-size: 0.8rem;
-            color: #666;
+            color: #aaa;
         }
 
         .outcome-box {
-            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-            border: 1px solid #86efac;
+            background: #1a1a2e;
+            border: 1px solid var(--coral);
             border-radius: 10px;
             padding: 20px;
             margin-top: 18px;
         }
 
         .outcome-box .section-label {
-            color: #166534;
+            color: var(--coral);
             margin-top: 0;
         }
 
         .outcome-box .section-content {
-            color: #166534;
+            color: #e0e0e0;
             font-weight: 500;
         }
 
@@ -667,7 +668,8 @@
                     { value: 'consulting', title: 'Consulting / Advisory', desc: 'You sell expertise and judgment' },
                     { value: 'agency', title: 'Agency / Services', desc: 'Team delivers work for clients' },
                     { value: 'saas', title: 'SaaS / Product', desc: 'Software or digital product' },
-                    { value: 'info', title: 'Courses / Coaching', desc: 'Information products, programs' }
+                    { value: 'info', title: 'Courses / Coaching', desc: 'Information products, programs' },
+                    { value: 'project', title: 'Project / Asset-based', desc: 'Real estate, development, investments, portfolio' }
                 ]
             },
             {
@@ -921,7 +923,7 @@ Help me design:
                 id: 'exec-dashboard',
                 title: "Executive Intelligence Dashboard",
                 tagline: "Replace dashboards with intelligence. One interface that tells you what's happening, what's off, and what to do.",
-                tags: ['intelligence', 'automation', 'leverage', 'financial', 'crm', 'saas', 'agency', 'consulting'],
+                tags: ['intelligence', 'automation', 'leverage', 'financial', 'crm', 'saas', 'agency', 'consulting', 'project'],
                 complexity: ['advanced'],
                 description: "Not another dashboard—an intelligence layer. Pulls from revenue, CRM, marketing, product, and support. But instead of showing you charts, Claude interprets the data: 'Revenue is flat, but pipeline quality improved.' Prioritizes: Top 3 issues, Top 3 opportunities. Recommends: Specific actions to take. One daily interface that answers: What's happening? What's off? What matters? What should I do?",
                 architecture: {
@@ -2295,7 +2297,7 @@ Help me design:
                 id: 'revenue-command',
                 title: "Revenue Operations Command Center",
                 tagline: "See every dollar from lead to cash. Know exactly where revenue is stuck or leaking.",
-                tags: ['intelligence', 'financial', 'crm', 'saas', 'agency', 'consulting'],
+                tags: ['intelligence', 'financial', 'crm', 'saas', 'agency', 'consulting', 'project'],
                 complexity: ['advanced'],
                 description: "End-to-end pipeline visibility: lead → opportunity → close → invoice → cash collected. One system that shows where deals are stuck, which reps are behind, where revenue is leaking between stages. Stop asking 'where's my money?' and see it in real-time.",
                 architecture: {
@@ -2397,7 +2399,7 @@ Predict future cash based on:
                 id: 'pitch-deck',
                 title: "AI Pitch Deck Builder",
                 tagline: "Go from idea to investor-ready deck in a day, not a month.",
-                tags: ['leverage', 'automation', 'saas', 'info'],
+                tags: ['leverage', 'automation', 'saas', 'info', 'project'],
                 complexity: ['starter', 'intermediate'],
                 description: "For founders who need to raise but don't have weeks to craft the perfect deck. Claude pulls from your existing docs, market research, and financials to generate a narrative-driven pitch deck. Pairs with Figma/Canva for professional visuals. Output: a deck that tells a compelling story, not just slides with bullet points.",
                 architecture: {
@@ -2523,7 +2525,7 @@ If I don't have a model:
                 id: 'financial-foresight',
                 title: "Financial Foresight Engine",
                 tagline: "Not reporting—prediction. Simulate decisions before you make them. See cash risk months ahead.",
-                tags: ['intelligence', 'financial', 'leverage', 'saas', 'agency', 'consulting'],
+                tags: ['intelligence', 'financial', 'leverage', 'saas', 'agency', 'consulting', 'project'],
                 complexity: ['advanced'],
                 description: "Stop looking in the rearview mirror. This system predicts cashflow, burn rate, and risk points before they happen. Simulate business decisions—hiring, pricing changes, expansion—and see the financial impact before committing. Know you'll hit cash risk in 5.5 months under current trajectory, not when the bank account is empty.",
                 architecture: {
